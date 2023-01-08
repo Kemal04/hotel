@@ -1,8 +1,9 @@
 const express = require('express');
 const { User } = require('../models/model');
 const router = express.Router();
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt');
+const { validateToken } = require("../middlewares/AuthMiddleware");
+const { sign } = require("jsonwebtoken");
 
 router.post("/register", async (req, res) => {
     const name = req.body.name;
@@ -18,9 +19,7 @@ router.post("/register", async (req, res) => {
         await User.create({
             name: name,
             email: email,
-            password: hashedPassword,
-
-
+            password: hashedPassword
         });
         res.json("Giris kabul edildi");
     }
@@ -30,41 +29,36 @@ router.post("/register", async (req, res) => {
 });
 
 
-
 router.post("/login", async (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    try {
-        const user = await User.findOne({ where: { email: email } });
-        if (!user) {
-            return res.json({ error: "Ulanyjy tapylmady" });
-        }
+    const { email, password } = req.body;
 
-        const match = await bcrypt.compare(password, user.password)
+    const user = await User.findOne({ where: { email: email } });
 
-        if (match) {
-            const other = user;
+    if (!user) res.json({ error: "Beyle ulanyjy tapylmady" });
 
-            res.cookie("accessToken", jwt.sign({ id: user.id }, "secretkey"), {
-                httpOnly: true,
-            }).json({ other: other });
+    bcrypt.compare(password, user.password).then(async (match) => {
+        if (!match) res.json({ error: "E-mailinizi yada acar sozunizi yalnys yazdynyz" });
 
-        } else {
+        const accessToken = sign(
+            { email: user.email, id: user.id },
+            "importantsecret"
+        );
+        res.json({ token: accessToken, email: email, id: user.id });
+    });
+});
 
-            return res.json({ error: "password invald" });
-        }
-    }
-    catch (err) {
-        console.log(err);
-    }
-})
+router.get("/auth", validateToken, (req, res) => {
+    res.json(req.user);
+});
 
+router.get("/basicinfo/:id", async (req, res) => {
+    const id = req.params.id;
 
-router.post("/logout", (res, req) => {
-    res.clearCookie("accessToken", {
-        sameSite: "none",
-        secure: true
-    }).json({ success: "user logged out" });
-})
+    const basicInfo = await User.findByPk(id, {
+        attributes: { exclude: ["password"] },
+    });
+
+    res.json(basicInfo);
+});
 
 module.exports = router;

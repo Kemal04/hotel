@@ -70,11 +70,35 @@ const Booking = sequelize.define("booking", {
     }
 });
 
+const Contact = sequelize.define("contact", {
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    subject: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    comment: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    }
+});
 
+Room.hasMany(Booking, { onDelete: "cascade" });
+Booking.belongsTo(Room);
+
+User.hasMany(Booking, { onDelete: "cascade" });
+Booking.belongsTo(User);
 
 
 module.exports = {
     User,
     Room,
-    Booking
+    Booking,
+    Contact
 };
