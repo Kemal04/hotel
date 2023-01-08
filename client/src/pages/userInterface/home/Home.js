@@ -1,0 +1,264 @@
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import '@splidejs/react-splide/css';
+import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
+import axios from "axios"
+
+const Home = () => {
+
+    const options = {
+        type: 'loop',
+        perPage: 1,
+        perMove: 1,
+        pagination: false,
+        autoplay: true,
+    };
+
+
+    const contactOptions = {
+        type: 'loop',
+        perPage: 1,
+        perMove: 1,
+        paginations: true,
+        autoplay: true,
+        arrows: false,
+    };
+
+    const [rooms, setRooms] = useState([])
+
+    useEffect(() => {
+        const fetchAllRooms = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/rooms/')
+                setRooms(res.data.rooms)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchAllRooms()
+    }, [])
+
+    const [contacts, setContacts] = useState([])
+
+    useEffect(() => {
+        const fetchAllContacts = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/contact/')
+                setContacts(res.data.contact)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchAllContacts()
+    }, [])
+
+    return (
+        <>
+            {/* Seacrh Section  */}
+            <div className='container' style={{ marginTop: "-100px" }}>
+                <div className='card border-0 shadow p-5'>
+                    <div className='row align-items-center'>
+                        <div className='col-xl-3'>
+                            <label for="exampleFormControlInput1" class="form-label">Check In</label>
+                            <input type="date" class="form-control rounded-0" id="exampleFormControlInput1" placeholder="name@example.com" />
+                        </div>
+                        <div className='col-xl-3'>
+                            <label for="exampleFormControlInput1" class="form-label">Check Out</label>
+                            <input type="date" class="form-control rounded-0" id="exampleFormControlInput1" placeholder="name@example.com" />
+                        </div>
+                        <div className='col-xl-3'>
+                            <div className='row align-items-center'>
+                                <div className='col-xl-4'>
+                                    <label class="form-label">Room</label>
+                                    <select class="form-select rounded-0">
+                                        <option value="1">01</option>
+                                        <option value="2">02</option>
+                                        <option value="3">03</option>
+                                    </select>
+                                </div>
+                                <div className='col-xl-4'>
+                                    <label class="form-label">Adult</label>
+                                    <select class="form-select rounded-0">
+                                        <option value="1">01</option>
+                                        <option value="2">02</option>
+                                        <option value="3">03</option>
+                                    </select>
+                                </div>
+                                <div className='col-xl-4'>
+                                    <label class="form-label">Children</label>
+                                    <select class="form-select rounded-0">
+                                        <option value="1">01</option>
+                                        <option value="2">02</option>
+                                        <option value="3">03</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='col-xl-3 mt-4 d-grid'>
+                            <button className='btn btn-primary small'>Gözle</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* Seacrh Section  */}
+
+            {/* About Section  */}
+            <div className='container my-5 py-5'>
+                <div className='row align-items-center'>
+                    <div className='col-xl-6'>
+                        <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}> ABOUT US </div>
+                        <div className='display-4 mb-5'> Welcome To Roberto Hotel Luxury </div>
+                        <div className='h5 lh-lg ls-1 text-secondary mb-5'>
+                            With over 340 hotels worldwide, NH Hotel Group offers a wide variety of hotels catering for a perfect stay no matter where your destination.
+                        </div>
+                        <div> Manager: <span style={{ color: "#1cc3b2" }}>Michen Taylor</span> </div>
+                        <img src="/img/icons/signature.png" alt="Signature" className='img-fluid mt-5' />
+                    </div>
+                    <div className='col-xl-6'>
+                        <div className='row g-2 align-items-center'>
+                            <div className='col-xl-6'>
+                                <div className='scale'>
+                                    <img src="/img/cards/about/1.jpg" alt="cards" className='img-fluid rounded-3 mb-2' />
+                                </div>
+                                <div className='scale'>
+                                    <img src="/img/cards/about/2.jpg" alt="cards" className='img-fluid rounded-3' />
+                                </div>
+                            </div>
+                            <div className='col-xl-6'>
+                                <div className='scale'>
+                                    <img src="/img/cards/about/3.jpg" alt="cards" className='img-fluid rounded-3' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* About Section  */}
+
+            {/* Mini Cards Section  */}
+            <div className='container my-5 pb-5'>
+                <div className='row align-items-center'>
+                    <div className='col-xl-2'>
+                        <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
+                            <img src="/img/icons/rol.png" alt="Rol" className='img-fluid mb-3' style={{ width: "40px" }} />
+                            <h5>Transportion</h5>
+                        </div>
+                    </div>
+                    <div className='col-xl-2'>
+                        <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
+                            <img src="/img/icons/coal.png" alt="coal" className='img-fluid mb-3' style={{ width: "40px" }} />
+                            <h5>Reiseservice</h5>
+                        </div>
+                    </div>
+                    <div className='col-xl-2'>
+                        <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
+                            <img src="/img/icons/fork.png" alt="fork" className='img-fluid mb-3' style={{ width: "40px" }} />
+                            <h5>Spa Relaxtion</h5>
+                        </div>
+                    </div>
+                    <div className='col-xl-2'>
+                        <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
+                            <img src="/img/icons/drink.png" alt="drink" className='img-fluid mb-3' style={{ width: "40px" }} />
+                            <h5>Restaurant</h5>
+                        </div>
+                    </div>
+                    <div className='col-xl-2'>
+                        <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
+                            <img src="/img/icons/rol.png" alt="Rol" className='img-fluid mb-3' style={{ width: "40px" }} />
+                            <h5>Bar & Drink</h5>
+                        </div>
+                    </div>
+                    <div className='col-xl-2'>
+                        <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
+                            <img src="/img/icons/coal.png" alt="coal" className='img-fluid mb-3' style={{ width: "40px" }} />
+                            <h5>Reiseservice</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* Mini Cards Section  */}
+
+            {/* Rooms Section  */}
+            <div className='container-fluid p-0 my-5'>
+                <Splide options={options} hasTrack={false}>
+                    <SplideTrack className='row g-0'>
+                        {
+                            rooms.map((room) => (
+                                <SplideSlide className='col-xl-12 mb-3'>
+                                    <div className='row bg-blue'>
+                                        <div className='col-xl-6'>
+                                            <img src="/img/banners/1.jpg" alt="room" className='img-fluid' />
+                                        </div>
+                                        <div className='col-xl-6 text-white d-flex align-items-start justify-content-center flex-column'>
+                                            <div className='ms-5 display-5'>№ {room.roomNum}</div>
+                                            <div className='ms-5 my-4'>
+                                                <span className='h2 text-blue'>{room.price} <small>TMT</small></span>
+                                                <span> / Gün</span>
+                                            </div>
+                                            <div className='ms-3'>
+                                                <ul className='ul'>
+                                                    <li className='li mb-3'>
+                                                        <span style={{ width: "120px", display: "inline-block" }}>Meýdany</span>
+                                                        <span style={{ width: "auto", display: "inline-block" }}>: {room.size} m<sup>2</sup></span>
+                                                    </li>
+                                                    <li className='li mb-3'>
+                                                        <span style={{ width: "120px", display: "inline-block" }}>Adam Sany</span>
+                                                        <span style={{ width: "auto", display: "inline-block" }}>: Iň köp adam {room.capacity}</span>
+                                                    </li>
+                                                    <li className='li mb-3'>
+                                                        <span style={{ width: "120px", display: "inline-block" }}>Otag ady</span>
+                                                        <span style={{ width: "auto", display: "inline-block" }}>: "King Bed"</span>
+                                                    </li>
+                                                    <li className='li mb-3'>
+                                                        <span style={{ width: "120px", display: "inline-block" }}>Serwisler</span>
+                                                        <span style={{ width: "auto", display: "inline-block" }}>: Wifi, Telewizor, Hammam</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div className='ms-5 mt-4'>
+                                                <Link to="/" className='btn btn-primary ls-1 btn-lg' style={{ fontWeight: "600" }}>View Details</Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </SplideSlide>
+                            ))
+                        }
+                    </SplideTrack>
+                </Splide>
+            </div>
+            {/* Rooms Section  */}
+
+            {/* Contact Section  */}
+            <div className='container my-5'>
+                <div className='row justify-content-between '>
+                    <div className='col-xl-6 d-flex justify-content-end'>
+                        <img src="/img/cards/contact/1.jpg" alt="Person" className='img-fluid rounded-3 w-75' />
+                    </div>
+                    <div className='col-xl-6'>
+                        <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}> TESTIMONIALS </div>
+                        <div className='display-5 mb-4'> Our Guests Love Us</div>
+                        <Splide options={contactOptions} hasTrack={false} className="my-5">
+                            <SplideTrack className='row g-0'>
+                                {
+                                    contacts.map((contact) => (
+                                        <SplideSlide className='col-xl-12'>
+                                            <div className='h5 lh-lg ls-1 text-secondary mb-5'>
+                                                {contact.comment}
+                                            </div>
+                                            <div>
+                                                {contact.name} - <span className='text-blue'>{contact.email}</span>
+                                            </div>
+                                        </SplideSlide>
+                                    ))
+                                }
+                            </SplideTrack>
+                        </Splide>
+                    </div>
+                </div>
+            </div>
+            {/* Contact Section  */}
+        </>
+    )
+}
+
+export default Home

@@ -3,13 +3,14 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'
 
 //COMPONENTS
-import { Navbar, Footer, MenuList, MenuSidebar } from "./components"
+import { Navbar, Footer, BannerSlider } from "./components"
 
 //USERINTERFACE
-import { Home } from "./pages/menu"
+import { About, Contact, Home, Rooms, RoomRead } from "./pages/userInterface"
 
-//ADMINPANEL
-import { AdminHome, AdminHalls, AdminMenu } from './pages/admin';
+
+//Admin Pages
+import { Admin, AdminContacts, AdminContactCreate, AdminContactEdit, AdminContactRead, AdminRoomCreate, AdminRoomEdit, AdminRooms } from './pages/admin';
 
 //TOAST
 import { ToastContainer } from 'react-toastify'
@@ -24,13 +25,27 @@ const App = () => {
 
                     <Route path="/" element={<MenuWithNavbar />}>
                         <Route path='/' element={<Home />}></Route>
+                        <Route path='/biz-barada' element={<About />}></Route>
+                        <Route path='/habarlasmak' element={<Contact />}></Route>
+
+                        <Route path='/otaglar' element={<Rooms />}></Route>
+                        <Route path='/otag/:id' element={<RoomRead />}></Route>
                     </Route>
 
+
                     <Route path="/" element={<AdminWithNavbar />}>
-                        <Route path='/admin' element={<AdminHome />}></Route>
-                        <Route path='/admin/zallar' element={<AdminHalls />}></Route>
-                        <Route path='/admin/menyu' element={<AdminMenu />}></Route>
+                        <Route path='/admin' element={<Admin />}></Route>
+
+                        <Route path='/admin/teswirler' element={<AdminContacts />}></Route>
+                        <Route path='/admin/teswir-gos' element={<AdminContactCreate />}></Route>
+                        <Route path='/admin/teswir-uytget/:id' element={<AdminContactEdit />}></Route>
+                        <Route path='/admin/teswir/:id' element={<AdminContactRead />}></Route>
+
+                        <Route path='/admin/otaglar' element={<AdminRooms />}></Route>
+                        <Route path='/admin/otag-gos' element={<AdminRoomCreate />}></Route>
+                        <Route path='/admin/otag-uytget/:id' element={<AdminRoomEdit />}></Route>
                     </Route>
+
                 </Routes>
             </Router>
         </>
@@ -40,17 +55,19 @@ const App = () => {
 
 const MenuWithNavbar = () => {
     return (
-        <div className='row g-0'>
-            <MenuList />
+        <>
+            <Navbar />
+            <BannerSlider />
 
             <Outlet />
 
-            <MenuSidebar />
-        </div>
+            <Footer />
+        </>
     );
 }
 
-function AdminWithNavbar() {
+
+const AdminWithNavbar = () => {
     return (
         <Outlet />
     );
