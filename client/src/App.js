@@ -16,38 +16,45 @@ import { Admin, AdminContacts, AdminContactCreate, AdminContactEdit, AdminContac
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
+//COntext
+import ThemeContextProvider, { ThemeContext } from "./context/ThemeContext"
+
 const App = () => {
     return (
         <>
-            <Router>
-                <ToastContainer />
-                <Routes>
+            <ThemeContextProvider>
 
-                    <Route path="/" element={<MenuWithNavbar />}>
-                        <Route path='/' element={<Home />}></Route>
-                        <Route path='/biz-barada' element={<About />}></Route>
-                        <Route path='/habarlasmak' element={<Contact />}></Route>
+                <Router>
+                    <ToastContainer />
+                    <Routes>
 
-                        <Route path='/otaglar' element={<Rooms />}></Route>
-                        <Route path='/otag/:id' element={<RoomRead />}></Route>
-                    </Route>
+                        <Route path="/" element={<MenuWithNavbar />}>
+                            <Route path='/' element={<Home />}></Route>
+                            <Route path='/biz-barada' element={<About />}></Route>
+                            <Route path='/habarlasmak' element={<Contact />}></Route>
+
+                            <Route path='/otaglar' element={<Rooms />}></Route>
+                            <Route path='/otag/:id' element={<RoomRead />}></Route>
+                        </Route>
 
 
-                    <Route path="/" element={<AdminWithNavbar />}>
-                        <Route path='/admin' element={<Admin />}></Route>
+                        <Route path="/" element={<AdminWithNavbar />}>
+                            <Route path='/admin' element={<Admin />}></Route>
 
-                        <Route path='/admin/teswirler' element={<AdminContacts />}></Route>
-                        <Route path='/admin/teswir-gos' element={<AdminContactCreate />}></Route>
-                        <Route path='/admin/teswir-uytget/:id' element={<AdminContactEdit />}></Route>
-                        <Route path='/admin/teswir/:id' element={<AdminContactRead />}></Route>
+                            <Route path='/admin/teswirler' element={<AdminContacts />}></Route>
+                            <Route path='/admin/teswir-gos' element={<AdminContactCreate />}></Route>
+                            <Route path='/admin/teswir-uytget/:id' element={<AdminContactEdit />}></Route>
+                            <Route path='/admin/teswir/:id' element={<AdminContactRead />}></Route>
 
-                        <Route path='/admin/otaglar' element={<AdminRooms />}></Route>
-                        <Route path='/admin/otag-gos' element={<AdminRoomCreate />}></Route>
-                        <Route path='/admin/otag-uytget/:id' element={<AdminRoomEdit />}></Route>
-                    </Route>
+                            <Route path='/admin/otaglar' element={<AdminRooms />}></Route>
+                            <Route path='/admin/otag-gos' element={<AdminRoomCreate />}></Route>
+                            <Route path='/admin/otag-uytget/:id' element={<AdminRoomEdit />}></Route>
+                        </Route>
 
-                </Routes>
-            </Router>
+                    </Routes>
+                </Router>
+
+            </ThemeContextProvider>
         </>
     )
 }

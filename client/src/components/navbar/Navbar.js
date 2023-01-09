@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import './navbar.css'
+import { ThemeContext } from '../../context/ThemeContext';
 
 const Navbar = () => {
+
+    const { darkMode } = useContext(ThemeContext)
+
     return (
         <>
-            <div className='text-white py-2' style={{ backgroundColor: "#0e2737" }}>
+            <div className='py-2 text-white' style={darkMode ? { backgroundColor: "#212529" } : { backgroundColor: "#0e2737" }}>
                 <div className='container'>
                     <div className='row'>
                         <div className='col-xl-6'>
@@ -27,29 +31,29 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <nav class="navbar navbar-expand-lg bg-light py-0">
-                <div class="container">
-                    <Link to="/" class="navbar-brand">Logo</Link>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+            <nav className={darkMode ? "navbar navbar-dark navbar-expand-lg bg-dark py-0" : "navbar navbar-expand-lg bg-light py-0"}>
+                <div className="container">
+                    <Link to="/" className="navbar-brand">Logo</Link>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item mx-2" style={{ fontSize: "17px" }}>
-                                <Link to="/" class="nav-link active fw-bold">Baş sahypa</Link>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav ms-auto">
+                            <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
+                                <Link to="/" className="nav-link active fw-bold">Baş sahypa</Link>
                             </li>
-                            <li class="nav-item mx-2" style={{ fontSize: "17px" }}>
-                                <Link to="/otaglar" class="nav-link fw-bold">Otaglar</Link>
+                            <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
+                                <Link to="/otaglar" className="nav-link fw-bold">Otaglar</Link>
                             </li>
-                            <li class="nav-item mx-2" style={{ fontSize: "17px" }}>
-                                <Link to="/biz-barada" class="nav-link fw-bold">Biz barada</Link>
+                            <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
+                                <Link to="/biz-barada" className="nav-link fw-bold">Biz barada</Link>
                             </li>
-                            <li class="nav-item mx-2" style={{ fontSize: "17px" }}>
-                                <Link to="/habarlasmak" class="nav-link fw-bold">Habarlaşmak</Link>
+                            <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
+                                <Link to="/habarlasmak" className="nav-link fw-bold">Habarlaşmak</Link>
                             </li>
                         </ul>
-                        <form class="d-flex" role="search">
-                            <Link to="/giris-etmek" class="btn btn-primary py-4 fw-bold" style={{ letterSpacing: "1px" }} type="submit">Giriş etmek</Link>
+                        <form className="d-flex" role="search">
+                            <Link to="/giris-etmek" className="btn btn-primary py-4 fw-bold" style={{ letterSpacing: "1px" }} type="submit">Giriş etmek</Link>
                         </form>
                     </div>
                 </div>

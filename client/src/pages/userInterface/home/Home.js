@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import '@splidejs/react-splide/css';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import axios from "axios"
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const Home = () => {
+
+    const { darkMode } = useContext(ThemeContext)
 
     const options = {
         type: 'loop',
@@ -56,37 +59,37 @@ const Home = () => {
         <>
             {/* Seacrh Section  */}
             <div className='container' style={{ marginTop: "-100px" }}>
-                <div className='card border-0 shadow p-5'>
+                <div className={darkMode ? "card border-0 shadow p-5 bg-dark text-white" : "card border-0 shadow p-5 bg-white"}>
                     <div className='row align-items-center'>
                         <div className='col-xl-3'>
-                            <label for="exampleFormControlInput1" class="form-label">Check In</label>
-                            <input type="date" class="form-control rounded-0" id="exampleFormControlInput1" placeholder="name@example.com" />
+                            <label htmlFor="exampleFormControlInput1" className="form-label">Check In</label>
+                            <input type="date" className="form-control rounded-0" id="exampleFormControlInput1" placeholder="name@example.com" />
                         </div>
                         <div className='col-xl-3'>
-                            <label for="exampleFormControlInput1" class="form-label">Check Out</label>
-                            <input type="date" class="form-control rounded-0" id="exampleFormControlInput1" placeholder="name@example.com" />
+                            <label htmlFor="exampleFormControlInput1" className="form-label">Check Out</label>
+                            <input type="date" className="form-control rounded-0" id="exampleFormControlInput1" placeholder="name@example.com" />
                         </div>
                         <div className='col-xl-3'>
                             <div className='row align-items-center'>
                                 <div className='col-xl-4'>
-                                    <label class="form-label">Room</label>
-                                    <select class="form-select rounded-0">
+                                    <label className="form-label">Room</label>
+                                    <select className="form-select rounded-0">
                                         <option value="1">01</option>
                                         <option value="2">02</option>
                                         <option value="3">03</option>
                                     </select>
                                 </div>
                                 <div className='col-xl-4'>
-                                    <label class="form-label">Adult</label>
-                                    <select class="form-select rounded-0">
+                                    <label className="form-label">Adult</label>
+                                    <select className="form-select rounded-0">
                                         <option value="1">01</option>
                                         <option value="2">02</option>
                                         <option value="3">03</option>
                                     </select>
                                 </div>
                                 <div className='col-xl-4'>
-                                    <label class="form-label">Children</label>
-                                    <select class="form-select rounded-0">
+                                    <label className="form-label">Children</label>
+                                    <select className="form-select rounded-0">
                                         <option value="1">01</option>
                                         <option value="2">02</option>
                                         <option value="3">03</option>
@@ -109,7 +112,7 @@ const Home = () => {
                         <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}> ABOUT US </div>
                         <div className='display-4 mb-5'> Welcome To Roberto Hotel Luxury </div>
                         <div className='h5 lh-lg ls-1 text-secondary mb-5'>
-                            With over 340 hotels worldwide, NH Hotel Group offers a wide variety of hotels catering for a perfect stay no matter where your destination.
+                            With over 340 hotels worldwide, NH Hotel Group offers a wide variety of hotels catering htmlFor a perfect stay no matter where your destination.
                         </div>
                         <div> Manager: <span style={{ color: "#1cc3b2" }}>Michen Taylor</span> </div>
                         <img src="/img/icons/signature.png" alt="Signature" className='img-fluid mt-5' />
@@ -184,7 +187,7 @@ const Home = () => {
                     <SplideTrack className='row g-0'>
                         {
                             rooms.map((room) => (
-                                <SplideSlide className='col-xl-12 mb-3'>
+                                <SplideSlide className='col-xl-12 mb-3' key={room.id}>
                                     <div className='row bg-blue'>
                                         <div className='col-xl-6'>
                                             <img src="/img/banners/1.jpg" alt="room" className='img-fluid' />
@@ -241,7 +244,7 @@ const Home = () => {
                             <SplideTrack className='row g-0'>
                                 {
                                     contacts.map((contact) => (
-                                        <SplideSlide className='col-xl-12'>
+                                        <SplideSlide className='col-xl-12' key={contact.id}>
                                             <div className='h5 lh-lg ls-1 text-secondary mb-5'>
                                                 {contact.comment}
                                             </div>
