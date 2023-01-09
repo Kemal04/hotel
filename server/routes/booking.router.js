@@ -1,8 +1,9 @@
 const express = require('express');
 const { Booking, Room } = require('../models/model');
 const router = express.Router();
+const { validateToken } = require("../middlewares/AuthMiddleware");
 
-router.get("/", async (req,res) => {
+router.get("/", validateToken, async (req,res) => {
         
         const booking = await Booking.findAll({ include: Room});
         res.json({
