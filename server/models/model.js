@@ -21,6 +21,13 @@ const User = sequelize.define("user", {
     }
 });
 
+const RoomType = sequelize.define("roomType", {
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+});
+
 const Room = sequelize.define("room", {
     id: {
         type: DataTypes.INTEGER,
@@ -89,16 +96,21 @@ const Contact = sequelize.define("contact", {
     }
 });
 
-Room.hasMany(Booking, { onDelete: "cascade" });
-Booking.belongsTo(Room);
 
-User.hasMany(Booking, { onDelete: "cascade" });
-Booking.belongsTo(User);
+RoomType.hasMany(Room, { onDelete: "cascade" });
+Room.belongsTo(RoomType)
+
+// Room.hasMany(Booking, { onDelete: "cascade" });
+// Booking.belongsTo(Room);
+
+// User.hasMany(Booking, { onDelete: "cascade" });
+// Booking.belongsTo(User);
 
 
 module.exports = {
     User,
     Room,
     Booking,
-    Contact
+    Contact,
+    RoomType
 };

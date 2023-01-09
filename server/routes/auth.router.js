@@ -1,27 +1,27 @@
 const express = require('express');
 const { User } = require('../models/model');
 const router = express.Router();
-const bcrypt = require('bcrypt');
 const { validateToken } = require("../middlewares/AuthMiddleware");
 const { sign } = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 
 router.post("/register", async (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
 
+    if (!(name && email && password)) {
+        res.json({error: "Ahli oyjukleri doldurun"});
+      }
+
     const hashedPassword = await bcrypt.hash(password, 10);
     try {
-        const user = await User.findOne({ where: { email: email } });
-        if (user) {
-            return res.json({ error: "Email on ulanylyp dur" })
-        }
         await User.create({
             name: name,
             email: email,
             password: hashedPassword
         });
-        res.json("Giris kabul edildi");
+        res.json("Giriş kabul edildi");
     }
     catch (err) {
         console.log(err);
@@ -32,6 +32,9 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
+    if (!(email && password)) {
+        res.json({ error: "Ahli oyjukleri doldurun" });
+    }
     const user = await User.findOne({ where: { email: email } });
 
     if (!user) res.json({ error: "Beyle ulanyjy tapylmady" });
