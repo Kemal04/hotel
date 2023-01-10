@@ -5,11 +5,16 @@ import { ThemeContext } from '../../context/ThemeContext';
 
 const Navbar = () => {
 
-    const { darkMode } = useContext(ThemeContext)
+    const { darkMode, toggleDarkMode } = useContext(ThemeContext)
+
+    const darkModeClick = () => {
+        toggleDarkMode();
+    }
+
 
     return (
         <>
-            <div className='py-2 text-white' style={darkMode ? { backgroundColor: "#212529" } : { backgroundColor: "#0e2737" }}>
+            <div className='py-2 text-white border-bottom' style={darkMode ? { backgroundColor: "#212529" } : { backgroundColor: "#0e2737" }}>
                 <div className='container'>
                     <div className='row'>
                         <div className='col-xl-6'>
@@ -23,10 +28,18 @@ const Navbar = () => {
                             </div>
                         </div>
                         <div className='col-xl-6 text-end'>
-                            <span className='px-2'>A</span>
-                            <span className='px-2'>A</span>
-                            <span className='px-2'>A</span>
-                            <span className='px-2'>A</span>
+                            <span className='px-2'>
+                                <img src="/img/icons/ins.svg" alt="Icon" style={{ width: "25px", height: "25px", objectFit: "cover" }} />
+                            </span>
+                            <span className='px-2'>
+                                <img src="/img/icons/facebook.svg" alt="Icon" style={{ width: "25px", height: "25px", objectFit: "cover" }} />
+                            </span>
+                            <span className='px-2'>
+                                <img src="/img/icons/tweeter.svg" alt="Icon" style={{ width: "25px", height: "25px", objectFit: "cover" }} />
+                            </span>
+                            <span className='px-2'>
+                                <img src="/img/icons/whatsap.svg" alt="Icon" style={{ width: "25px", height: "25px", objectFit: "cover" }} />
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -50,6 +63,16 @@ const Navbar = () => {
                             </li>
                             <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
                                 <Link to="/habarlasmak" className="nav-link fw-bold">Habarlaşmak</Link>
+                            </li>
+                            <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
+                                <button onClick={darkModeClick} className={darkMode ? "nav-link border-0 bg-dark" : "nav-link border-0 bg-light"}>
+                                    {
+                                        darkMode ?
+                                            <img src="/img/icons/sun.png" alt="Moon" style={{ width: "20px", }} />
+                                            :
+                                            <img src="/img/icons/moon.png" alt="Moon" style={{ width: "20px" }} />
+                                    }
+                                </button>
                             </li>
                         </ul>
                         <form className="d-flex" role="search">
