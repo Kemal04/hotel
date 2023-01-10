@@ -56,9 +56,9 @@ const Home = () => {
     }, [])
 
     return (
-        <>
+        <div className={darkMode ? 'bg-dark text-white' : 'bg-white'}>
             {/* Seacrh Section  */}
-            <div className='container' style={{ marginTop: "-100px" }}>
+            <div className='container' style={{ marginTop: "-80px" }}>
                 <div className={darkMode ? "card border-0 shadow p-5 bg-dark text-white" : "card border-0 shadow p-5 bg-white"}>
                     <div className='row align-items-center'>
                         <div className='col-xl-3'>
@@ -140,40 +140,40 @@ const Home = () => {
 
             {/* Mini Cards Section  */}
             <div className='container my-5 pb-5'>
-                <div className='row align-items-center'>
+                <div className={darkMode ? 'row align-items-center text-dark' : 'row align-items-center text-dark'}>
                     <div className='col-xl-2'>
                         <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
-                            <img src="/img/icons/rol.png" alt="Rol" className='img-fluid mb-3' style={{ width: "40px" }} />
+                            <img src="/img/icons/rol.png" alt="Rol" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
                             <h5>Transportion</h5>
                         </div>
                     </div>
                     <div className='col-xl-2'>
                         <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
-                            <img src="/img/icons/coal.png" alt="coal" className='img-fluid mb-3' style={{ width: "40px" }} />
+                            <img src="/img/icons/coal.png" alt="coal" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
                             <h5>Reiseservice</h5>
                         </div>
                     </div>
                     <div className='col-xl-2'>
                         <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
-                            <img src="/img/icons/fork.png" alt="fork" className='img-fluid mb-3' style={{ width: "40px" }} />
+                            <img src="/img/icons/fork.png" alt="fork" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
                             <h5>Spa Relaxtion</h5>
                         </div>
                     </div>
                     <div className='col-xl-2'>
                         <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
-                            <img src="/img/icons/drink.png" alt="drink" className='img-fluid mb-3' style={{ width: "40px" }} />
+                            <img src="/img/icons/drink.png" alt="drink" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
                             <h5>Restaurant</h5>
                         </div>
                     </div>
                     <div className='col-xl-2'>
                         <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
-                            <img src="/img/icons/rol.png" alt="Rol" className='img-fluid mb-3' style={{ width: "40px" }} />
+                            <img src="/img/icons/rol.png" alt="Rol" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
                             <h5>Bar & Drink</h5>
                         </div>
                     </div>
                     <div className='col-xl-2'>
                         <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
-                            <img src="/img/icons/coal.png" alt="coal" className='img-fluid mb-3' style={{ width: "40px" }} />
+                            <img src="/img/icons/coal.png" alt="coal" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
                             <h5>Reiseservice</h5>
                         </div>
                     </div>
@@ -188,11 +188,11 @@ const Home = () => {
                         {
                             rooms.map((room) => (
                                 <SplideSlide className='col-xl-12 mb-3' key={room.id}>
-                                    <div className='row bg-blue'>
+                                    <div className={darkMode ? 'row bg-white text-dark' : 'row bg-blue text-white'}>
                                         <div className='col-xl-6'>
                                             <img src="/img/banners/1.jpg" alt="room" className='img-fluid' />
                                         </div>
-                                        <div className='col-xl-6 text-white d-flex align-items-start justify-content-center flex-column'>
+                                        <div className='col-xl-6 d-flex align-items-start justify-content-center flex-column'>
                                             <div className='ms-5 display-5'>№ {room.roomNum}</div>
                                             <div className='ms-5 my-4'>
                                                 <span className='h2 text-blue'>{room.price} <small>TMT</small></span>
@@ -232,7 +232,7 @@ const Home = () => {
             {/* Rooms Section  */}
 
             {/* Contact Section  */}
-            <div className='container my-5'>
+            <div className='container py-5'>
                 <div className='row justify-content-between '>
                     <div className='col-xl-6 d-flex justify-content-end'>
                         <img src="/img/cards/contact/1.jpg" alt="Person" className='img-fluid rounded-3 w-75' />
@@ -260,7 +260,7 @@ const Home = () => {
                 </div>
             </div>
             {/* Contact Section  */}
-        </>
+        </div>
     )
 }
 

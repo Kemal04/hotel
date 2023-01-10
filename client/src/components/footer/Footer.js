@@ -1,17 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { ThemeContext } from '../../context/ThemeContext'
 
 const Footer = () => {
+
+    const { darkMode } = useContext(ThemeContext)
+    
     return (
         <>
-            <div className='bg-blue p-5 text-white'>
+            <div className={darkMode ? 'bg-white p-5 text-dark' : 'bg-blue p-5 text-white'}>
                 <div className="container">
                     <div className="footer-text">
                         <div className="row justify-content-between align-items-center">
                             <div className="col-lg-4">
                                 <div className="ft-about">
                                     <div className="mb-2">
-                                        <Link to="/" className=' text-decoration-none text-white'>
+                                        <Link to="/" className=' text-decoration-none'>
                                             <div className="h3">Logo</div>
                                         </Link>
                                     </div>
