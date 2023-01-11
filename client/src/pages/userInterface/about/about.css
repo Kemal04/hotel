@@ -1,0 +1,17 @@
+.about-bg-fixed {
+    background: linear-gradient(rgba(14, 39, 55, 0.7), rgba(14, 39, 55, 0.7)), url('../../../../public/img/banners/4.jpg');
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.footer-rgba{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.card-about:hover .footer-rgba{
+    transition: 0.5s;
+    background-color: #2a303b!important
+}
