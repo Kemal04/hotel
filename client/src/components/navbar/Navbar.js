@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import './navbar.css'
 import { ThemeContext } from '../../context/ThemeContext';
 
@@ -53,16 +53,16 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
-                                <Link to="/" className="nav-link active fw-bold">Baş sahypa</Link>
+                                <NavLink style={({ isActive }) => ({ color: isActive ? "active" : null })} to="/" className="nav-link fw-bold">Baş sahypa</NavLink>
                             </li>
                             <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
-                                <Link to="/otaglar" className="nav-link fw-bold">Otaglar</Link>
+                                <NavLink to="/otaglar" className="nav-link fw-bold">Otaglar</NavLink>
                             </li>
                             <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
-                                <Link to="/biz-barada" className="nav-link fw-bold">Biz barada</Link>
+                                <NavLink to="/biz-barada" className="nav-link fw-bold">Biz barada</NavLink>
                             </li>
                             <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
-                                <Link to="/habarlasmak" className="nav-link fw-bold">Habarlaşmak</Link>
+                                <NavLink to="/habarlasmak" className="nav-link fw-bold">Habarlaşmak</NavLink>
                             </li>
                             <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
                                 <button onClick={darkModeClick} className={darkMode ? "nav-link border-0 bg-dark" : "nav-link border-0 bg-light"}>

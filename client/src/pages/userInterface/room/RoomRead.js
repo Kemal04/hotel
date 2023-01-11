@@ -35,8 +35,8 @@ const RoomRead = () => {
     return (
         <div className={darkMode ? "bg-dark text-white" : "bg-white text-dark"}>
             <div className='container py-5'>
-                <div className='row'>
-                    <div className='col-xl-8'>
+                <div className='row justify-content-between'>
+                    <div className='col-xl-7'>
                         <Splide options={option} hasTrack={false} className="mb-5">
                             <SplideTrack className='row'>
                                 <SplideSlide className='col-xl-12'>
@@ -120,21 +120,42 @@ const RoomRead = () => {
                                 Room Review
                             </div>
                             <div className='col-xl-12 p-0 mt-5'>
-                                <div className='row'>
+                                <div className='row align-items-center'>
                                     <div className='col-xl-2 border-end'>
                                         <img src="/img/icons/user-1.jpg" alt="User" className='rounded-circle' style={{ width: "100px" }} />
                                     </div>
                                     <div className='col-xl-10'>
                                         <div className='row justify-content-between align-items-center'>
                                             <div className='col-xl-3'>
-                                                <div className='mb-2 small text-secondary'>27 Aug 2019</div>
-                                                <div className='mb-2 text-blue h6'>Brandon Kelley</div>
-                                            </div>  
+                                                <div className='mb-3 small text-secondary'>27 Aug 2019</div>
+                                                <div className='mb-3 text-blue h6'>Brandon Kelley</div>
+                                            </div>
                                             <div className='col-xl-3 text-end'>
                                                 5 5 5 5
                                             </div>
                                         </div>
-                                        <div>
+                                        <div className='text-secondary'>
+                                            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='col-xl-12 p-0 mt-5'>
+                                <div className='row align-items-center'>
+                                    <div className='col-xl-2 border-end'>
+                                        <img src="/img/icons/user-3.jpg" alt="User" className='rounded-circle' style={{ width: "100px" }} />
+                                    </div>
+                                    <div className='col-xl-10'>
+                                        <div className='row justify-content-between align-items-center'>
+                                            <div className='col-xl-3'>
+                                                <div className='mb-3 small text-secondary'>27 Aug 2019</div>
+                                                <div className='mb-3 text-blue h6'>Brandon Kelley</div>
+                                            </div>
+                                            <div className='col-xl-3 text-end'>
+                                                5 5 5 5
+                                            </div>
+                                        </div>
+                                        <div className='text-secondary'>
                                             Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.
                                         </div>
                                     </div>
@@ -142,8 +163,33 @@ const RoomRead = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='col-xl-8'>
 
+                    <div className='col-xl-4'>
+                        <div className='row'>
+                            <div className='col-xl-12'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Date</label>
+                                <div className='row g-0'>
+                                    <div className='col-xl-6'>
+                                        <input type="date" className="form-control rounded-0 py-2 px-3" placeholder='Check In' />
+                                    </div>
+                                    <div className='col-xl-6'>
+                                        <input type="date" className="form-control rounded-0 py-2 px-3" placeholder='Check Out' />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='col-xl-12 mt-4'>
+                                <label className="form-label">Telefon belginiz</label>
+                                <div className="input-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text rounded-0">+993</span>
+                                    </div>
+                                    <input type="number" min="60000000" max="65999999" className="form-control" autoComplete='off' name="phoneNumber" required />
+                                </div>
+                            </div>
+                            <div className='col-xl-12 d-grid mt-5'>
+                                <button className='btn btn-primary rounded-5'>Bronla</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
