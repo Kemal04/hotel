@@ -8,7 +8,7 @@ const Footer = () => {
     
     return (
         <>
-            <div className={darkMode ? 'bg-white p-5 text-dark' : 'bg-blue p-5 text-white'}>
+            <div className={darkMode ? 'bg-white p-5 text-dark' : 'bg-primary-blue p-5 text-white'}>
                 <div className="container">
                     <div className="footer-text">
                         <div className="row justify-content-between align-items-center">

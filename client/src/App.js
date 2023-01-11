@@ -17,7 +17,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 //COntext
-import ThemeContextProvider, { ThemeContext } from "./context/ThemeContext"
+import ThemeContextProvider from "./context/ThemeContext"
 
 const App = () => {
     return (

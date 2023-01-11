@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import '@splidejs/react-splide/css';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
-import { Link, useLocation } from 'react-router-dom'
+import {  useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import { ThemeContext } from '../../../context/ThemeContext';

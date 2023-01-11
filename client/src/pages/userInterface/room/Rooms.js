@@ -29,7 +29,7 @@ const Rooms = () => {
                         <div className='row'>
                             {rooms.map((room) => (
                                 <div className='col-xl-12' key={room.id}>
-                                    <div className='card border-0 my-4' style={{ backgroundColor: "transparent" }}>
+                                    <div className='card border-0 my-4' style={{ backgroundColor: "transparent", boxShadow: 'none' }}>
                                         <div className='row align-items-center'>
                                             <div className='col-xl-6'>
                                                 <img src="/img/cards/room/1.jpg" alt="Room" className='img-fluid rounded-3' />

@@ -187,8 +187,8 @@ const Home = () => {
                     <SplideTrack className='row g-0'>
                         {
                             rooms.map((room) => (
-                                <SplideSlide className='col-xl-12 mb-3' key={room.id}>
-                                    <div className={darkMode ? 'row bg-white text-dark' : 'row bg-blue text-white'}>
+                                <SplideSlide className='col-xl-12 mb-3 p-0' key={room.id}>
+                                    <div className={darkMode ? 'row bg-white text-dark' : 'row bg-primary-blue text-white'}>
                                         <div className='col-xl-6'>
                                             <img src="/img/banners/1.jpg" alt="room" className='img-fluid' />
                                         </div>
