@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import './navbar.css'
 import { ThemeContext } from '../../context/ThemeContext';
 
-const Navbar = () => {
+const Navbar = ({ authState }) => {
 
     const { darkMode, toggleDarkMode } = useContext(ThemeContext)
 
@@ -11,6 +11,10 @@ const Navbar = () => {
         toggleDarkMode();
     }
 
+    const logout = () => {
+        localStorage.removeItem("accessToken");
+        window.location.reload()
+    };
 
     return (
         <>
@@ -76,7 +80,24 @@ const Navbar = () => {
                             </li>
                         </ul>
                         <form className="d-flex" role="search">
-                            <Link to="/giris-etmek" className="btn btn-primary py-4 fw-bold" style={{ letterSpacing: "1px" }} type="submit">Giriş etmek</Link>
+                            {
+                                !authState.status
+                                    ?
+                                    <Link to="/giris-etmek" className="btn btn-primary py-4 fw-bold" style={{ letterSpacing: "1px" }} type="submit">Giriş etmek</Link>
+                                    :
+                                    <div className="navbar-nav ms-5">
+                                        <li className="nav-item dropdown">
+                                            <NavLink className="nav-link dropdown-toggle text-dark" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ letterSpacing: "1px" }}>
+                                                {authState.email}
+                                            </NavLink>
+                                            <ul className="dropdown-menu rounded-0">
+                                                <li><NavLink to={`/ulanyjy-profili/${authState.id}`} className="dropdown-item bg-white text-black">Profile</NavLink></li>
+                                                <li><hr className="dropdown-divider" /></li>
+                                                <li><button onClick={logout} className="dropdown-item bg-white text-black">Logout</button></li>
+                                            </ul>
+                                        </li>
+                                    </div>
+                            }
                         </form>
                     </div>
                 </div>

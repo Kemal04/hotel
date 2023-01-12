@@ -31,23 +31,8 @@ const AdminSidebar = () => {
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/admin/kategoriyalar" className="nav-link">
-                                <p> Kategoriýalar </p>
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/admin/kici-kategoriyalar" className="nav-link">
-                                <p> Kiçi Kategoriýalar </p>
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/admin/bloglar" className="nav-link">
-                                <p> Bloglar </p>
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/admin/reklamalar" className="nav-link">
-                                <p> Reklamalar </p>
+                            <NavLink to="/admin/otaglar" className="nav-link">
+                                <p> Otaglar </p>
                             </NavLink>
                         </li>
                         <li className="nav-item">

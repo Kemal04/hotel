@@ -1,9 +1,55 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ThemeContext } from '../../../context/ThemeContext'
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Contact = () => {
 
     const { darkMode } = useContext(ThemeContext)
+
+    const [contact, setContact] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        comment: "",
+    })
+
+    const handleChange = (e) => {
+        setContact((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+
+    const navigate = useNavigate()
+
+    const handleClick = async (e) => {
+        e.preventDefault()
+
+        if (!contact.name) {
+            toast.error("Adyňyzy ýazyň")
+        }
+        else if (!contact.email) {
+            toast.error("E-mail adresiňizi ýazyň")
+        }
+        else if (!contact.subject) {
+            toast.error("Temaňyzy ýazyň")
+        }
+        else if (!contact.comment) {
+            toast.error("Teswiriňizi ýazyň")
+        }
+        else if (contact.comment.length < 25) {
+            toast.error("Teswiriňizi 50 harpdan ybarat bolmaly")
+        }
+        else {
+            await axios.post("http://localhost:3001/api/contact/create", contact)
+                .then((res) => {
+                    toast.success(res.data.success)
+                    console.log(res.data)
+                    navigate("/")
+                }).catch((error) => {
+                    toast.error(error.message)
+                });
+        }
+    }
 
     return (
         <div className={darkMode ? 'bg-dark text-white' : 'bg-white'}>
@@ -45,16 +91,19 @@ const Contact = () => {
 
                 <div className='row justify-content-center'>
                     <div className="col-xl-4 mb-4">
-                        <input type="text" className="form-control rounded-0" placeholder='Adynyz' />
+                        <input onChange={handleChange} name='name' type="text" className="form-control rounded-0" placeholder='Adynyz' autoComplete='off' />
                     </div>
                     <div className="col-xl-4 mb-4">
-                        <input type="email" className="form-control rounded-0" placeholder='E-mail adresiniz' />
+                        <input onChange={handleChange} name='email' type="email" className="form-control rounded-0" placeholder='E-mail adresiniz' autoComplete='off' />
                     </div>
                     <div className="col-xl-8 mb-4">
-                        <textarea class="form-control rounded-0" rows="6" placeholder='Sizin Habaryňyz'></textarea>
+                        <input onChange={handleChange} name='subject' type="name" className="form-control rounded-0" placeholder='Temasy' autoComplete='off' />
+                    </div>
+                    <div className="col-xl-8 mb-4">
+                        <textarea onChange={handleChange} name='comment' class="form-control rounded-0" rows="6" placeholder='Sizin Habaryňyz'></textarea>
                     </div>
                     <div className="col-xl-5 mb-4 text-center">
-                        <button className='btn btn-primary px-5'>Ugrat</button>
+                        <button onClick={handleClick} className='btn btn-primary px-5'>Ugrat</button>
                     </div>
                 </div>
             </div>
