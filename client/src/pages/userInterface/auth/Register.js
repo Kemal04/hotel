@@ -3,6 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import BannerImg from "../../../components/banner/BannerImg"
 
 const Register = () => {
 
@@ -50,6 +51,7 @@ const Register = () => {
 
     return (
         <>
+            <BannerImg name="Hasaba Durmak" />
             <div className='bg-img-small'>
                 <div className='container'>
                     <div className='row aling-items-center justify-content-center text-white text-center'>

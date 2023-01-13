@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import { AuthContext } from "../../../context/AuthContext";
+import BannerImg from "../../../components/banner/BannerImg"
 
 const Login = () => {
 
@@ -49,6 +50,7 @@ const Login = () => {
 
     return (
         <>
+            <BannerImg name="Giriş Etmek" />
             <div className='container my-5 py-3'>
                 <div className='row align-items-center justify-content-around'>
                     <div className='col-lg-6'>

@@ -67,11 +67,11 @@ const Booking = sequelize.define("booking", {
         autoIncrement: true,
         primaryKey: true
     },
-    chekIn: {
+    checkIn: {
         type: DataTypes.DATE,
         allowNull: false
     },
-    chekOut: {
+    checkOut: {
         type: DataTypes.DATE,
         allowNull: false
     }
@@ -100,11 +100,11 @@ const Contact = sequelize.define("contact", {
 RoomType.hasMany(Room, { onDelete: "cascade" });
 Room.belongsTo(RoomType)
 
-// Room.hasMany(Booking, { onDelete: "cascade" });
-// Booking.belongsTo(Room);
+Room.hasMany(Booking, { onDelete: "cascade" });
+Booking.belongsTo(Room);
 
-// User.hasMany(Booking, { onDelete: "cascade" });
-// Booking.belongsTo(User);
+User.hasMany(Booking, { onDelete: "cascade" });
+Booking.belongsTo(User);
 
 
 module.exports = {
