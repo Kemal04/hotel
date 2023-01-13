@@ -12,16 +12,16 @@ router.get("/", validateToken, async (req,res) => {
     }
 );
 
-router.get("/create", async (req, res) => {
-    const chekIn = req.body.chekIn
-    const chekOut = req.body.chekOut;
+router.post("/create", async (req, res) => {
+    const checkIn = req.body.checkIn
+    const checkOut = req.body.checkOut;
     const roomId = req.body.roomId;
     const userId = req.body.userId;
 
     try {
         await Booking.create({
-            chekIn: chekIn,
-            chekOut: chekOut,
+            checkIn: checkIn,
+            checkOut: checkOut,
             roomId: roomId,
             userId: userId,
         });

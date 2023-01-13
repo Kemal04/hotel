@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'
 
 //COMPONENTS
-import { Navbar, Footer, BannerSlider } from "./components"
+import { Navbar, Footer, BannerSlider, BannerImg } from "./components"
 
 //USERINTERFACE
 import { About, Contact, Home, Rooms, RoomRead, Register, Login } from "./pages/userInterface"
@@ -59,7 +59,7 @@ const App = () => {
                             <Route path='/habarlasmak' element={<Contact />}></Route>
 
                             <Route path='/otaglar' element={<Rooms />}></Route>
-                            <Route path='/otag/:id' element={<RoomRead />}></Route>
+                            <Route path='/otag/:id' element={<RoomRead authState={authState} />}></Route>
 
                             <Route path='/hasaba-durmak' element={<Register />}></Route>
                             <Route path='/giris-etmek' element={<Login />}></Route>
@@ -94,7 +94,6 @@ const WithNavbar = ({ authState }) => {
     return (
         <>
             <Navbar authState={authState} />
-            <BannerSlider />
 
             <Outlet />
 
