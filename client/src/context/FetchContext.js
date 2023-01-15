@@ -52,7 +52,7 @@ export function FetchContextProvider({ children }) {
     useEffect(() => {
         const fetchAllRooms = async () => {
             try {
-                const res = await axios.get('http://localhost:3001/api/booking/')
+                const res = await axios.get('http://localhost:3001/api/bookings/')
                 setBooking(res.data.booking)
             } catch (err) {
                 console.log(err)
@@ -62,7 +62,7 @@ export function FetchContextProvider({ children }) {
     }, [])
 
     return (
-        <FetchContext.Provider value={{ contacts, rooms, setRooms, roomtypes }} >
+        <FetchContext.Provider value={{ contacts, rooms, setRooms, roomtypes, booking }} >
             {children}
         </FetchContext.Provider>
     );
