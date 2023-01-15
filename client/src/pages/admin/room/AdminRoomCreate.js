@@ -4,22 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import AdminNavbar from '../../../components/navbar/AdminNavbar'
 import AdminSidebar from '../../../components/sidebar/AdminSidebar'
+import { useAPI } from '../../../context/FetchContext'
 
 const AdminRoomCreate = () => {
 
-    const [roomtypes, setRoomTypes] = useState([])
-
-    useEffect(() => {
-        const fetchRoomTypes = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/roomtypes/')
-                setRoomTypes(res.data.roomtypes)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchRoomTypes()
-    }, [])
+    const { roomtypes } = useAPI()
 
     const [room, setRoom] = useState({
         roomTypeId: "",

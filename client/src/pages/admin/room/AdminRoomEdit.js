@@ -4,22 +4,11 @@ import AdminNavbar from '../../../components/navbar/AdminNavbar'
 import AdminSidebar from '../../../components/sidebar/AdminSidebar'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import { useAPI } from '../../../context/FetchContext'
 
 const AdminRoomEdit = () => {
 
-    const [roomtypes, setRoomTypes] = useState([])
-
-    useEffect(() => {
-        const fetchRoomTypes = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/roomtypes/')
-                setRoomTypes(res.data.roomtypes)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchRoomTypes()
-    }, [])
+    const { roomtypes } = useAPI()
 
     const [room, setRoom] = useState({
         roomTypeId: "",
@@ -74,6 +63,7 @@ const AdminRoomEdit = () => {
                 });
         }
     }
+    
     return (
         <>
             <div className="hold-transition sidebar-mini layout-fixed">

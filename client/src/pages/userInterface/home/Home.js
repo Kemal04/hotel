@@ -1,14 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import '@splidejs/react-splide/css';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
-import axios from "axios"
 import { ThemeContext } from '../../../context/ThemeContext';
 import BannerSlider from "../../../components/banner/BannerSlider"
+import { useAPI } from '../../../context/FetchContext';
 
 const Home = () => {
 
     const { darkMode } = useContext(ThemeContext)
+
+    const { rooms, contacts } = useAPI()
 
     const options = {
         type: 'loop',
@@ -18,7 +20,6 @@ const Home = () => {
         autoplay: true,
     };
 
-
     const contactOptions = {
         type: 'loop',
         perPage: 1,
@@ -27,34 +28,6 @@ const Home = () => {
         autoplay: true,
         arrows: false,
     };
-
-    const [rooms, setRooms] = useState([])
-
-    useEffect(() => {
-        const fetchAllRooms = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/rooms/')
-                setRooms(res.data.rooms)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchAllRooms()
-    }, [])
-
-    const [contacts, setContacts] = useState([])
-
-    useEffect(() => {
-        const fetchAllContacts = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/contact/')
-                setContacts(res.data.contact)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchAllContacts()
-    }, [])
 
     return (
         <>
