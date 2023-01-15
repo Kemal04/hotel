@@ -74,6 +74,14 @@ const Booking = sequelize.define("booking", {
     checkOut: {
         type: DataTypes.DATE,
         allowNull: false
+    },phoneNum: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    chek: {
+        type: DataTypes.TINYINT,
+        allowNull: false,
+        defaultValue: "0"
     }
 });
 

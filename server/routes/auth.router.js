@@ -11,8 +11,8 @@ router.post("/register", async (req, res) => {
     const password = req.body.password;
 
     if (!(name && email && password)) {
-        res.json({error: "Ahli oyjukleri doldurun"});
-      }
+        res.json({ error: "Ahli oyjukleri doldurun" });
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     try {
@@ -40,13 +40,15 @@ router.post("/login", async (req, res) => {
     if (!user) res.json({ error: "Beyle ulanyjy tapylmady" });
 
     bcrypt.compare(password, user.password).then(async (match) => {
-        if (!match) res.json({ error: "E-mailinizi yada acar sozunizi yalnys yazdynyz" });
-
-        const accessToken = sign(
-            { email: user.email, id: user.id },
-            "importantsecret"
-        );
-        res.json({ token: accessToken, email: email, id: user.id });
+        if (match) {
+            const accessToken = sign(
+                { email: user.email, id: user.id },
+                "importantsecret"
+            );
+            res.json({ token: accessToken, email: email, id: user.id });
+        } else {
+            res.json({ error: "E-mailinizi yada acar sozunizi yalnys yazdynyz" })
+        };
     });
 });
 
