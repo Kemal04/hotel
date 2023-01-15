@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'
 
 //COMPONENTS
-import { Navbar, Footer, BannerSlider, BannerImg } from "./components"
+import { Navbar, Footer } from "./components"
 
 //USERINTERFACE
 import { About, Contact, Home, Rooms, RoomRead, Register, Login } from "./pages/userInterface"
 
 //Admin Pages
-import { Admin, AdminContacts, AdminContactCreate, AdminContactEdit, AdminContactRead, AdminRoomCreate, AdminRoomEdit, AdminRooms, AdminUsers } from './pages/admin';
+import { Admin, AdminContacts, AdminContactEdit, AdminRoomCreate, AdminRoomEdit, AdminRooms, AdminUsers, AdminRoomTypes, AdminRoomTypeCreate, AdminRoomTypeEdit, AdminBooking, AdminBookingEdit } from './pages/admin';
 
 //TOAST
 import { ToastContainer } from 'react-toastify'
@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 //COntext
 import ThemeContextProvider from "./context/ThemeContext"
 import axios from 'axios';
+import { FetchContextProvider } from './context/FetchContext';
 
 const App = () => {
 
@@ -47,44 +48,51 @@ const App = () => {
 
     return (
         <>
-            <ThemeContextProvider>
+            <FetchContextProvider>
+                <ThemeContextProvider>
 
-                <Router>
-                    <ToastContainer />
-                    <Routes>
+                    <Router>
+                        <ToastContainer />
+                        <Routes>
 
-                        <Route path="/" element={<WithNavbar authState={authState} />}>
-                            <Route path='/' element={<Home />}></Route>
-                            <Route path='/biz-barada' element={<About />}></Route>
-                            <Route path='/habarlasmak' element={<Contact />}></Route>
+                            <Route path="/" element={<WithNavbar authState={authState} />}>
+                                <Route path='/' element={<Home />}></Route>
+                                <Route path='/biz-barada' element={<About />}></Route>
+                                <Route path='/habarlasmak' element={<Contact />}></Route>
 
-                            <Route path='/otaglar' element={<Rooms />}></Route>
-                            <Route path='/otag/:id' element={<RoomRead authState={authState} />}></Route>
+                                <Route path='/otaglar' element={<Rooms />}></Route>
+                                <Route path='/otag/:id' element={<RoomRead authState={authState} />}></Route>
 
-                            <Route path='/hasaba-durmak' element={<Register />}></Route>
-                            <Route path='/giris-etmek' element={<Login />}></Route>
-                        </Route>
+                                <Route path='/hasaba-durmak' element={<Register />}></Route>
+                                <Route path='/giris-etmek' element={<Login />}></Route>
+                            </Route>
 
 
-                        <Route path="/" element={<AdminWithNavbar />}>
-                            <Route path='/admin' element={<Admin />}></Route>
+                            <Route path="/" element={<AdminWithNavbar authState={authState} />}>
+                                <Route path='/admin' element={<Admin />}></Route>
 
-                            <Route path='/admin/teswirler' element={<AdminContacts />}></Route>
-                            <Route path='/admin/teswir-gos' element={<AdminContactCreate />}></Route>
-                            <Route path='/admin/teswir-uytget/:id' element={<AdminContactEdit />}></Route>
-                            <Route path='/admin/teswir/:id' element={<AdminContactRead />}></Route>
+                                <Route path='/admin/ulanyjylar' element={<AdminUsers />}></Route>
 
-                            <Route path='/admin/otaglar' element={<AdminRooms />}></Route>
-                            <Route path='/admin/otag-gosmak' element={<AdminRoomCreate />}></Route>
-                            <Route path='/admin/otag-uytget/:id' element={<AdminRoomEdit />}></Route>
+                                <Route path='/admin/teswirler' element={<AdminContacts />}></Route>
+                                <Route path='/admin/teswir-uytget/:id' element={<AdminContactEdit />}></Route>
 
-                            <Route path='/admin/ulanyjylar' element={<AdminUsers />}></Route>
-                        </Route>
+                                <Route path='/admin/otaglar' element={<AdminRooms />}></Route>
+                                <Route path='/admin/otag-gosmak' element={<AdminRoomCreate />}></Route>
+                                <Route path='/admin/otag-uytget/:id' element={<AdminRoomEdit />}></Route>
 
-                    </Routes>
-                </Router>
+                                <Route path='/admin/otag-gornusleri' element={<AdminRoomTypes />}></Route>
+                                <Route path='/admin/otag-gornusini-gosmak' element={<AdminRoomTypeCreate />}></Route>
+                                <Route path='/admin/otag-gornusini-uytget/:id' element={<AdminRoomTypeEdit />}></Route>
 
-            </ThemeContextProvider>
+                                <Route path='/admin/bronlanan-otaglar' element={<AdminBooking />}></Route>
+                                <Route path='/admin/bronlanan-otaglary-uytget/:id' element={<AdminBookingEdit />}></Route>
+                            </Route>
+
+                        </Routes>
+                    </Router>
+
+                </ThemeContextProvider>
+            </FetchContextProvider>
         </>
     )
 }

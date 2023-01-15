@@ -6,22 +6,11 @@ import { faArrowRight, faEye, faHeart, faPencil, faPlus, faTrashAlt } from '@for
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AdminNavbar from '../../../components/navbar/AdminNavbar'
 import AdminSidebar from '../../../components/sidebar/AdminSidebar'
+import { useAPI } from '../../../context/FetchContext'
 
 const AdminRooms = () => {
 
-    const [rooms, setRooms] = useState([])
-
-    useEffect(() => {
-        const fetchRooms = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/rooms')
-                setRooms(res.data.rooms)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchRooms()
-    }, [])
+    const { rooms } = useAPI()
 
     const handleDelete = async (id) => {
 

@@ -1,25 +1,26 @@
-import axios from 'axios'
+import axios from 'axios';
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useAPI } from '../../../context/FetchContext';
 import { toast } from 'react-toastify'
-import AdminNavbar from '../../../components/navbar/AdminNavbar'
-import Sidebar from '../../../components/sidebar/AdminSidebar'
-import { useAPI } from '../../../context/FetchContext'
+import { Link } from 'react-router-dom';
+import AdminNavbar from '../../../components/navbar/AdminNavbar';
+import AdminSidebar from '../../../components/sidebar/AdminSidebar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-const AdminContact = () => {
+const AdminRoomTypes = () => {
 
-    const { contacts } = useAPI()
+    const { roomtypes } = useAPI()
 
     const handleDelete = async (id) => {
 
-        await axios.delete('http://localhost:3001/api/contact/delete/' + id)
+        await axios.delete('http://localhost:3001/api/roomtypes/delete/' + id)
             .then((res) => {
-                toast.success(res.data.success)
                 window.location.reload()
+                toast.success(res.success)
             }).catch((error) => {
                 toast.error(error.message)
             });
-
     }
 
     return (
@@ -27,12 +28,13 @@ const AdminContact = () => {
             <div className="hold-transition sidebar-mini layout-fixed">
                 <div className="wrapper">
                     <AdminNavbar />
-                    <Sidebar />
+                    <AdminSidebar />
                     <div className="content-wrapper" style={{ paddingTop: "70px" }}>
                         <div className='content'>
                             <div className='container py-5'>
                                 <div className='d-flex justify-content-between aling-items-center h2 mb-5'>
-                                    Habarlasmak bölümi
+                                    Otag Gornusleri bölümi
+                                    <Link to="/admin/otag-gornusini-gosmak"><FontAwesomeIcon className='text-dark' icon={faPlus} /></Link>
                                 </div>
                                 <div className='row'>
                                     <div className='col-lg-12'>
@@ -42,22 +44,18 @@ const AdminContact = () => {
                                                     <th scope="col">№</th>
                                                     <th scope="col">Ady</th>
                                                     <th scope="col">Duzeltmek</th>
-                                                    <th scope="col">Temasy</th>
-                                                    <th scope="col">Habary</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                                 {
-                                                    contacts.map(contact => (
-                                                        <tr key={contact.id}>
-                                                            <td>{contact.id}</td>
-                                                            <td>{contact.name}</td>
-                                                            <td>{contact.subject}</td>
-                                                            <td>{contact.comment.substring(0, 40)}...</td>
+                                                    roomtypes.map(roomtype => (
+                                                        <tr key={roomtype.id}>
+                                                            <td>{roomtype.id}</td>
+                                                            <td>{roomtype.name}</td>
                                                             <td>
-                                                                <Link className='me-3 btn btn-sm btn-warning' to={`/admin/teswir-uytget/${contact.id}`}>Duzeltmek</Link>
-                                                                <button className='btn btn-sm btn-danger' onClick={() => handleDelete(contact.id)}>Pozmak</button>
+                                                                <Link className='me-3 btn btn-sm btn-warning' to={`/admin/otag-gornusini-uytget/${roomtype.id}`}>Duzeltmek</Link>
+                                                                <button className='btn btn-sm btn-danger' onClick={() => handleDelete(roomtype.id)}>Pozmak</button>
                                                             </td>
                                                         </tr>
                                                     ))
@@ -75,4 +73,4 @@ const AdminContact = () => {
     )
 }
 
-export default AdminContact
+export default AdminRoomTypes

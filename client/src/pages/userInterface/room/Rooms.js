@@ -3,34 +3,35 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ThemeContext } from '../../../context/ThemeContext'
 import BannerImg from "../../../components/banner/BannerImg"
+import { useAPI } from '../../../context/FetchContext'
 
 const Rooms = () => {
 
     const { darkMode } = useContext(ThemeContext)
 
-    const [rooms, setRooms] = useState([])
-
-    useEffect(() => {
-        const fetchAllRooms = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/rooms/')
-                setRooms(res.data.rooms)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchAllRooms()
-    }, [])
-
+    const { rooms, setRooms } = useAPI()
 
     function onSelectionChange(e) {
         const sortDirection = e.target.value;
-        const copyArray = [...rooms]; // create a new array & not mutate state
+        const roomsSort = [...rooms];
 
-        copyArray.sort((a, b) => {
-            return sortDirection === "0" ? a.id - b.id : b.id - a.id;
+        roomsSort.sort((a, b) => {
+            return sortDirection === "asc" ? a.id - b.id : null
         });
-        setRooms(copyArray); //re-render
+
+        roomsSort.sort((a, b) => {
+            return sortDirection === "desc" ? b.id - a.id : null
+        });
+
+        roomsSort.sort((a, b) => {
+            return sortDirection === "expensive" ? b.price - a.price : null
+        });
+
+        roomsSort.sort((a, b) => {
+            return sortDirection === "cheap" ? a.price - b.price : null
+        });
+
+        setRooms(roomsSort);
     }
     return (
         <>
@@ -85,37 +86,24 @@ const Rooms = () => {
 
                         <div className='col-xl-4'>
                             <div className='row'>
-                                <div className='col-xl-12'>
+                                <div className='col-xl-6'>
                                     <label htmlFor="exampleFormControlInput1" className="form-label">Filter</label>
-                                    <div className='row g-0'>
-                                        <div className='col-xl-12'>
-                                            <select className="form-select" onChange={onSelectionChange}>
-                                                <option selected>Open this select menu</option>
-                                                <option value={0}>Asc</option>
-                                                <option value={1}>Desc</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='col-xl-6 mt-4'>
-                                    <label className="form-label">Adult</label>
-                                    <select className="form-select rounded-0">
-                                        <option value="1">01</option>
-                                        <option value="2">02</option>
-                                        <option value="3">03</option>
+                                    <select className="form-select rounded-0" onChange={onSelectionChange}>
+                                        <option value="asc">Koneler</option>
+                                        <option value="desc">Tazeler</option>
+                                        <option value="expensive">Gymmatlar</option>
+                                        <option value="cheap">Arzanlar</option>
                                     </select>
                                 </div>
-                                <div className='col-xl-6 mt-4'>
-                                    <label className="form-label">Children</label>
+                                <div className='col-xl-6'>
+                                    <label className="form-label">Adam sany</label>
                                     <select className="form-select rounded-0">
-                                        <option value="1">01</option>
-                                        <option value="2">02</option>
-                                        <option value="3">03</option>
+                                        <option value="1">1 adam</option>
+                                        <option value="2">2 adam</option>
+                                        <option value="3">3 adam</option>
+                                        <option value="4">4 adam</option>
+                                        <option value="4">5 adam</option>
                                     </select>
-                                </div>
-                                <div className='col-xl-12 mt-4'>
-                                    <label className="form-label">Price</label>
-                                    <input type="number" className="form-control rounded-0 py-2 px-3" placeholder='Price' />
                                 </div>
                                 <div className='col-xl-12 d-grid mt-5'>
                                     <button className='btn btn-primary rounded-5'>Gozle</button>
