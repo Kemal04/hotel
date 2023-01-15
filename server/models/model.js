@@ -67,11 +67,11 @@ const Booking = sequelize.define("booking", {
         autoIncrement: true,
         primaryKey: true
     },
-    chekIn: {
+    checkIn: {
         type: DataTypes.DATE,
         allowNull: false
     },
-    chekOut: {
+    checkOut: {
         type: DataTypes.DATE,
         allowNull: false
     },phoneNum: {

@@ -15,6 +15,11 @@ router.get("/create", async (req, res) => {
     const chekIn = req.body.chekIn
     const chekOut = req.body.chekOut;
     const phoneNum = req.body.phoneNum;
+    
+router.post("/create", async (req, res) => {
+    const checkIn = req.body.checkIn
+    const checkOut = req.body.checkOut;
+
     const roomId = req.body.roomId;
     const userId = req.body.userId;
 
@@ -23,6 +28,8 @@ router.get("/create", async (req, res) => {
             chekIn: chekIn,
             chekOut: chekOut,
             phoneNum:phoneNum,
+            checkIn: checkIn,
+            checkOut: checkOut,
             roomId: roomId,
             userId: userId,
         });
