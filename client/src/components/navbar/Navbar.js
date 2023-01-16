@@ -79,7 +79,7 @@ const Navbar = ({ authState }) => {
                                 </button>
                             </li>
                         </ul>
-                        <form className="d-flex" role="search">
+                        <form className="d-flex">
                             {
                                 !authState.status
                                     ?
