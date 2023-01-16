@@ -28,6 +28,7 @@ const AdminRoomTypeCreate = () => {
                 .then((res) => {
                     toast.success(res.data.success)
                     navigate("/admin/otag-gornusleri")
+                    window.location.reload()
                 }).catch((error) => {
                     toast.error(error.message)
                 });

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import AdminNavbar from '../../../components/navbar/AdminNavbar'
@@ -48,6 +48,7 @@ const AdminRoomCreate = () => {
                 .then((res) => {
                     toast.success(res.data.success)
                     navigate("/admin/otaglar")
+                    window.location.reload()
                 }).catch((error) => {
                     toast.error(error.message)
                 });

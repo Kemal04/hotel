@@ -2,7 +2,6 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const AdminSidebar = () => {
-
     return (
         <>
             <aside className="main-sidebar sidebar-dark-primary elevation-4">
@@ -38,13 +37,13 @@ const AdminSidebar = () => {
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/admin/otaglar" className="nav-link">
-                                    <p> Otaglar </p>
+                                <NavLink to="/admin/otag-gornusleri" className="nav-link">
+                                    <p> Otag Gornusleri </p>
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/admin/otag-gornusleri" className="nav-link">
-                                    <p> Otag Gornusleri </p>
+                                <NavLink to="/admin/otaglar" className="nav-link">
+                                    <p> Otaglar </p>
                                 </NavLink>
                             </li>
                             <li className="nav-item">

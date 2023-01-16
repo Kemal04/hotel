@@ -20,6 +20,7 @@ const RoomRead = ({ authState }) => {
     };
 
     const [room, setRoom] = useState("")
+    const [roomType, setRoomType] = useState("")
 
     const location = useLocation();
 
@@ -28,11 +29,13 @@ const RoomRead = ({ authState }) => {
     useEffect(() => {
         axios.get(`http://localhost:3001/api/rooms/${roomId}`).then((res) => {
             setRoom(res.data.room)
+            setRoomType(res.data.room.roomType)
         }).catch((err) => {
             toast.error(err.message)
         })
     }, [roomId])
-    
+
+
     const navigate = useNavigate()
 
     const [booking, setBooking] = useState({
@@ -66,6 +69,7 @@ const RoomRead = ({ authState }) => {
         }
     }
 
+
     return (
         <>
             <BannerImg name={`№ ${room.roomNum} Otag`} />
@@ -88,20 +92,20 @@ const RoomRead = ({ authState }) => {
                             </Splide>
                             <div className='row border p-4' style={{ fontWeight: "500" }}>
                                 <div className='col-xl-3 d-flex flex-column align-items-center border-end'>
-                                    <div style={{ color: "#afb4bf" }}>Size :</div>
+                                    <div style={{ color: "#afb4bf" }}>Tutýan Meýdany :</div>
                                     <div>{room.size} m<sup>2</sup></div>
                                 </div>
                                 <div className='col-xl-3 d-flex flex-column align-items-center border-end'>
-                                    <div style={{ color: "#afb4bf" }}>Capacity :</div>
+                                    <div style={{ color: "#afb4bf" }}>Adam Sany :</div>
                                     <div>{room.capacity} adamdan ybarat</div>
                                 </div>
                                 <div className='col-xl-3 d-flex flex-column align-items-center border-end'>
-                                    <div style={{ color: "#afb4bf" }}>Bed :</div>
-                                    <div>Kings Bed</div>
+                                    <div style={{ color: "#afb4bf" }}>Otag Görnüşi :</div>
+                                    <div>"{roomType.name}"</div>
                                 </div>
                                 <div className='col-xl-3 d-flex flex-column align-items-center'>
-                                    <div style={{ color: "#afb4bf" }}>Serwisler :</div>
-                                    <div>Wifi, television...</div>
+                                    <div style={{ color: "#afb4bf" }}>Hyzmatlar :</div>
+                                    <div>Wifi, telewizor...</div>
                                 </div>
                             </div>
                             <div className='row mt-4'>
@@ -124,36 +128,36 @@ const RoomRead = ({ authState }) => {
                             </div>
                             <div className='row my-5 align-items-center'>
                                 <div className='col-xl-12 p-0 h4'>
-                                    Room Services
+                                    Otag Hyzmatlary
                                 </div>
                                 <div className='col-xl-4 p-0 d-flex align-items-center my-4'>
                                     <img src="/img/icons/air.png" alt="Air" className='img-fluid me-3' />
-                                    <div>Air Conditioning</div>
+                                    <div>Kondisioner</div>
                                 </div>
                                 <div className='col-xl-4 p-0 d-flex align-items-center my-4'>
                                     <img src="/img/icons/drinks.png" alt="Air" className='img-fluid me-3' />
-                                    <div>Free drinks</div>
+                                    <div>Mugt Içgiler</div>
                                 </div>
                                 <div className='col-xl-4 p-0 d-flex align-items-center my-4'>
                                     <img src="/img/icons/plate.png" alt="Air" className='img-fluid me-3' />
-                                    <div>Restaurant quality</div>
+                                    <div>Restoran</div>
                                 </div>
                                 <div className='col-xl-4 p-0 d-flex align-items-center mt-4'>
                                     <img src="/img/icons/tv.png" alt="Air" className='img-fluid me-3' />
-                                    <div>Cable TV</div>
+                                    <div>Telewizor</div>
                                 </div>
                                 <div className='col-xl-4 p-0 d-flex align-items-center mt-4'>
                                     <img src="/img/icons/wifi.png" alt="Air" className='img-fluid me-3' />
-                                    <div>Unlimited Wifi</div>
+                                    <div>Güýçli Wifi</div>
                                 </div>
                                 <div className='col-xl-4 p-0 d-flex align-items-center mt-4'>
                                     <img src="/img/icons/contact.png" alt="Air" className='img-fluid me-3' />
-                                    <div>Service 24/24</div>
+                                    <div>Habarlaşmak 7/24</div>
                                 </div>
                             </div>
                             <div className='row my-5 align-items-center'>
                                 <div className='col-xl-12 p-0 h4'>
-                                    Room Review
+                                    Otag Barada Teswirler
                                 </div>
                                 <div className='col-xl-12 p-0 mt-5'>
                                     <div className='row align-items-center'>
@@ -163,11 +167,8 @@ const RoomRead = ({ authState }) => {
                                         <div className='col-xl-10'>
                                             <div className='row justify-content-between align-items-center'>
                                                 <div className='col-xl-3'>
-                                                    <div className='mb-3 small text-secondary'>27 Aug 2019</div>
-                                                    <div className='mb-3 text-blue h6'>Brandon Kelley</div>
-                                                </div>
-                                                <div className='col-xl-3 text-end'>
-                                                    5 5 5 5
+                                                    <div className='mb-3 small text-secondary'>31 Awg 2022</div>
+                                                    <div className='mb-3 text-blue h6'>Kemal Hojaýew</div>
                                                 </div>
                                             </div>
                                             <div className='text-secondary'>
@@ -183,12 +184,9 @@ const RoomRead = ({ authState }) => {
                                         </div>
                                         <div className='col-xl-10'>
                                             <div className='row justify-content-between align-items-center'>
-                                                <div className='col-xl-3'>
-                                                    <div className='mb-3 small text-secondary'>27 Aug 2019</div>
-                                                    <div className='mb-3 text-blue h6'>Brandon Kelley</div>
-                                                </div>
-                                                <div className='col-xl-3 text-end'>
-                                                    5 5 5 5
+                                                <div className='col-xl-4'>
+                                                    <div className='mb-3 small text-secondary'>13 Ýnw 2023</div>
+                                                    <div className='mb-3 text-blue h6'>Meret Hudaýberdiýew</div>
                                                 </div>
                                             </div>
                                             <div className='text-secondary'>

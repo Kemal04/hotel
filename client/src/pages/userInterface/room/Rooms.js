@@ -1,5 +1,4 @@
-import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { ThemeContext } from '../../../context/ThemeContext'
 import BannerImg from "../../../components/banner/BannerImg"
@@ -31,8 +30,17 @@ const Rooms = () => {
             return sortDirection === "cheap" ? a.price - b.price : null
         });
 
+        roomsSort.sort((a, b) => {
+            return sortDirection === "manyUser" ? b.capacity - a.capacity : null
+        });
+
+        roomsSort.sort((a, b) => {
+            return sortDirection === "fewUser" ? a.capacity - b.capacity : null
+        });
+
         setRooms(roomsSort);
     }
+
     return (
         <>
             <BannerImg name="Otaglar" />
@@ -86,23 +94,15 @@ const Rooms = () => {
 
                         <div className='col-xl-4'>
                             <div className='row'>
-                                <div className='col-xl-6'>
+                                <div className='col-xl-12'>
                                     <label htmlFor="exampleFormControlInput1" className="form-label">Filter</label>
                                     <select className="form-select rounded-0" onChange={onSelectionChange}>
                                         <option value="asc">Koneler</option>
                                         <option value="desc">Tazeler</option>
                                         <option value="expensive">Gymmatlar</option>
                                         <option value="cheap">Arzanlar</option>
-                                    </select>
-                                </div>
-                                <div className='col-xl-6'>
-                                    <label className="form-label">Adam sany</label>
-                                    <select className="form-select rounded-0">
-                                        <option value="1">1 adam</option>
-                                        <option value="2">2 adam</option>
-                                        <option value="3">3 adam</option>
-                                        <option value="4">4 adam</option>
-                                        <option value="4">5 adam</option>
+                                        <option value="manyUser">Kop Adamly</option>
+                                        <option value="fewUser">Az Adamly</option>
                                     </select>
                                 </div>
                                 <div className='col-xl-12 d-grid mt-5'>
