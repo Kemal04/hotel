@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { faArrowRight, faHeart, faPencil, faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,14 +12,21 @@ const AdminRooms = () => {
 
     const { rooms } = useAPI()
 
+    const navigate = useNavigate()
+
     const handleDelete = async (id) => {
 
-        await axios.delete('http://localhost:3001/api/rooms/delete/' + id)
+        await axios.delete('http://localhost:3001/api/rooms/delete/' + id, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            },
+        })
             .then((res) => {
                 window.location.reload()
                 toast.success(res.success)
-            }).catch((error) => {
-                toast.error(error.message)
+            }).catch((res) => {
+                toast.error(res.response.data.error)
+                navigate(`/${res.response.status}`)
             });
 
     }

@@ -103,7 +103,7 @@ const Contact = () => {
                             <input onChange={handleChange} name='subject' type="name" className="form-control rounded-0" placeholder='Temasy' autoComplete='off' />
                         </div>
                         <div className="col-xl-8 mb-4">
-                            <textarea onChange={handleChange} name='comment' class="form-control rounded-0" rows="6" placeholder='Sizin Habaryňyz'></textarea>
+                            <textarea onChange={handleChange} name='comment' className="form-control rounded-0" rows="6" placeholder='Sizin Habaryňyz'></textarea>
                         </div>
                         <div className="col-xl-5 mb-4 text-center">
                             <button onClick={handleClick} className='btn btn-primary px-5'>Ugrat</button>

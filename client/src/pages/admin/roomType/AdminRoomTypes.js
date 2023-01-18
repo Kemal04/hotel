@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { useAPI } from '../../../context/FetchContext';
 import { toast } from 'react-toastify'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AdminNavbar from '../../../components/navbar/AdminNavbar';
 import AdminSidebar from '../../../components/sidebar/AdminSidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,14 +12,21 @@ const AdminRoomTypes = () => {
 
     const { roomtypes } = useAPI()
 
+    const navigate = useNavigate()
+
     const handleDelete = async (id) => {
 
-        await axios.delete('http://localhost:3001/api/roomtypes/delete/' + id)
+        await axios.delete('http://localhost:3001/api/roomtypes/delete/' + id, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            },
+        })
             .then((res) => {
                 window.location.reload()
                 toast.success(res.success)
-            }).catch((error) => {
-                toast.error(error.message)
+            }).catch((res) => {
+                toast.error(res.response.data.error)
+                navigate(`/${res.response.status}`)
             });
     }
 

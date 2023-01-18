@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+
 //ROUTER
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom'
 
 //COMPONENTS
 import { Navbar, Footer } from "./components"
@@ -8,16 +10,18 @@ import { Navbar, Footer } from "./components"
 //USERINTERFACE
 import { About, Contact, Home, Rooms, RoomRead, Register, Login } from "./pages/userInterface"
 
-//Admin Pages
+//ADMIN
 import { Admin, AdminContacts, AdminContactEdit, AdminRoomCreate, AdminRoomEdit, AdminRooms, AdminUsers, AdminRoomTypes, AdminRoomTypeCreate, AdminRoomTypeEdit, AdminBooking, AdminBookingEdit } from './pages/admin';
+
+//ERROR
+import { Forbiden, NotFounded } from './pages/error';
 
 //TOAST
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
-//COntext
+//CONTEXT
 import ThemeContextProvider from "./context/ThemeContext"
-import axios from 'axios';
 import { FetchContextProvider } from './context/FetchContext';
 
 const App = () => {
@@ -26,7 +30,9 @@ const App = () => {
         email: "",
         id: 0,
         status: false,
+        role: "User",
     });
+
 
     useEffect(() => {
         axios.get("http://localhost:3001/api/auth/auth", {
@@ -35,12 +41,13 @@ const App = () => {
             },
         }).then((response) => {
             if (response.data.error) {
-                setAuthState({ ...authState, status: false });
+                setAuthState({ ...authState, status: false, role: "User" });
             } else {
                 setAuthState({
                     email: response.data.email,
                     id: response.data.id,
                     status: true,
+                    role: response.data.role,
                 });
             }
         });
@@ -67,8 +74,8 @@ const App = () => {
                                 <Route path='/giris-etmek' element={<Login />}></Route>
                             </Route>
 
-
                             <Route path="/" element={<AdminWithNavbar authState={authState} />}>
+
                                 <Route path='/admin' element={<Admin />}></Route>
 
                                 <Route path='/admin/ulanyjylar' element={<AdminUsers />}></Route>
@@ -81,12 +88,16 @@ const App = () => {
                                 <Route path='/admin/otag-uytget/:id' element={<AdminRoomEdit />}></Route>
 
                                 <Route path='/admin/otag-gornusleri' element={<AdminRoomTypes />}></Route>
-                                <Route path='/admin/otag-gornusini-gosmak' element={<AdminRoomTypeCreate />}></Route>
+                                <Route path='/admin/otag-gornusini-gosmak' element={<AdminRoomTypeCreate authState={authState} />}></Route>
                                 <Route path='/admin/otag-gornusini-uytget/:id' element={<AdminRoomTypeEdit />}></Route>
 
                                 <Route path='/admin/bronlanan-otaglar' element={<AdminBooking />}></Route>
                                 <Route path='/admin/bronlanan-otaglary-uytget/:id' element={<AdminBookingEdit />}></Route>
+
                             </Route>
+
+                            <Route path='/404' element={<NotFounded />}></Route>
+                            <Route path='/403' element={<Forbiden />}></Route>
 
                         </Routes>
                     </Router>

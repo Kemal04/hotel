@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export const FetchContext = createContext("");
 
@@ -50,7 +51,7 @@ export function FetchContextProvider({ children }) {
     const [booking, setBooking] = useState([])
 
     useEffect(() => {
-        const fetchAllRooms = async () => {
+        const fetchAllBooking = async () => {
             try {
                 const res = await axios.get('http://localhost:3001/api/bookings/')
                 setBooking(res.data.booking)
@@ -58,11 +59,25 @@ export function FetchContextProvider({ children }) {
                 console.log(err)
             }
         }
-        fetchAllRooms()
+        fetchAllBooking()
+    }, [])
+
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        const fetchAllUsers = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/users/')
+                setUsers(res.data.users)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchAllUsers()
     }, [])
 
     return (
-        <FetchContext.Provider value={{ contacts, rooms, setRooms, roomtypes, booking }} >
+        <FetchContext.Provider value={{ contacts, rooms, setRooms, roomtypes, booking, users }} >
             {children}
         </FetchContext.Provider>
     );

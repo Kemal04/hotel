@@ -24,14 +24,18 @@ const AdminRoomTypeCreate = () => {
             toast.error("Adyny yazyn")
         }
         else {
-            await axios.post("http://localhost:3001/api/roomtypes/create", roomType)
-                .then((res) => {
-                    toast.success(res.data.success)
-                    navigate("/admin/otag-gornusleri")
-                    window.location.reload()
-                }).catch((error) => {
-                    toast.error(error.message)
-                });
+            await axios.post("http://localhost:3001/api/roomtypes/create", roomType, {
+                headers: {
+                    accessToken: localStorage.getItem("accessToken"),
+                },
+            }).then((res) => {
+                toast.success(res.data.success)
+                navigate("/admin/otag-gornusleri")
+                window.location.reload()
+            }).catch((res) => {
+                toast.error(res.response.data.error)
+                navigate(`/${res.response.status}`);
+            });
         }
     }
     return (

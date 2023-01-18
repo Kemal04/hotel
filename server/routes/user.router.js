@@ -4,7 +4,7 @@ const router = express.Router();
 const {isAdmin} = require("../middlewares/isAdminMiddleware");
 
 //all data GET 
-router.get("/", isAdmin, async (req, res) => {
+router.get("/", async (req, res) => {
     const users = await User.findAll();
     res.json({
         users: users
@@ -12,7 +12,7 @@ router.get("/", isAdmin, async (req, res) => {
 });
 
 // single GET 
-router.get("/:userId", isAdmin,  async (req,res) => {
+router.get("/:userId", async (req,res) => {
     const id = req.params.userId;
     try{
         const user = await User.findByPk(id);
