@@ -1,6 +1,8 @@
 const express = require('express');
 const { RoomType } = require('../models/model');
 const router = express.Router();
+const {isAdmin} = require("../middlewares/isAdminMiddleware");
+
 
 //all data GET 
 router.get("/", async (req, res) => {
@@ -28,7 +30,7 @@ router.get("/:roomtypeId", async (req,res) => {
 });
 
 // create POST 
-router.post("/create", async (req,res) => {
+router.post("/create", isAdmin, async (req,res) => {
     const name = req.body.name;
     try{
         await RoomType.create({
@@ -42,7 +44,7 @@ router.post("/create", async (req,res) => {
 })
 
 // edit GET and POST 
-router.get("/edit/:roomtypeId", async (req, res) => {
+router.get("/edit/:roomtypeId", isAdmin, async (req, res) => {
     const id = req.params.roomtypeId;
     try {
         const roomtype = await RoomType.findByPk(id);
@@ -56,7 +58,7 @@ router.get("/edit/:roomtypeId", async (req, res) => {
         console.log(err);
     }
 });
-router.post("/edit/:roomtypeId", async (req, res) => {
+router.post("/edit/:roomtypeId", isAdmin, async (req, res) => {
     const id = req.params.roomtypeId;
     const name = req.body.name;
     try {
@@ -75,7 +77,7 @@ router.post("/edit/:roomtypeId", async (req, res) => {
 });
 
 // delete POST 
-router.delete("/delete/:roomtypeId", async (req, res) => {
+router.delete("/delete/:roomtypeId", isAdmin, async (req, res) => {
     const id = req.params.roomtypeId;
     await RoomType.destroy({
       where: {

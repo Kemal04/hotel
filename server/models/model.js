@@ -18,6 +18,11 @@ const User = sequelize.define("user", {
     password: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "User"
     }
 });
 
@@ -74,7 +79,8 @@ const Booking = sequelize.define("booking", {
     checkOut: {
         type: DataTypes.DATE,
         allowNull: false
-    },phoneNum: {
+    },
+    phoneNum: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
@@ -104,6 +110,7 @@ const Contact = sequelize.define("contact", {
     }
 });
 
+User.findOrCreate({ where: { name:"Admin", email: "admin@gmail.com", password: "$2b$10$.2s8SLEln9Dnql5sPuvtfec93qtcKyvMAqDY8zeLg8IcndoHNtXWS", role: "Admin" } })
 
 RoomType.hasMany(Room, { onDelete: "cascade" });
 Room.belongsTo(RoomType)

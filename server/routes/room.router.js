@@ -1,9 +1,10 @@
 const express = require('express');
 const { Room, RoomType } = require('../models/model');
 const router = express.Router();
+const {isAdmin} = require("../middlewares/isAdminMiddleware");
 
 //all data GET 
-router.get("/", async (req, res) => {
+router.get("/",  async (req, res) => {
     const rooms = await Room.findAll({ include: RoomType });
     res.json({
         rooms: rooms
@@ -28,7 +29,7 @@ router.get("/:roomId", async (req, res) => {
 });
 
 // create POST 
-router.post("/create", async (req, res) => {
+router.post("/create", isAdmin, async (req, res) => {
     const roomNum = req.body.roomNum;
     const size = req.body.size;
     const capacity = req.body.capacity;
@@ -51,7 +52,7 @@ router.post("/create", async (req, res) => {
 })
 
 // edit GET and POST 
-router.get("/edit/:roomId", async (req, res) => {
+router.get("/edit/:roomId", isAdmin, async (req, res) => {
     const id = req.params.roomId;
     try {
         const room = await Room.findByPk(id);
@@ -65,7 +66,7 @@ router.get("/edit/:roomId", async (req, res) => {
         console.log(err);
     }
 });
-router.post("/edit/:roomId", async (req, res) => {
+router.post("/edit/:roomId", isAdmin, async (req, res) => {
     const id = req.params.roomId;
     const roomNum = req.body.roomNum;
     const size = req.body.size;
@@ -92,7 +93,7 @@ router.post("/edit/:roomId", async (req, res) => {
 });
 
 // delete POST 
-router.delete("/delete/:roomId", async (req, res) => {
+router.delete("/delete/:roomId", isAdmin, async (req, res) => {
     const roomID = req.params.roomId;
 
     await Room.destroy({
