@@ -11,26 +11,19 @@ router.get("/", async (req,res) => {
     }
 );
 
-router.get("/create", async (req, res) => {
-    const chekIn = req.body.chekIn
-    const chekOut = req.body.chekOut;
-    const phoneNum = req.body.phoneNum;
-})
 
 router.post("/create", async (req, res) => {
     const checkIn = req.body.checkIn
     const checkOut = req.body.checkOut;
-
+    const phoneNum = req.body.phoneNum;
     const roomId = req.body.roomId;
     const userId = req.body.userId;
 
     try {
         await Booking.create({
-            chekIn: chekIn,
-            chekOut: chekOut,
-            phoneNum:phoneNum,
             checkIn: checkIn,
             checkOut: checkOut,
+            phoneNum:phoneNum,
             roomId: roomId,
             userId: userId,
         });

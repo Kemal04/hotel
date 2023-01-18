@@ -1,9 +1,10 @@
 const express = require('express');
 const { User } = require('../models/model');
 const router = express.Router();
+const {isAdmin} = require("../middlewares/isAdminMiddleware");
 
 //all data GET 
-router.get("/", async (req, res) => {
+router.get("/", isAdmin, async (req, res) => {
     const users = await User.findAll();
     res.json({
         users: users
@@ -11,7 +12,7 @@ router.get("/", async (req, res) => {
 });
 
 // single GET 
-router.get("/:userId", async (req,res) => {
+router.get("/:userId", isAdmin,  async (req,res) => {
     const id = req.params.userId;
     try{
         const user = await User.findByPk(id);

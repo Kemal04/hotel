@@ -42,10 +42,10 @@ router.post("/login", async (req, res) => {
     bcrypt.compare(password, user.password).then(async (match) => {
         if (match) {
             const accessToken = sign(
-                { email: user.email, id: user.id },
+                { email: user.email, id: user.id, role: user.role },
                 "importantsecret"
             );
-            res.json({ token: accessToken, email: email, id: user.id });
+            res.json({ token: accessToken, email: email, id: user.id});
         } else {
             res.json({ error: "E-mailinizi yada acar sozunizi yalnys yazdynyz" })
         };
