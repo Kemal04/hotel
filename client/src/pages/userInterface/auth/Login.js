@@ -41,6 +41,7 @@ const Login = () => {
                         email: res.data.email,
                         id: res.data.id,
                         status: true,
+                        role: res.data.role,
                     });
                 }
 

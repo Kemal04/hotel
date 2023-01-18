@@ -21,11 +21,18 @@ const AdminRoomTypeEdit = () => {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/api/roomtypes/edit/${roomTypeId}`).then((res) => {
-            setRoomType(res.data.roomtype)
-        }).catch((err) => {
-            console.log(err.message)
+        axios.get(`http://localhost:3001/api/roomtypes/edit/${roomTypeId}`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            },
         })
+            .then((res) => {
+                setRoomType(res.data.roomtype)
+            }).catch((res) => {
+                toast.error(res.response.data.error)
+                navigate(`/${res.response.status}`)
+            })
+
     }, [roomTypeId])
 
     const handleClick = async (e) => {
@@ -35,12 +42,17 @@ const AdminRoomTypeEdit = () => {
             toast.error("Adyny yazyn")
         }
         else {
-            await axios.post(`http://localhost:3001/api/roomtypes/edit/${roomTypeId}`, roomType)
+            await axios.post(`http://localhost:3001/api/roomtypes/edit/${roomTypeId}`, roomType, {
+                headers: {
+                    accessToken: localStorage.getItem("accessToken"),
+                },
+            })
                 .then((res) => {
                     toast.success(res.data.success)
                     navigate("/admin/otag-gornusleri")
-                }).catch((error) => {
-                    toast.error(error.message)
+                }).catch((res) => {
+                    toast.error(res.response.data.error)
+                    navigate(`/${res.response.status}`);
                 });
         }
     }

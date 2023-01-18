@@ -44,13 +44,18 @@ const AdminRoomCreate = () => {
             toast.error("Tutýan meýdanyny ýazyň")
         }
         else {
-            await axios.post("http://localhost:3001/api/rooms/create", room)
+            await axios.post("http://localhost:3001/api/rooms/create", room, {
+                headers: {
+                    accessToken: localStorage.getItem("accessToken"),
+                },
+            })
                 .then((res) => {
                     toast.success(res.data.success)
                     navigate("/admin/otaglar")
                     window.location.reload()
-                }).catch((error) => {
-                    toast.error(error.message)
+                }).catch((res) => {
+                    toast.error(res.response.data.error)
+                    navigate(`/${res.response.status}`);
                 });
         }
     }

@@ -105,8 +105,8 @@ const Rooms = () => {
                                         <option value="fewUser">Az Adamly</option>
                                     </select>
                                 </div>
-                                <div className='col-xl-12 d-grid mt-5'>
-                                    <button className='btn btn-primary rounded-5'>Gozle</button>
+                                <div className='col-xl-12 mt-5'>
+                                    
                                 </div>
                             </div>
                         </div>

@@ -91,7 +91,13 @@ const Navbar = ({ authState }) => {
                                                 {authState.email}
                                             </NavLink>
                                             <ul className="dropdown-menu rounded-0">
-                                                <li><NavLink to={`/ulanyjy-profili/${authState.id}`} className="dropdown-item bg-white text-black">Profile</NavLink></li>
+                                                {
+                                                    authState.role === "Admin" ?
+                                                        <li><NavLink to={"/admin"} className="dropdown-item bg-white text-black">Admin</NavLink></li>
+                                                        :
+                                                        <li><NavLink to={`/ulanyjy-profili/${authState.id}`} className="dropdown-item bg-white text-black">Profile</NavLink></li>
+
+                                                }
                                                 <li><hr className="dropdown-divider" /></li>
                                                 <li><button onClick={logout} className="dropdown-item bg-white text-black">Logout</button></li>
                                             </ul>
