@@ -63,26 +63,26 @@ const AdminRooms = () => {
                                                     </p>
                                                     <div className='row justify-content-between align-items-center mb-3'>
                                                         <div className='col-lg-6'>
-                                                            <div style={{ fontWeight: "500", color: "#afb4bf" }}>Meýdany:</div>
+                                                            <div style={{ fontWeight: "500", color: "#afb4bf" }}> Meýdany:</div>
                                                             <div>{room.size} m<sup>2</sup></div>
                                                         </div>
                                                         <div className='col-lg-6 text-end'>
-                                                            <div style={{ fontWeight: "500", color: "#afb4bf" }}>Adam sany:</div>
+                                                            <div style={{ fontWeight: "500", color: "#afb4bf" }}> Adam sany:</div>
                                                             <div>{room.capacity} adam</div>
                                                         </div>
                                                     </div>
                                                     <div className='row justify-content-between align-items-center mb-5'>
                                                         <div className='col-lg-6'>
-                                                            <div style={{ fontWeight: "500", color: "#afb4bf" }}>Otag Görnüşi:</div>
+                                                            <div style={{ fontWeight: "500", color: "#afb4bf" }}> Otag görnüşi:</div>
                                                             <div>"{room.roomType.name}"</div>
                                                         </div>
                                                         <div className='col-lg-6 text-end'>
-                                                            <div style={{ fontWeight: "500", color: "#afb4bf" }}>Halandy:</div>
+                                                            <div style={{ fontWeight: "500", color: "#afb4bf" }}> Halandy:</div>
                                                             <div><FontAwesomeIcon icon={faHeart} /> {room.liked}</div>
                                                         </div>
                                                     </div>
                                                     <div className='d-grid'>
-                                                        <Link className='btn btn-sm btn-green' to={`/admin/otag/${room.id}`}>Maglumatlaryny gör <FontAwesomeIcon icon={faArrowRight} /></Link>
+                                                        <Link className='btn btn-sm btn-green' to={`/admin/otag/${room.id}`}> Maglumatlaryny gör <FontAwesomeIcon icon={faArrowRight} /></Link>
                                                     </div>
                                                 </div>
                                             </div>

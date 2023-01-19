@@ -40,7 +40,7 @@ const AdminRoomTypes = () => {
                         <div className='content'>
                             <div className='container py-5'>
                                 <div className='d-flex justify-content-between aling-items-center h2 mb-5'>
-                                    Otag Gornusleri bölümi
+                                    Otag görnüşleri bölümi
                                     <Link to="/admin/otag-gornusini-gosmak"><FontAwesomeIcon className='text-dark' icon={faPlus} /></Link>
                                 </div>
                                 <div className='row'>
@@ -50,7 +50,7 @@ const AdminRoomTypes = () => {
                                                 <tr>
                                                     <th scope="col">№</th>
                                                     <th scope="col">Ady</th>
-                                                    <th scope="col">Duzeltmek</th>
+                                                    <th scope="col">Düzetmek</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -61,7 +61,7 @@ const AdminRoomTypes = () => {
                                                             <td>{roomtype.id}</td>
                                                             <td>{roomtype.name}</td>
                                                             <td>
-                                                                <Link className='me-3 btn btn-sm btn-warning' to={`/admin/otag-gornusini-uytget/${roomtype.id}`}>Duzeltmek</Link>
+                                                                <Link className='me-3 btn btn-sm btn-warning' to={`/admin/otag-gornusini-uytget/${roomtype.id}`}>Düzetmek</Link>
                                                                 <button className='btn btn-sm btn-danger' onClick={() => handleDelete(roomtype.id)}>Pozmak</button>
                                                             </td>
                                                         </tr>

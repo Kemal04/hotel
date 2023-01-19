@@ -30,8 +30,8 @@ const AdminBooking = () => {
                                                 <tr>
                                                     <th scope="col">№</th>
                                                     <th scope="col">Otag nomeri</th>
-                                                    <th scope="col">Giris wagty</th>
-                                                    <th scope="col">Cykys wagty</th>
+                                                    <th scope="col">Giriş wagty</th>
+                                                    <th scope="col">Çykys wagty</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

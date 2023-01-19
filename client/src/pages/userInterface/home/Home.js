@@ -39,17 +39,17 @@ const Home = () => {
                     <div className={darkMode ? "card border-0 shadow p-5 bg-dark text-white" : "card border-0 shadow p-5 bg-white"}>
                         <div className='row align-items-center'>
                             <div className='col-xl-3'>
-                                <label htmlFor="exampleFormControlInput1" className="form-label">Check In</label>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Giriş wagty</label>
                                 <input type="date" className="form-control rounded-0" id="exampleFormControlInput1" placeholder="name@example.com" />
                             </div>
                             <div className='col-xl-3'>
-                                <label htmlFor="exampleFormControlInput1" className="form-label">Check Out</label>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Çykyş wagty</label>
                                 <input type="date" className="form-control rounded-0" id="exampleFormControlInput1" placeholder="name@example.com" />
                             </div>
                             <div className='col-xl-3'>
                                 <div className='row align-items-center'>
                                     <div className='col-xl-4'>
-                                        <label className="form-label">Room</label>
+                                        <label className="form-label">Otag</label>
                                         <select className="form-select rounded-0">
                                             <option value="1">01</option>
                                             <option value="2">02</option>
@@ -57,7 +57,7 @@ const Home = () => {
                                         </select>
                                     </div>
                                     <div className='col-xl-4'>
-                                        <label className="form-label">Adult</label>
+                                        <label className="form-label">Adam</label>
                                         <select className="form-select rounded-0">
                                             <option value="1">01</option>
                                             <option value="2">02</option>
@@ -65,7 +65,7 @@ const Home = () => {
                                         </select>
                                     </div>
                                     <div className='col-xl-4'>
-                                        <label className="form-label">Children</label>
+                                        <label className="form-label">Çaga</label>
                                         <select className="form-select rounded-0">
                                             <option value="1">01</option>
                                             <option value="2">02</option>
@@ -86,8 +86,8 @@ const Home = () => {
                 <div className='container my-5 py-5'>
                     <div className='row align-items-center'>
                         <div className='col-xl-6'>
-                            <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}> ABOUT US </div>
-                            <div className='display-4 mb-5'> Welcome To Roberto Hotel Luxury </div>
+                            <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}> BIz barada </div>
+                            <div className='display-4 mb-5'> “Roberto" myhmanhanasyna hoş geldiňiz </div>
                             <div className='h5 lh-lg ls-1 text-secondary mb-5'>
                                 With over 340 hotels worldwide, NH Hotel Group offers a wide variety of hotels catering htmlFor a perfect stay no matter where your destination.
                             </div>
@@ -121,7 +121,7 @@ const Home = () => {
                         <div className='col-xl-2'>
                             <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
                                 <img src="/img/icons/rol.png" alt="Rol" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
-                                <h5>Transportion</h5>
+                                <h5>Ulag</h5>
                             </div>
                         </div>
                         <div className='col-xl-2'>
@@ -133,13 +133,13 @@ const Home = () => {
                         <div className='col-xl-2'>
                             <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
                                 <img src="/img/icons/fork.png" alt="fork" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
-                                <h5>Spa Relaxtion</h5>
+                                <h5>Spa dynç alyş</h5>
                             </div>
                         </div>
                         <div className='col-xl-2'>
                             <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
                                 <img src="/img/icons/drink.png" alt="drink" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
-                                <h5>Restaurant</h5>
+                                <h5>Restoran</h5>
                             </div>
                         </div>
                         <div className='col-xl-2'>
@@ -182,12 +182,12 @@ const Home = () => {
                                                             <span style={{ width: "auto", display: "inline-block" }}>: {room.size} m<sup>2</sup></span>
                                                         </li>
                                                         <li className='li mb-3'>
-                                                            <span style={{ width: "120px", display: "inline-block" }}>Adam Sany</span>
-                                                            <span style={{ width: "auto", display: "inline-block" }}>: Iň köp adam {room.capacity}</span>
+                                                            <span style={{ width: "120px", display: "inline-block" }}>Adam sany</span>
+                                                            <span style={{ width: "auto", display: "inline-block" }}>: Iň köp {room.capacity} adam</span>
                                                         </li>
                                                         <li className='li mb-3'>
                                                             <span style={{ width: "120px", display: "inline-block" }}>Görnüşi</span>
-                                                            <span style={{ width: "auto", display: "inline-block" }}>: "{room.roomType.name}"</span>
+                                                            <span style={{ width: "auto", display: "inline-block" }}>: {room.roomType.name}</span>
                                                         </li>
                                                         <li className='li mb-3'>
                                                             <span style={{ width: "120px", display: "inline-block" }}>Hyzmatlar</span>
@@ -196,7 +196,7 @@ const Home = () => {
                                                     </ul>
                                                 </div>
                                                 <div className='ms-5 mt-4'>
-                                                    <Link to="/" className='btn btn-primary ls-1 btn-lg' style={{ fontWeight: "600" }}>View Details</Link>
+                                                    <Link to="/" className='btn btn-primary ls-1 btn-lg' style={{ fontWeight: "600" }}>Maglumatlary gör</Link>
                                                 </div>
                                             </div>
                                         </div>

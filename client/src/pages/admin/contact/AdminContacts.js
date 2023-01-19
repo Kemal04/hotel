@@ -32,7 +32,7 @@ const AdminContact = () => {
                         <div className='content'>
                             <div className='container py-5'>
                                 <div className='d-flex justify-content-between aling-items-center h2 mb-5'>
-                                    Habarlasmak bölümi
+                                    Teswirler bölümi
                                 </div>
                                 <div className='row'>
                                     <div className='col-lg-12'>
@@ -41,9 +41,9 @@ const AdminContact = () => {
                                                 <tr>
                                                     <th scope="col">№</th>
                                                     <th scope="col">Ady</th>
-                                                    <th scope="col">Duzeltmek</th>
+                                                    <th scope="col">Düzetmek</th>
                                                     <th scope="col">Temasy</th>
-                                                    <th scope="col">Habary</th>
+                                                    <th scope="col">Mazmuny</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

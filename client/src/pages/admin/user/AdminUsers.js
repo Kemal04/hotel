@@ -29,9 +29,9 @@ const AdminUsers = () => {
                                             <thead className='table-dark'>
                                                 <tr>
                                                     <th scope="col">№</th>
-                                                    <th scope="col">Ulanyjy Ady</th>
+                                                    <th scope="col">Ulanyjy ady</th>
                                                     <th scope="col">E-mail adresi</th>
-                                                    <th scope="col">Role</th>
+                                                    <th scope="col">Hukugy</th>
                                                     <th scope="col">Açar sözi</th>
                                                 </tr>
                                             </thead>

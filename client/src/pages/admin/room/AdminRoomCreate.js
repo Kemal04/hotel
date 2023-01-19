@@ -73,13 +73,13 @@ const AdminRoomCreate = () => {
                                     <div className='col-lg-8'>
                                         <div className='my-5 py-5'>
                                             <div className='d-flex justify-content-center aling-items-center h2 mb-5'>
-                                                Otag Goşmak
+                                                Otag goşmak
                                             </div>
                                             <form className='row'>
 
                                                 <div className="col-lg-12 mb-3">
                                                     <select name='roomTypeId' className="form-select" onChange={handleChange}>
-                                                        <option defaultValue>Sypahana sayla</option>
+                                                        <option defaultValue>Otag görnüşini sayla</option>
                                                         {roomtypes.map(roomtype => (
                                                             <option key={roomtype.id} value={roomtype.id}>{roomtype.name}</option>
                                                         ))}
@@ -87,12 +87,12 @@ const AdminRoomCreate = () => {
                                                 </div>
 
                                                 <div className="col-lg-6 mb-3">
-                                                    <label className="form-label fw-bold">Otagyň Ady</label>
+                                                    <label className="form-label fw-bold">Otagyň belgisi</label>
                                                     <input name='roomNum' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
                                                 </div>
 
                                                 <div className="col-lg-6 mb-3">
-                                                    <label className="form-label fw-bold">Otagyň Bahasy</label>
+                                                    <label className="form-label fw-bold">Otagyň bahasy</label>
                                                     <div className="input-group mb-3">
                                                         <input name='price' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
                                                         <span className="input-group-text rounded-0" id="basic-addon1">TMT</span>
@@ -100,15 +100,15 @@ const AdminRoomCreate = () => {
                                                 </div>
 
                                                 <div className="col-lg-6 mb-3">
-                                                    <label className="form-label fw-bold">Otagyň Adam Sany</label>
+                                                    <label className="form-label fw-bold">Otagyň adam sany</label>
                                                     <input name='capacity' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
                                                 </div>
 
                                                 <div className="col-lg-6 mb-3">
-                                                    <label className="form-label fw-bold">Otagyň Tutýan Meýdany</label>
+                                                    <label className="form-label fw-bold">Otagyň tutýan meýdany</label>
                                                     <div className="input-group mb-3">
                                                         <input name='size' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
-                                                        <span className="input-group-text rounded-0" id="basic-addon1">ft</span>
+                                                        <span className="input-group-text rounded-0" id="basic-addon1">m <sup>2</sup></span>
                                                     </div>
                                                 </div>
 

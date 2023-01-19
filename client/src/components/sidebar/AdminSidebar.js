@@ -38,7 +38,7 @@ const AdminSidebar = () => {
                             </li>
                             <li className="nav-item">
                                 <NavLink to="/admin/otag-gornusleri" className="nav-link">
-                                    <p> Otag Gornusleri </p>
+                                    <p> Otag görnüşleri </p>
                                 </NavLink>
                             </li>
                             <li className="nav-item">
@@ -48,7 +48,7 @@ const AdminSidebar = () => {
                             </li>
                             <li className="nav-item">
                                 <NavLink to="/admin/bronlanan-otaglar" className="nav-link">
-                                    <p> Bronlanan Otaglar </p>
+                                    <p> Bronlanan otaglar </p>
                                 </NavLink>
                             </li>
                         </ul>

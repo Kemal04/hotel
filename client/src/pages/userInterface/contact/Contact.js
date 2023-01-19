@@ -61,23 +61,23 @@ const Contact = () => {
                         <div className='row align-items-center'>
                             <div className='col-xl-3 mb-4 text-center'>
                                 <img src="/img/icons/phone.svg" alt="" style={{ width: "20px" }} />
-                                <div className='h4 mt-3'>Phone</div>
-                                <div className='text-secondary'>+01-234-567-890</div>
+                                <div className='h4 mt-3'>Telefon</div>
+                                <div className='text-secondary'>+993 65 31-69-31</div>
                             </div>
                             <div className='col-xl-3 mb-4 text-center'>
                                 <img src="/img/icons/loc.svg" alt="" style={{ width: "20px" }} />
                                 <div className='h4 mt-3'>Address</div>
-                                <div className='text-secondary'>Iris Watson, 283 Fusce Rd,NY</div>
+                                <div className='text-secondary'>Aşgabat ş, Magtymguly şaýoly</div>
                             </div>
                             <div className='col-xl-3 mb-4 text-center'>
                                 <img src="/img/icons/phone.svg" alt="" style={{ width: "20px" }} />
-                                <div className='h4 mt-3'>Open time</div>
-                                <div className='text-secondary'>10:00 am to 23:00 pm</div>
+                                <div className='h4 mt-3'>Açylyş wagty</div>
+                                <div className='text-secondary'>10:00 am, 22:00 pm</div>
                             </div>
                             <div className='col-xl-3 mb-4 text-center'>
                                 <img src="/img/icons/email.svg" alt="" style={{ width: "20px" }} />
                                 <div className='h4 mt-3'>Email</div>
-                                <div className='text-secondary'>Info.colorlib @gmail.com</div>
+                                <div className='text-secondary'>info.hotel.tm@gmail.com</div>
                             </div>
                         </div>
 
@@ -88,8 +88,8 @@ const Contact = () => {
                     </div>
 
                     <div className='text-center my-5'>
-                        <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}>CONTACT US</div>
-                        <div className='h1'>Leave Message</div>
+                        <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}>Habarlaşmak</div>
+                        <div className='h1'>Bize hat ugradyň</div>
                     </div>
 
                     <div className='row justify-content-center'>
@@ -103,7 +103,7 @@ const Contact = () => {
                             <input onChange={handleChange} name='subject' type="name" className="form-control rounded-0" placeholder='Temasy' autoComplete='off' />
                         </div>
                         <div className="col-xl-8 mb-4">
-                            <textarea onChange={handleChange} name='comment' className="form-control rounded-0" rows="6" placeholder='Sizin Habaryňyz'></textarea>
+                            <textarea onChange={handleChange} name='comment' className="form-control rounded-0" rows="6" placeholder='Mazmuny'></textarea>
                         </div>
                         <div className="col-xl-5 mb-4 text-center">
                             <button onClick={handleClick} className='btn btn-primary px-5'>Ugrat</button>
