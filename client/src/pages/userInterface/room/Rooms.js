@@ -10,7 +10,7 @@ const Rooms = () => {
 
     const { darkMode } = useContext(ThemeContext)
 
-    const { rooms, setRooms, roomtypes } = useAPI()
+    const { rooms, roomtypes } = useAPI()
 
     // function onSelectionChange(e) {
     //     const sortDirection = e.target.value;
@@ -71,7 +71,24 @@ const Rooms = () => {
             <BannerImg name="Otaglar" />
             <div className={darkMode ? "bg-dark text-white" : "bg-white text-dark"}>
                 <div className='container py-5'>
-                    <div className='row align-items-start'>
+                    <div className='row align-items-start justify-content-center'>
+                        <div className='col-xl-2'>
+                            <div className='row'>
+                                <div className='col-xl-12 mt-5' >
+                                    <div className=''>
+                                        <div className='label mb-3'>Otag görnüşleri</div>
+                                        <Filter
+                                            filterItem={filterItem}
+                                            setItem={setItem}
+                                            roomType={roomType}
+                                            item={item}
+                                            rooms={rooms}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div className='col-xl-8 mb-3'>
                             <div className='row'>
                                 {
@@ -116,23 +133,6 @@ const Rooms = () => {
                                         </div>
                                     ))
                                 }
-                            </div>
-                        </div>
-
-                        <div className='col-xl-4'>
-                            <div className='row'>
-                                <div className='col-xl-12 mt-5' >
-                                    <div className=''>
-                                        <div className='label'>Otag görnüşleri</div>
-                                        <Filter
-                                            filterItem={filterItem}
-                                            setItem={setItem}
-                                            roomType={roomType}
-                                            item={item}
-                                            rooms={rooms}
-                                        />
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
