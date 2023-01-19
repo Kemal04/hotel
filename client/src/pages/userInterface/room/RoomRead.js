@@ -92,15 +92,15 @@ const RoomRead = ({ authState }) => {
                             </Splide>
                             <div className='row border p-4' style={{ fontWeight: "500" }}>
                                 <div className='col-xl-3 d-flex flex-column align-items-center border-end'>
-                                    <div style={{ color: "#afb4bf" }}>Tutýan Meýdany :</div>
-                                    <div>{room.size} m<sup>2</sup></div>
+                                    <div style={{ color: "#afb4bf" }}>Tutýan meýdany :</div>
+                                    <div>{room.size}m<sup>2</sup></div>
                                 </div>
                                 <div className='col-xl-3 d-flex flex-column align-items-center border-end'>
-                                    <div style={{ color: "#afb4bf" }}>Adam Sany :</div>
-                                    <div>{room.capacity} adamdan ybarat</div>
+                                    <div style={{ color: "#afb4bf" }}>Adam sany :</div>
+                                    <div>{room.capacity} adam </div>
                                 </div>
                                 <div className='col-xl-3 d-flex flex-column align-items-center border-end'>
-                                    <div style={{ color: "#afb4bf" }}>Otag Görnüşi :</div>
+                                    <div style={{ color: "#afb4bf" }}>Otag görnüşi :</div>
                                     <div>"{roomType.name}"</div>
                                 </div>
                                 <div className='col-xl-3 d-flex flex-column align-items-center'>
@@ -136,7 +136,7 @@ const RoomRead = ({ authState }) => {
                                 </div>
                                 <div className='col-xl-4 p-0 d-flex align-items-center my-4'>
                                     <img src="/img/icons/drinks.png" alt="Air" className='img-fluid me-3' />
-                                    <div>Mugt Içgiler</div>
+                                    <div>Mugt içgiler</div>
                                 </div>
                                 <div className='col-xl-4 p-0 d-flex align-items-center my-4'>
                                     <img src="/img/icons/plate.png" alt="Air" className='img-fluid me-3' />
@@ -157,7 +157,7 @@ const RoomRead = ({ authState }) => {
                             </div>
                             <div className='row my-5 align-items-center'>
                                 <div className='col-xl-12 p-0 h4'>
-                                    Otag Barada Teswirler
+                                    Otag barada teswirler:
                                 </div>
                                 <div className='col-xl-12 p-0 mt-5'>
                                     <div className='row align-items-center'>

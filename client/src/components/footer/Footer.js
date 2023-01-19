@@ -35,7 +35,7 @@ const Footer = () => {
                                     <h6>Habarlaşmak</h6>
                                     <ul className='p-0 mt-4'>
                                         <li className='mb-3'>+993 65 31-69-31</li>
-                                        <li className='mb-3'>shypahanalar@gmail.com</li>
+                                        <li className='mb-3'>hotel.tm.@gmail.com</li>
                                         <li className='mb-3'>Aşgabat ş, Magtymguly şaýoly, Türkmenistanyň TT we II instituty</li>
                                     </ul>
                                 </div>
@@ -44,7 +44,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="border-top text-center mt-3 pt-3">
-                    © 2023 All Rights Reserved
+                    © 2023 Ähli hukuklar goralan
                 </div>
             </div>
         </>

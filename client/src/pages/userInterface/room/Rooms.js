@@ -4,6 +4,7 @@ import { ThemeContext } from '../../../context/ThemeContext'
 import BannerImg from "../../../components/banner/BannerImg"
 import { useAPI } from '../../../context/FetchContext'
 import Filter from '../../../components/filter/Filter'
+import axios from 'axios'
 
 const Rooms = () => {
 
@@ -42,15 +43,25 @@ const Rooms = () => {
     //     setRooms(roomsSort);
     // }
 
+    const [item, setItem] = useState(rooms)
 
+    useEffect(() => {
+        const fetchAllRooms = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/rooms/')
+                setItem(res.data.rooms)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchAllRooms()
+    }, [])
 
-    const [item, setItem] = useState(rooms);
+    const roomType = [...new Set(roomtypes.map((Val) => Val.name))];
 
-    const menuItems = [...new Set(rooms.map((Val) => Val.roomType.name))];
-
-    const filterItem = (curcat) => {
+    const filterItem = (value) => {
         const newItem = rooms.filter((newVal) => {
-            return newVal.roomType.name === curcat;
+            return newVal.roomType.name === value
         });
         setItem(newItem);
     };
@@ -84,20 +95,20 @@ const Rooms = () => {
                                                                 <span>{room.size} m<sup>2</sup></span>
                                                             </div>
                                                             <div className='col-xl-6 d-flex flex-column mb-4 mt-4 h6'>
-                                                                <span className='mb-2' style={{ color: '#afb4bf' }}>Adam Sany:</span>
-                                                                <span>Iň köp adam {room.capacity}</span>
+                                                                <span className='mb-2' style={{ color: '#afb4bf' }}>Adam sany:</span>
+                                                                <span>Iň köp {room.capacity} adam</span>
                                                             </div>
                                                             <div className='col-xl-6 d-flex flex-column mb-4 h6'>
                                                                 <span className='mb-2' style={{ color: '#afb4bf' }}>Görnüşi:</span>
                                                                 <span>"{room.roomType.name}"</span>
                                                             </div>
                                                             <div className='col-xl-6 d-flex flex-column mb-4 h6'>
-                                                                <span className='mb-2' style={{ color: '#afb4bf' }}>Hyzmatlar:</span>
+                                                                <span className='mb-2' style={{ color: '#afb4bf' }}>Hyzmatlary:</span>
                                                                 <span>Wifi, Telewizor ...</span>
                                                             </div>
                                                         </div>
                                                         <div className='mt-4'>
-                                                            <Link to={`/otag/${room.id}`} className='text-blue text-decoration-none' style={{ fontWeight: "500" }}>View Detail &rarr;</Link>
+                                                            <Link to={`/otag/${room.id}`} className='text-blue text-decoration-none' style={{ fontWeight: "500" }}>Maglumatlary gör &rarr;</Link>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -110,24 +121,15 @@ const Rooms = () => {
 
                         <div className='col-xl-4'>
                             <div className='row'>
-                                {/* <div className='col-xl-12'>
-                                    <label htmlFor="exampleFormControlInput1" className="form-label">Filter</label>
-                                    <select className="form-select rounded-0" onChange={onSelectionChange}>
-                                        <option value="asc">Koneler</option>
-                                        <option value="desc">Tazeler</option>
-                                        <option value="expensive">Gymmatlar</option>
-                                        <option value="cheap">Arzanlar</option>
-                                        <option value="manyUser">Kop Adamly</option>
-                                        <option value="fewUser">Az Adamly</option>
-                                    </select>
-                                </div> */}
                                 <div className='col-xl-12 mt-5' >
                                     <div className=''>
-                                        <div className='label'>Room Types</div>
+                                        <div className='label'>Otag görnüşleri</div>
                                         <Filter
                                             filterItem={filterItem}
                                             setItem={setItem}
-                                            menuItems={menuItems}
+                                            roomType={roomType}
+                                            item={item}
+                                            rooms={rooms}
                                         />
                                     </div>
                                 </div>
