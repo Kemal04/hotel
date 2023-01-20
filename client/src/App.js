@@ -33,7 +33,6 @@ const App = () => {
         role: "User",
     });
 
-
     useEffect(() => {
         axios.get("http://localhost:3001/api/auth/auth", {
             headers: {
@@ -70,32 +69,45 @@ const App = () => {
                                 <Route path='/otaglar' element={<Rooms />}></Route>
                                 <Route path='/otag/:id' element={<RoomRead authState={authState} />}></Route>
 
-                                <Route path='/hasaba-durmak' element={<Register />}></Route>
-                                <Route path='/giris-etmek' element={<Login />}></Route>
+                                {
+                                    !authState.status && (
+                                        <>
+                                            <Route path='/hasaba-durmak' element={<Register />}></Route>
+                                            <Route path='/giris-etmek' element={<Login />}></Route>
+                                        </>
+                                    )
+
+                                }
                             </Route>
 
                             <Route path="/" element={<AdminWithNavbar authState={authState} />}>
+                                {
+                                    authState.role === "Admin" && (
+                                        <>
 
-                                <Route path='/admin' element={<Admin />}></Route>
+                                            <Route path='/admin' element={<Admin />}></Route>
 
-                                <Route path='/admin/ulanyjylar' element={<AdminUsers />}></Route>
+                                            <Route path='/admin/ulanyjylar' element={<AdminUsers />}></Route>
 
-                                <Route path='/admin/teswirler' element={<AdminContacts />}></Route>
-                                <Route path='/admin/teswir-uytget/:id' element={<AdminContactEdit />}></Route>
+                                            <Route path='/admin/teswirler' element={<AdminContacts />}></Route>
+                                            <Route path='/admin/teswir-uytget/:id' element={<AdminContactEdit />}></Route>
 
-                                <Route path='/admin/otaglar' element={<AdminRooms />}></Route>
-                                <Route path='/admin/otag-gosmak' element={<AdminRoomCreate />}></Route>
-                                <Route path='/admin/otag-uytget/:id' element={<AdminRoomEdit />}></Route>
+                                            <Route path='/admin/otaglar' element={<AdminRooms />}></Route>
+                                            <Route path='/admin/otag-gosmak' element={<AdminRoomCreate />}></Route>
+                                            <Route path='/admin/otag-uytget/:id' element={<AdminRoomEdit />}></Route>
 
-                                <Route path='/admin/otag-gornusleri' element={<AdminRoomTypes />}></Route>
-                                <Route path='/admin/otag-gornusini-gosmak' element={<AdminRoomTypeCreate authState={authState} />}></Route>
-                                <Route path='/admin/otag-gornusini-uytget/:id' element={<AdminRoomTypeEdit />}></Route>
+                                            <Route path='/admin/otag-gornusleri' element={<AdminRoomTypes />}></Route>
+                                            <Route path='/admin/otag-gornusini-gosmak' element={<AdminRoomTypeCreate authState={authState} />}></Route>
+                                            <Route path='/admin/otag-gornusini-uytget/:id' element={<AdminRoomTypeEdit />}></Route>
 
-                                <Route path='/admin/bronlanan-otaglar' element={<AdminBooking />}></Route>
-                                <Route path='/admin/bronlanan-otaglary-uytget/:id' element={<AdminBookingEdit />}></Route>
-
+                                            <Route path='/admin/bronlanan-otaglar' element={<AdminBooking />}></Route>
+                                            <Route path='/admin/bronlanan-otaglary-uytget/:id' element={<AdminBookingEdit />}></Route>
+                                        </>
+                                    )
+                                }
                             </Route>
 
+                            <Route path='/*' element={<NotFounded />}></Route>
                             <Route path='/404' element={<NotFounded />}></Route>
                             <Route path='/403' element={<Forbiden />}></Route>
 

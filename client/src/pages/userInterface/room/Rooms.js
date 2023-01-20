@@ -83,33 +83,15 @@ const Rooms = () => {
                 <div className='container py-5'>
                     <div className='row align-items-start justify-content-center'>
                         <div className='col-xl-2'>
-                            <div className='row'>
-                                <div className='col-xl-12 mt-5' >
-                                    <div className='label mb-3'>Otag görnüşleri</div>
-                                    <Filter
-                                        filterItem={filterItem}
-                                        setItem={setItem}
-                                        roomType={roomType}
-                                        item={item}
-                                        rooms={rooms}
-                                    />
-                                </div>
-                                <div className='col-xl-12'>
-                                    <div className='label mb-3'>Adam sany</div>
-                                    <div className="d-flex justify-content-center flex-column border-bottom">
-                                        {roomCapacity.map((name, id) => {
-                                            return (
-                                                <div className="text-blue fw-bold small mb-2" style={{ cursor: "pointer" }} onClick={() => filterCapacity(name)} key={id} >
-                                                    {name} Adam
-                                                </div>
-                                            )
-                                        })}
-                                        <div className="text-blue fw-bold small mb-2" style={{ cursor: "pointer" }} onClick={() => setItem(rooms)} >
-                                            Hemmesi
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <Filter
+                                filterItem={filterItem}
+                                filterCapacity={filterCapacity}
+                                roomType={roomType}
+                                roomCapacity={roomCapacity}
+                                setItem={setItem}
+                                item={item}
+                                rooms={rooms}
+                            />
                         </div>
 
                         <div className='col-xl-8 mb-3'>
@@ -160,7 +142,7 @@ const Rooms = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
