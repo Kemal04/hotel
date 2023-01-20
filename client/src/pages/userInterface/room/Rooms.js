@@ -59,9 +59,19 @@ const Rooms = () => {
 
     const roomType = [...new Set(roomtypes.map((Val) => Val.name))];
 
+    const roomCapacity = [...new Set(rooms.map((Val) => Val.capacity))];
+
     const filterItem = (value) => {
         const newItem = rooms.filter((newVal) => {
             return newVal.roomType.name === value
+        });
+        setItem(newItem);
+    };
+
+
+    const filterCapacity = (value) => {
+        const newItem = rooms.filter((newVal) => {
+            return newVal.capacity === value
         });
         setItem(newItem);
     };
@@ -75,15 +85,28 @@ const Rooms = () => {
                         <div className='col-xl-2'>
                             <div className='row'>
                                 <div className='col-xl-12 mt-5' >
-                                    <div className=''>
-                                        <div className='label mb-3'>Otag görnüşleri</div>
-                                        <Filter
-                                            filterItem={filterItem}
-                                            setItem={setItem}
-                                            roomType={roomType}
-                                            item={item}
-                                            rooms={rooms}
-                                        />
+                                    <div className='label mb-3'>Otag görnüşleri</div>
+                                    <Filter
+                                        filterItem={filterItem}
+                                        setItem={setItem}
+                                        roomType={roomType}
+                                        item={item}
+                                        rooms={rooms}
+                                    />
+                                </div>
+                                <div className='col-xl-12'>
+                                    <div className='label mb-3'>Adam sany</div>
+                                    <div className="d-flex justify-content-center flex-column border-bottom">
+                                        {roomCapacity.map((name, id) => {
+                                            return (
+                                                <div className="text-blue fw-bold small mb-2" style={{ cursor: "pointer" }} onClick={() => filterCapacity(name)} key={id} >
+                                                    {name} Adam
+                                                </div>
+                                            )
+                                        })}
+                                        <div className="text-blue fw-bold small mb-2" style={{ cursor: "pointer" }} onClick={() => setItem(rooms)} >
+                                            Hemmesi
+                                        </div>
                                     </div>
                                 </div>
                             </div>
