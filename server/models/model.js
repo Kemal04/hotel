@@ -80,11 +80,11 @@ const Booking = sequelize.define("booking", {
         type: DataTypes.DATE,
         allowNull: false
     },
-    phoneNum: {
+    phoneNumber: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    chek: {
+    check: {
         type: DataTypes.TINYINT,
         allowNull: false,
         defaultValue: "0"

@@ -19,12 +19,25 @@ const RoomRead = ({ authState }) => {
         autoplay: true,
     };
 
+    const location = useLocation();
+    const roomId = location.pathname.split("/")[2];
+
+    const navigate = useNavigate()
+    
     const [room, setRoom] = useState("")
     const [roomType, setRoomType] = useState("")
 
-    const location = useLocation();
+    const [booking, setBooking] = useState({
+        userId: authState.id,
+        roomId: roomId,
+        checkIn: "",
+        checkOut: "",
+        phoneNumber: "",
+    });
 
-    const roomId = location.pathname.split("/")[2];
+    const handleChange = (e) => {
+        setBooking((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
 
     useEffect(() => {
         axios.get(`http://localhost:3001/api/rooms/${roomId}`).then((res) => {
@@ -36,19 +49,6 @@ const RoomRead = ({ authState }) => {
     }, [roomId])
 
 
-    const navigate = useNavigate()
-
-    const [booking, setBooking] = useState({
-        userId: authState.id,
-        roomId: roomId,
-        checkIn: "",
-        checkOut: "",
-    });
-
-    const handleChange = (e) => {
-        setBooking((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-    }
-
     const bookingRoom = async (e) => {
         e.preventDefault()
 
@@ -57,6 +57,9 @@ const RoomRead = ({ authState }) => {
         }
         else if (!booking.checkOut) {
             toast.error("Çykyş wagtyny ýazyň")
+        }
+        else if (!booking.phoneNumber) {
+            toast.error("Telefon belgiňizi ýazyň")
         }
         else {
             await axios.post("http://localhost:3001/api/bookings/create", booking)
@@ -110,20 +113,16 @@ const RoomRead = ({ authState }) => {
                             </div>
                             <div className='row mt-4'>
                                 <div className='col-xl-12 p-0 lh-lg' style={{ color: "#636a76" }}>
-                                    If you live in New York City or travel to and from New York City a lot, you know all about the traffic there. Getting places is often next to impossible, even with the gazillion yellow cabs. If you’re like me you often look with envy at those shiny limousines with their unformed drivers and wish you could sit in one. Well, you can. New York limo service is more affordable than you think, whether it’s for Newark airport transportation, LaGuardia airport transportation, or to drive wherever you wish to go.
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Milli Liderimiziň taýsyz tagallalary bilen ýurdumyzyň ähli ýerlerinde häzirki zaman tehnologik enjamlary bilen üpjün edilen saglyk öýleri, hassahanalar, şypahanalar, çagalar sagaldyş we dynç alyş merkezleri, keseli anyklaýyş, «Ene mähri» merkezleri, dynç alyş öýleri, seýilgähler guruldy. Bu döredilen şertler geljek nesliň sagdyn ösmegine we kemala gelmegine, saglyklaryny gorap saklamaga, wagtlaryny peýdaly we şadyýan geçirmäge giň mümkinçilikler döredýär.
                                 </div>
-                                <div className='col-xl-12 my-3 p-0'>
-                                    <ul className='ul lh-lg p-0' style={{ color: "#636a76" }}>
-                                        <li className='li'> Mauris molestie lectus in irdiet auctor.</li>
-                                        <li className='li'> Dictum purus at blandit molestie.</li>
-                                        <li className='li'> Neque non fermentum suscipit.</li>
-                                        <li className='li'> Donec id dui ac massa malesuada.</li>
-                                        <li className='li'> In sit amet sapien quis orci maximus.</li>
-                                        <li className='li'> Vestibulum rutrum diam vel eros tristique.</li>
-                                    </ul>
+                                <div className='col-xl-12 p-0 lh-lg mt-3' style={{ color: "#636a76" }}>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Hormatly Prezidentimiz hemişe ýurdumyzyň bilim, saglygy goraýyş we ylym ulgamlarynda amala aşyrylýan özgertmeleriň çaltlandyrylmagyna ünsi çekmegi aýratyn bellärliklidir. Döwlet Baştutanymyz bu ulgamda maddy-enjamlaýyn binýadyň döredilendigini hem-de täze lukmançylyk merkezleriniň, institutlaryň, mekdepleriň, sport desgalarynyň ulanylmaga berilmeginiň hasabyna onuň ýyl-ýyldan berkidilýändigini we giňeldilýändigini aýdýar. Bu bolsa ýurdumyzda häzirki wagtda sagdyn durmuş ýörelgeleriniň ileri tutulmagynyň, geljekde döwletimizi we jemgyýetimizi sagdyn ösüş ýollaryna alyp barjak nesillerimiziň bagtyýar durmuşda ýaşamagyny üpjün etmegi üns merkezinde saklanylýandygynyň nobatdaky subutnamasydyr.
                                 </div>
-                                <div className='col-xl-12 p-0 lh-lg' style={{ color: "#636a76" }}>
-                                    If you live in New York City or travel to and from New York City a lot, you know all about the traffic there. Getting places is often next to impossible, even with the gazillion yellow cabs. If you’re like me you often look with envy at those shiny limousines with their unformed drivers and wish you could sit in one. Well, you can. New York limo service is more affordable than you think, whether it’s for Newark airport transportation, LaGuardia airport transportation, or to drive wherever you wish to go.
+                                <div className='col-xl-12 p-0 lh-lg mt-3' style={{ color: "#636a76" }}>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    «Saglyk» Döwlet maksatnamasynda ilatyň saglygyny goramakda ýurdumyzyň baý tebigy bejeriş serişdelerinden peýdalanmak barada aýratyn bellenilip geçilýär. Hormatly Prezidentimiz ýurdumyzyň tebigy çeşmeleriniň bejeriş mümkinçilikleriniň binýadynda şypahana ulgamyny ösdürmek meselelerine uly üns berýär.
                                 </div>
                             </div>
                             <div className='row my-5 align-items-center'>
@@ -172,7 +171,7 @@ const RoomRead = ({ authState }) => {
                                                 </div>
                                             </div>
                                             <div className='text-secondary'>
-                                                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.
+                                                Bu owadandy. Myhmanhananyň özi ajaýyp. işgärler gaty gowy. Biz ony gowy görýärdik. Bu gaty gowydy. Men ýene gitmek isleýärin sebäbi tagam meniň damagymda galdy. Iýmitde gaty gowy. Bu gaty üstünlikli diýip pikir edýärin.
                                             </div>
                                         </div>
                                     </div>
@@ -190,7 +189,7 @@ const RoomRead = ({ authState }) => {
                                                 </div>
                                             </div>
                                             <div className='text-secondary'>
-                                                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.
+                                                Bu owadandy. Myhmanhananyň özi ajaýyp. işgärler gaty gowy. Biz ony gowy görýärdik. Bu gaty gowydy. Men ýene gitmek isleýärin sebäbi tagam meniň damagymda galdy. Iýmitde gaty gowy. Bu gaty üstünlikli diýip pikir edýärin.
                                             </div>
                                         </div>
                                     </div>
@@ -201,14 +200,29 @@ const RoomRead = ({ authState }) => {
                         <div className='col-xl-4'>
                             <div className='row'>
                                 <div className='col-xl-12'>
-                                    <label htmlFor="exampleFormControlInput1" className="form-label">Date</label>
+                                    <label className="form-label mb-3">Giriş we Çykyş wagtlary</label>
                                     <div className='row g-0'>
                                         <div className='col-xl-6'>
-                                            <input onChange={handleChange} name="checkIn" type="date" className="form-control rounded-0 py-2 px-3" placeholder='Check In' />
+                                            <input onChange={handleChange} name='checkIn' type="date" className="form-control rounded-0 py-2 px-3" placeholder='Check In' />
                                         </div>
                                         <div className='col-xl-6'>
-                                            <input onChange={handleChange} name="checkOut" type="date" className="form-control rounded-0 py-2 px-3" placeholder='Check Out' />
+                                            <input onChange={handleChange} name='checkOut' type="date" className="form-control rounded-0 py-2 px-3" placeholder='Check Out' />
                                         </div>
+                                    </div>
+                                </div>
+                                <div className='col-xl-12 mt-4'>
+                                    <label className="form-label">Telefon belginiz</label>
+                                    <div className="input-group">
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text rounded-0">+993</span>
+                                        </div>
+                                        <input onChange={handleChange} type="number" min="60000000" max="65999999" className="form-control" autoComplete='off' name="phoneNumber" required />
+                                    </div>
+                                </div>
+                                <div className='col-xl-12 border-top mt-5 pt-3'>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <div className='h4'>Bahasy</div>
+                                        <div className='h3 text-blue'>{room.price} <small>TMT</small></div>
                                     </div>
                                 </div>
                                 <div className='col-xl-12 d-grid mt-5'>
@@ -216,7 +230,7 @@ const RoomRead = ({ authState }) => {
                                         !authState.status
                                             ?
                                             <div className='d-grid'>
-                                                <Link to="/giris-etmek" className="btn btn-lg btn-primary btn-block fw-bold">
+                                                <Link to="/login" className="btn btn-lg btn-primary btn-block  fw-bold">
                                                     Bronlamak
                                                 </Link>
                                             </div>

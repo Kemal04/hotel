@@ -72,7 +72,7 @@ const Navbar = ({ authState }) => {
                                 <button onClick={darkModeClick} className={darkMode ? "nav-link border-0 bg-dark" : "nav-link border-0 bg-light"}>
                                     {
                                         darkMode ?
-                                            <img src="/img/icons/sun.png" alt="Moon" style={{ width: "20px", }} />
+                                            <img src="/img/icons/sun.png" alt="Sun" style={{ width: "20px", }} />
                                             :
                                             <img src="/img/icons/moon.png" alt="Moon" style={{ width: "20px" }} />
                                     }
@@ -83,7 +83,7 @@ const Navbar = ({ authState }) => {
                             {
                                 !authState.status
                                     ?
-                                    <Link to="/giris-etmek" className="btn btn-primary py-4 fw-bold" style={{ letterSpacing: "1px" }} type="submit">Giriş etmek</Link>
+                                    <Link to="/giris-etmek" className="btn btn-primary py-4 fw-bold px-5" style={{ letterSpacing: "1px" }} type="submit">Giriş</Link>
                                     :
                                     <div className="navbar-nav ms-5">
                                         <li className="nav-item dropdown">

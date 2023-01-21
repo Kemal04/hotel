@@ -46,7 +46,7 @@ const About = () => {
                     </div>
                 </div>
 
-                <div className='container my-5'>
+                <div className='container py-5'>
                     <div className='text-center mb-5'>
                         <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}>ULTIMATE SOLUTIONS</div>
                         <div className='h1'>Our Hotel & Room</div>

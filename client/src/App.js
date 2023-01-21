@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
 //ROUTER
-import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'
 
 //COMPONENTS
-import { Navbar, Footer } from "./components"
+import { Navbar, Footer, ProfileNavbar } from "./components"
 
 //USERINTERFACE
 import { About, Contact, Home, Rooms, RoomRead, Register, Login } from "./pages/userInterface"
@@ -15,6 +15,9 @@ import { Admin, AdminContacts, AdminContactEdit, AdminRoomCreate, AdminRoomEdit,
 
 //ERROR
 import { Forbiden, NotFounded } from './pages/error';
+
+//PROFILE
+import { Profile, ProfileBooking } from './pages/profile';
 
 //TOAST
 import { ToastContainer } from 'react-toastify'
@@ -56,7 +59,6 @@ const App = () => {
         <>
             <FetchContextProvider>
                 <ThemeContextProvider>
-
                     <Router>
                         <ToastContainer />
                         <Routes>
@@ -107,13 +109,23 @@ const App = () => {
                                 }
                             </Route>
 
+                            <Route path="/" element={<ProfilWithNavbar authState={authState} />}>
+                                {
+                                    authState.status && (
+                                        <>
+                                            <Route path='/ulanyjy-profili/:id' element={<Profile authState={authState} />}></Route >
+                                            <Route path='/ulanyjy-profili/bronlarym/:id' element={<ProfileBooking />}></Route>
+                                        </>
+                                    )
+                                }
+                            </Route>
+
                             <Route path='/*' element={<NotFounded />}></Route>
                             <Route path='/404' element={<NotFounded />}></Route>
                             <Route path='/403' element={<Forbiden />}></Route>
 
                         </Routes>
                     </Router>
-
                 </ThemeContextProvider>
             </FetchContextProvider>
         </>
@@ -133,10 +145,18 @@ const WithNavbar = ({ authState }) => {
     );
 }
 
-
 const AdminWithNavbar = () => {
     return (
         <Outlet />
+    );
+}
+
+const ProfilWithNavbar = ({ authState }) => {
+    return (
+        <>
+            <ProfileNavbar authState={authState} />
+            <Outlet />
+        </>
     );
 }
 
