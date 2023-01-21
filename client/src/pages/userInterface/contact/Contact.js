@@ -56,8 +56,8 @@ const Contact = () => {
         <>
             <div className={darkMode ? 'bg-dark text-white' : 'bg-white'}>
                 <BannerImg name="Habarlaşmak" />
-                <div className='container mb-5' style={{ marginTop: "-80px" }}>
-                    <div className={darkMode ? "card border-0 shadow p-5 bg-dark text-white" : "card border-0 shadow p-5 bg-white"}>
+                <div className='container pb-5' style={{ marginTop: "-80px" }}>
+                    <div className={darkMode ? "card border-0 shadow p-5 bg-white" : "card border-0 shadow p-5 bg-white"}>
                         <div className='row align-items-center'>
                             <div className='col-xl-3 mb-4 text-center'>
                                 <img src="/img/icons/phone.svg" alt="" style={{ width: "20px" }} />

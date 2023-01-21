@@ -4,8 +4,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import { AuthContext } from "../../../context/AuthContext";
 import BannerImg from "../../../components/banner/BannerImg"
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const Login = () => {
+
+    const { darkMode } = useContext(ThemeContext)
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -50,38 +53,38 @@ const Login = () => {
     }
 
     return (
-        <>
+        <div className={darkMode ? 'bg-dark text-white' : 'bg-white'}>
             <BannerImg name="Giriş Etmek" />
-            <div className='container my-5 py-3'>
+            <div className='container py-5'>
                 <div className='row align-items-center justify-content-around'>
                     <div className='col-lg-6'>
-                        <img alt='' src="/img/cards/auth/1.jpg" className="img-fluid" />
+                        <img alt='' src="/img/cards/auth/1.svg" className="img-fluid" />
                     </div>
                     <div className='col-lg-4'>
-                        <form onSubmit={loginUser} className='card p-3 shadow border-0 '>
-                            <div className="mb-3 h2 text-center text-dark">
+                        <form onSubmit={loginUser} className={`card p-4 shadow border-0 ${darkMode ? 'bg-dark text-white' : 'bg-white'}`}>
+                            <div className="mb-5 h2 text-center">
                                 Login
                             </div>
-                            <div className="mb-3">
-                                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" placeholder="Email address" />
+                            <div className="mb-4">
+                                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" placeholder="E-mail adresi" />
                             </div>
-                            <div className="mb-3">
-                                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" placeholder="Password" />
+                            <div className="mb-4">
+                                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" placeholder="Açar sözi" />
                             </div>
                             <div className="d-grid mb-1">
                                 <button type="submit" className="btn btn-primary">Login</button>
                             </div>
                             <div className='mb-3 small'>
-                                <Link to="/reset" className='nav-link'>Reset Password</Link>
+                                <Link to="/reset" className='nav-link'>Açar sözüni täzele</Link>
                             </div>
                             <div className='text-center mb-1 d-flex align-items-center justify-content-center'>
-                                Don't have an account ?<Link to="/hasaba-durmak   " className='nav-link'>Register</Link>
+                                Sen agza bolmadyňmy ? <Link to="/hasaba-durmak" className='nav-link ms-2'> Agza Bol</Link>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

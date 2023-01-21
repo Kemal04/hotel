@@ -1,11 +1,14 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import BannerImg from "../../../components/banner/BannerImg"
+import { ThemeContext } from '../../../context/ThemeContext'
 
 const Register = () => {
+
+    const { darkMode } = useContext(ThemeContext)
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("")
@@ -50,24 +53,15 @@ const Register = () => {
     }
 
     return (
-        <>
-            <BannerImg name="Hasaba Durmak" />
-            <div className='bg-img-small'>
-                <div className='container'>
-                    <div className='row aling-items-center justify-content-center text-white text-center'>
-                        <div className='col-lg-12 display-1' style={{ letterSpacing: "2px" }}>
-                            Agza Bolmak
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className='container my-5 py-3'>
+        <div className={darkMode ? 'bg-dark text-white' : 'bg-white'}>
+            <BannerImg name="Agza Bolmak" />
+            <div className='container py-5'>
                 <div className='row align-items-center justify-content-around'>
 
                     <div className='col-lg-4'>
-                        <form onSubmit={registerUser} className='card p-3 shadow border-0 py-5'>
+                        <form onSubmit={registerUser} className={`card p-4 shadow border-0 ${darkMode ? 'bg-dark text-white' : 'bg-white'}`}>
 
-                            <div className="mb-3 h2 text-center text-dark">
+                            <div className="mb-5 h2 text-center">
                                 Agza Bolmak
                             </div>
 
@@ -87,22 +81,22 @@ const Register = () => {
                                 <input value={cPassword} onChange={(e) => setCPassword(e.target.value)} type="password" className="form-control" placeholder="Açar sözini gaytalaň" />
                             </div>
 
-                            <div className="d-grid mb-1 mt-3">
+                            <div className="d-grid mb-4 mt-3">
                                 <button type="submit" className="btn btn-primary">Agza Bol</button>
                             </div>
 
                             <div className='text-center mb-1 d-flex align-items-center justify-content-center'>
-                                Meniň öň hem agza boldym ?<Link to="/login" className='nav-link'>Giriş</Link>
+                                Meniň öň hem agza boldym ?<Link to="/giris-etmek" className='nav-link ms-2'>Giriş etmek</Link>
                             </div>
 
                         </form>
                     </div>
                     <div className='col-lg-6'>
-                        <img alt='' src="/img/cards/auth/1.jpg" className="img-fluid" />
+                        <img alt='' src="/img/cards/auth/1.svg" className="img-fluid" />
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
