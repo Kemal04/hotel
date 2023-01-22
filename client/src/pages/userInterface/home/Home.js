@@ -28,7 +28,7 @@ const Home = () => {
         autoplay: true,
         arrows: false,
     };
-    
+
 
     return (
         <>
@@ -75,7 +75,7 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className='col-xl-3 mt-4 d-grid'>
-                                <button className='btn btn-primary small'>Gözle</button>
+                                <Link to="/otaglar" className='btn btn-primary small'>Gözle</Link>
                             </div>
                         </div>
                     </div>
@@ -89,16 +89,15 @@ const Home = () => {
                             <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}> BIz barada </div>
                             <div className='display-4 mb-5'> “Roberto" myhmanhanasyna hoş geldiňiz </div>
                             <div className='h5 lh-lg ls-1 text-secondary mb-5'>
-                                With over 340 hotels worldwide, NH Hotel Group offers a wide variety of hotels catering htmlFor a perfect stay no matter where your destination.
-                            </div>
-                            <div> Manager: <span style={{ color: "#1cc3b2" }}>Michen Taylor</span> </div>
+                                Dünýäde 340-dan gowrak myhmanhana bar, NH Hotel Group, barjak ýeriňize garamazdan ajaýyp ýaşamak üçin dürli myhmanhanalary hödürleýär.                            </div>
+                            <div> Alyp Baryjy: <span style={{ color: "#1cc3b2" }}> Kemal Hojayew</span> </div>
                             <img src="/img/icons/signature.png" alt="Signature" className='img-fluid mt-5' />
                         </div>
                         <div className='col-xl-6'>
-                            <div className='row g-2 align-items-center'>
+                            <div className='row g-4 align-items-center'>
                                 <div className='col-xl-6'>
                                     <div className='scale'>
-                                        <img src="/img/cards/about/1.jpg" alt="cards" className='img-fluid rounded-3 mb-2' />
+                                        <img src="/img/cards/about/1.jpg" alt="cards" className='img-fluid rounded-3 mb-4' />
                                     </div>
                                     <div className='scale'>
                                         <img src="/img/cards/about/2.jpg" alt="cards" className='img-fluid rounded-3' />
@@ -127,31 +126,31 @@ const Home = () => {
                         <div className='col-xl-2'>
                             <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
                                 <img src="/img/icons/coal.png" alt="coal" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
-                                <h5>Reiseservice</h5>
+                                <h5>Rahatlyk</h5>
                             </div>
                         </div>
                         <div className='col-xl-2'>
                             <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
                                 <img src="/img/icons/fork.png" alt="fork" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
-                                <h5>Spa dynç alyş</h5>
-                            </div>
-                        </div>
-                        <div className='col-xl-2'>
-                            <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
-                                <img src="/img/icons/drink.png" alt="drink" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
                                 <h5>Restoran</h5>
                             </div>
                         </div>
                         <div className='col-xl-2'>
                             <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
+                                <img src="/img/icons/drink.png" alt="drink" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
+                                <h5>Içgiler</h5>
+                            </div>
+                        </div>
+                        <div className='col-xl-2'>
+                            <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
                                 <img src="/img/icons/rol.png" alt="Rol" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
-                                <h5>Bar & Drink</h5>
+                                <h5>Ulag</h5>
                             </div>
                         </div>
                         <div className='col-xl-2'>
                             <div className='card border-0 shadow p-4 d-flex flex-column align-items-center text-primary-hover'>
                                 <img src="/img/icons/coal.png" alt="coal" className='img-fluid mb-3' style={{ width: "40px", height: "40px", objectFit: "cover" }} />
-                                <h5>Reiseservice</h5>
+                                <h5>Spa Dynç Alyş</h5>
                             </div>
                         </div>
                     </div>
@@ -215,8 +214,8 @@ const Home = () => {
                             <img src="/img/cards/contact/1.jpg" alt="Person" className='img-fluid rounded-3 w-75' />
                         </div>
                         <div className='col-xl-6'>
-                            <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}> TESTIMONIALS </div>
-                            <div className='display-5 mb-4'> Our Guests Love Us</div>
+                            <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}> Habarlaşmak </div>
+                            <div className='display-5 mb-4'>Bize Gelen Teswirler</div>
                             <Splide options={contactOptions} hasTrack={false} className="my-5">
                                 <SplideTrack className='row g-0'>
                                     {

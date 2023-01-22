@@ -24,10 +24,10 @@ const Navbar = ({ authState }) => {
                         <div className='col-xl-6'>
                             <div className='row align-items-center'>
                                 <div className='col-xl-4'>
-                                    (123) 456-789-1230
+                                    499401, 499402, 499403
                                 </div>
                                 <div className='col-xl-3'>
-                                    info.colorlib@gmail.com
+                                    it@sanly.tm
                                 </div>
                             </div>
                         </div>

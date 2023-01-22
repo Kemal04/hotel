@@ -1,8 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const ProfileBooking = () => {
+
+    const { darkMode } = useContext(ThemeContext)
 
     let { id } = useParams();
     const [user, setUser] = useState("");
@@ -29,7 +32,7 @@ const ProfileBooking = () => {
     }, [id])
 
     return (
-        <>
+        <div className={darkMode ? "bg-dark" : "bg-white"}>
             <div className='banner-fixed d-flex align-items-center'>
                 <div className='container'>
                     <div className='row'>
@@ -42,7 +45,7 @@ const ProfileBooking = () => {
             <div className='container-fluid' style={{ marginTop: "-50px" }}>
                 <div className='row justify-content-center'>
                     <div className='w-75'>
-                        <div className='card border-0 shadow px-5'>
+                        <div className={`card border-0 px-5 ${darkMode ? "bg-dark shadow-lg" : "bg-white shadow"}`}>
                             <div className='d-flex justify-content-center'>
                                 <img src="/img/icons/user-1.jpg" alt="" className='rounded-circle' style={{ width: "150px", marginTop: "-70px" }} />
                             </div>
@@ -53,23 +56,23 @@ const ProfileBooking = () => {
                                 {user.email}
                             </div>
                             <div className='row justify-content-center mt-4 mb-5'>
-                                <div className="col-lg-8 col-md-8">
+                                <div className="col-lg-12">
                                     <div className='row'>
                                         {booking.sort((a, b) => a.timeM > b.timeM ? 1 : -1).map(room => (
-                                            room.chek
+                                            room.check
                                                 ?
-                                                <div key={room.room.id} className='col-lg-6'>
-                                                    <div className="card mb-5 border-0 shadow rounded-0 me-3">
-                                                        <img src={room.room.img} className="img-fluid" alt={room.room.name} />
+                                                <div key={room.room.id} className='col-lg-4'>
+                                                    <div className={`card mb-5 border-0 shadow rounded-0 me-3 ${darkMode ? "bg-dark shadow-lg" : "bg-white shadow"}`}>
+                                                        <img src='/img/cards/room/4.jpg' className="img-fluid" alt={room.room.name} />
                                                         <div className="card-body">
                                                             <div className='d-flex justify-content-between'>
                                                                 <h5 className="card-title">№ {room.room.name} otag</h5>
                                                             </div>
-                                                            <p className="card-text text-green mb-4">
+                                                            <p className="card-text text-blue mb-4">
                                                                 <span className='h4'>{room.room.price}<sup>TMT</sup></span>
                                                                 <span className='h6 small' style={{ fontWeight: "500", color: "#afb4bf" }}> / Günlük</span>
                                                             </p>
-                                                            <div className='row justify-content-between align-items-center mb-3'>
+                                                            <div className='row justify-content-between align-items-center mb-4'>
                                                                 <div className='col-lg-6'>
                                                                     <div style={{ fontWeight: "500", color: "#afb4bf" }}>Meýdany:</div>
                                                                     <div>{room.room.size} m<sup>2</sup></div>
@@ -79,10 +82,10 @@ const ProfileBooking = () => {
                                                                     <div>{room.room.capacity} adam</div>
                                                                 </div>
                                                             </div>
-                                                            <div className='row justify-content-between align-items-center mb-3'>
+                                                            <div className='row justify-content-between align-items-center mb-4'>
                                                                 <div className='col-lg-6'>
-                                                                    <div style={{ fontWeight: "500", color: "#afb4bf" }}>Şypahanasy:</div>
-                                                                    <div> 23</div>
+                                                                    <div style={{ fontWeight: "500", color: "#afb4bf" }}>Gornusi:</div>
+                                                                    <div> "Standart"</div>
                                                                 </div>
                                                                 <div className='col-lg-6 text-end'>
                                                                     <div style={{ fontWeight: "500", color: "#afb4bf" }}>Halandy:</div>
@@ -90,13 +93,13 @@ const ProfileBooking = () => {
                                                                 </div>
                                                             </div>
                                                             <div className='row justify-content-between align-items-center mb-5'>
-                                                                <div className='col-lg-12'>
+                                                                <div className='col-lg-6'>
                                                                     <div style={{ fontWeight: "500", color: "#afb4bf" }}>Giriş wagtyň:</div>
-                                                                    {new Date(room.checkIn).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric", })}
+                                                                    {new Date(room.checkIn).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
                                                                 </div>
-                                                                <div className='col-lg-12 mt-3'>
+                                                                <div className='col-lg-6 text-end'>
                                                                     <div style={{ fontWeight: "500", color: "#afb4bf" }}>Çykyş wagtyň:</div>
-                                                                    {new Date(room.checkOut).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric", })}
+                                                                    {new Date(room.checkOut).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
                                                                 </div>
                                                                 <div className='col-lg-12 mt-3'>
                                                                     <div style={{ fontWeight: "500", color: "#afb4bf" }}>Telefon belgisi:</div>
@@ -104,7 +107,7 @@ const ProfileBooking = () => {
                                                                 </div>
                                                             </div>
                                                             <div className='d-grid'>
-                                                                <div className='btn btn-sm btn-green disabled'>Bronlanan</div>
+                                                                <div className='btn btn-sm btn-primary disabled'>Bronlanan</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -120,7 +123,7 @@ const ProfileBooking = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

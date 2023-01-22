@@ -23,7 +23,7 @@ const RoomRead = ({ authState }) => {
     const roomId = location.pathname.split("/")[2];
 
     const navigate = useNavigate()
-    
+
     const [room, setRoom] = useState("")
     const [roomType, setRoomType] = useState("")
 
@@ -114,16 +114,15 @@ const RoomRead = ({ authState }) => {
                             <div className='row mt-4'>
                                 <div className='col-xl-12 p-0 lh-lg' style={{ color: "#636a76" }}>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    Milli Liderimiziň taýsyz tagallalary bilen ýurdumyzyň ähli ýerlerinde häzirki zaman tehnologik enjamlary bilen üpjün edilen saglyk öýleri, hassahanalar, şypahanalar, çagalar sagaldyş we dynç alyş merkezleri, keseli anyklaýyş, «Ene mähri» merkezleri, dynç alyş öýleri, seýilgähler guruldy. Bu döredilen şertler geljek nesliň sagdyn ösmegine we kemala gelmegine, saglyklaryny gorap saklamaga, wagtlaryny peýdaly we şadyýan geçirmäge giň mümkinçilikler döredýär.
+                                    Çukurlar, kirpikler, mikrokontrollar… Myhmanhanada galan myhmanlaryň seresap bolmagy biderek däl. Şeýle-de bolsa, myhmanhanalarda arassaçylyga üns bermek baradaky tagallalaryň netijesinde köp myhmanhanalarda arassaçylyk we howpsuzlyk standartlary ýokarlandy. Mysal üçin, ABŞ-nyň iň gowy günbatar myhmanhana zynjyry häzirki wagtda ultramelewşe şöhlesini çykarýan taýaklary ulanýar. Bular bakteriýalardan we mikroblardan arassalamak üçin zatlaryň üstünden geçirilýär. Bu myhmanhanalar arassalanmagy aňsatlaşdyrmak üçin suw geçirmeýän uzakdan hem peýdalanýarlar.
                                 </div>
                                 <div className='col-xl-12 p-0 lh-lg mt-3' style={{ color: "#636a76" }}>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    Hormatly Prezidentimiz hemişe ýurdumyzyň bilim, saglygy goraýyş we ylym ulgamlarynda amala aşyrylýan özgertmeleriň çaltlandyrylmagyna ünsi çekmegi aýratyn bellärliklidir. Döwlet Baştutanymyz bu ulgamda maddy-enjamlaýyn binýadyň döredilendigini hem-de täze lukmançylyk merkezleriniň, institutlaryň, mekdepleriň, sport desgalarynyň ulanylmaga berilmeginiň hasabyna onuň ýyl-ýyldan berkidilýändigini we giňeldilýändigini aýdýar. Bu bolsa ýurdumyzda häzirki wagtda sagdyn durmuş ýörelgeleriniň ileri tutulmagynyň, geljekde döwletimizi we jemgyýetimizi sagdyn ösüş ýollaryna alyp barjak nesillerimiziň bagtyýar durmuşda ýaşamagyny üpjün etmegi üns merkezinde saklanylýandygynyň nobatdaky subutnamasydyr.
+                                    Myhmanhanalarda otaglaryna baranlarynda myhmanlaryň iň köp ulanýan zatlarynyň arasynda telewizion uzaklyklar bar. Şonuň üçin uzakdakylar otagdaky iň hapa zatlardyr we arassalaýjylar olary hiç wagt arassalamaýarlar. Hýuston uniwersitetiniň 2012-nji ýyldaky gözleginde uzakdakylaryň hajathana ýaly hapa bolandygy anyklandy. Lightagtylyk wyklýuçatelleri bilen deň derejede hapa. Şonuň üçin otagyňyza gireniňizde olary dezinfeksiýa mata bilen süpürmek maslahat berilýär.
                                 </div>
                                 <div className='col-xl-12 p-0 lh-lg mt-3' style={{ color: "#636a76" }}>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    «Saglyk» Döwlet maksatnamasynda ilatyň saglygyny goramakda ýurdumyzyň baý tebigy bejeriş serişdelerinden peýdalanmak barada aýratyn bellenilip geçilýär. Hormatly Prezidentimiz ýurdumyzyň tebigy çeşmeleriniň bejeriş mümkinçilikleriniň binýadynda şypahana ulgamyny ösdürmek meselelerine uly üns berýär.
-                                </div>
+                                    Myhmanhana otagyňyzyň gowy arassalanmadygyna şübhelenýän bolsaňyz, dezinfeksiýa süpürgiçler we spreýler bilen aýlanmak iň gowusydyr. Goşmaça ynandyrmak isleýän bolsaňyz, ýorganlaryň we telefonlaryň arassaçylyk monitorlary bilen näderejede arassadygyny barlap bilersiňiz.                            </div>
                             </div>
                             <div className='row my-5 align-items-center'>
                                 <div className='col-xl-12 p-0 h4'>

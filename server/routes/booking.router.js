@@ -2,6 +2,7 @@ const express = require('express');
 const { Booking, Room } = require('../models/model');
 const router = express.Router();
 const { validateToken } = require("../middlewares/AuthMiddleware");
+const { isAdmin } = require('../middlewares/isAdminMiddleware');
 
 router.get("/", async (req, res) => {
     const booking = await Booking.findAll({ include: Room });
@@ -41,8 +42,8 @@ router.post("/create", async (req, res) => {
     }
 })
 
-router.get("/edit/:bookingId", async (req, res) => {
-    const id = req.params.id;
+router.get("/edit/:bookingId", isAdmin, async (req, res) => {
+    const id = req.params.bookingId;
     try {
         const booking = await Booking.findByPk(id);
         if (booking) {
@@ -56,9 +57,9 @@ router.get("/edit/:bookingId", async (req, res) => {
     }
 })
 
-router.post("/edit/:bookingId", async (req, res) => {
+router.post("/edit/:bookingId", isAdmin, async (req, res) => {
 
-    const id = req.params.id;
+    const id = req.params.bookingId;
     const check = req.body.check;
 
     try {
