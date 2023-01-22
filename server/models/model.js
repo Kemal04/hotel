@@ -121,6 +121,8 @@ Booking.belongsTo(Room);
 User.hasMany(Booking, { onDelete: "cascade" });
 Booking.belongsTo(User);
 
+User.belongsToMany(Room, { through: 'RoomUserBooking' });
+Room.belongsToMany(User, { through: 'RoomUserBooking' });
 
 module.exports = {
     User,
