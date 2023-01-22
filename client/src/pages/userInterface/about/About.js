@@ -17,8 +17,8 @@ const About = () => {
                             <img src="/img/cards/about/4.jpg" alt="About Us" className='img-fluid rounded-3' />
                         </div>
                         <div className='col-xl-6'>
-                            <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}>TESTIMONIALS</div>
-                            <div className='h2 mb-5'>20 Years Of Experience</div>
+                            <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}>Biz Barada</div>
+                            <div className='h2 mb-5'>20 Ýyllyk Tejribe</div>
                             <div className='text-secondary mb-3 w-75'>
                                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia dese mollit anim id est laborum. Sed ut perspiciatis unde omnis iste.
                             </div>
@@ -48,8 +48,8 @@ const About = () => {
 
                 <div className='container py-5'>
                     <div className='text-center mb-5'>
-                        <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}>ULTIMATE SOLUTIONS</div>
-                        <div className='h1'>Our Hotel & Room</div>
+                        <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}>Hyzmatlar</div>
+                        <div className='h1'>Biziň Otelimiz we Otaglarymyz</div>
                     </div>
                     <div className='row'>
                         <div className='col-xl-4 mb-5'>
@@ -57,7 +57,7 @@ const About = () => {
                                 <img src="/img/cards/about/5.jpg" alt="About Us" className='img-fluid' />
                                 <div className='position-absolute bottom-0 start-0 w-100 footer-rgba text-center'>
                                     <div className='h5 text-white py-3'>
-                                        Restaurant & Bar
+                                        Restorant we Bar
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@ const About = () => {
                                 <img src="/img/cards/about/6.jpg" alt="About Us" className='img-fluid' />
                                 <div className='position-absolute bottom-0 start-0 w-100 footer-rgba text-center'>
                                     <div className='h5 text-white py-3'>
-                                        Spa & Fitness
+                                        Spa & Fitnes
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@ const About = () => {
                                 <img src="/img/cards/about/7.jpg" alt="About Us" className='img-fluid' />
                                 <div className='position-absolute bottom-0 start-0 w-100 footer-rgba text-center'>
                                     <div className='h5 text-white py-3'>
-                                        Pool & Party
+                                        Howuzlar
                                     </div>
                                 </div>
                             </div>

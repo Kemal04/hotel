@@ -1,8 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const Profile = () => {
+
+    const { darkMode } = useContext(ThemeContext)
 
     let { id } = useParams();
     const [user, setUser] = useState("");
@@ -14,20 +17,12 @@ const Profile = () => {
     }, [id]);
 
     return (
-        <>
-            <div className='banner-fixed d-flex align-items-center'>
-                <div className='container'>
-                    <div className='row'>
-                        {/* <div className='col-lg-12 text-center text-white h2'>
-                            {user.name}
-                        </div> */}
-                    </div>
-                </div>
-            </div>
+        <div className={darkMode ? "bg-dark" : "bg-white"}>
+            <div className='banner-fixed d-flex align-items-center'></div>
             <div className='container-fluid' style={{ marginTop: "-50px" }}>
                 <div className='row justify-content-center'>
                     <div className='w-75'>
-                        <div className='card border-0 shadow px-5'>
+                        <div className={`card border-0 px-5 ${darkMode ? "bg-dark shadow-lg" : "bg-white shadow"}`}>
                             <div className='d-flex justify-content-center'>
                                 <img src="/img/icons/user-1.jpg" alt="" className='rounded-circle' style={{ width: "150px", marginTop: "-70px" }} />
                             </div>
@@ -44,7 +39,7 @@ const Profile = () => {
                                             <div className="col-sm-4">
                                                 <h6 className="mb-0">Doly Adym</h6>
                                             </div>
-                                            <div className="col-sm-8 text-secondary">
+                                            <div className={`col-sm-8 ${darkMode ? "text-white" : "text-secondary"}`}>
                                                 {user.name}
                                             </div>
                                         </div>
@@ -53,7 +48,7 @@ const Profile = () => {
                                             <div className="col-sm-4">
                                                 <h6 className="mb-0">Familýam</h6>
                                             </div>
-                                            <div className="col-sm-8 text-secondary">
+                                            <div className={`col-sm-8 ${darkMode ? "text-white" : "text-secondary"}`}>
                                                 . . .
                                             </div>
                                         </div>
@@ -62,7 +57,7 @@ const Profile = () => {
                                             <div className="col-sm-4">
                                                 <h6 className="mb-0">E-mail adresim</h6>
                                             </div>
-                                            <div className="col-sm-8 text-secondary">
+                                            <div className={`col-sm-8 ${darkMode ? "text-white" : "text-secondary"}`}>
                                                 {user.email}
                                             </div>
                                         </div>
@@ -71,7 +66,7 @@ const Profile = () => {
                                             <div className="col-sm-4">
                                                 <h6 className="mb-0">Telefon belgim</h6>
                                             </div>
-                                            <div className="col-sm-8 text-secondary">
+                                            <div className={`col-sm-8 ${darkMode ? "text-white" : "text-secondary"}`}>
                                                 +993 . . .
                                             </div>
                                         </div>
@@ -80,12 +75,12 @@ const Profile = () => {
                                             <div className="col-sm-4">
                                                 <h6 className="mb-0">Adresim</h6>
                                             </div>
-                                            <div className="col-sm-8 text-secondary">
+                                            <div className={`col-sm-8 ${darkMode ? "text-white" : "text-secondary"}`}>
                                                 . . .
                                             </div>
                                         </div>
                                         <hr />
-                                        <div className="row">
+                                        <div className="row mt-5">
                                             <div className="col-sm-12 d-grid">
                                                 <Link to="" className="btn btn-primary">Maglumatlary düzeltmek</Link>
                                             </div>
@@ -97,7 +92,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

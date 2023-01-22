@@ -21,7 +21,6 @@ const AdminBooking = () => {
                             <div className='container py-5'>
                                 <div className='d-flex justify-content-between aling-items-center h2 mb-5'>
                                     Bron bölümi
-                                    <Link to="/"><FontAwesomeIcon className='text-dark' icon={faPlus} /></Link>
                                 </div>
                                 <div className='row'>
                                     <div className='col-lg-12'>
@@ -42,7 +41,7 @@ const AdminBooking = () => {
                                                     booking.map(booking => (
                                                         <tr key={booking.id} className={booking.check ? "text-success" : "text-danger"}>
                                                             <td>{booking.id}</td>
-                                                            <td>№ {booking.room.name} Otag</td>
+                                                            <td>№ {booking.room.roomNum} Otag</td>
                                                             <td>+993 {booking.phoneNumber}</td>
                                                             <td>
                                                                 {new Date(booking.checkIn).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}

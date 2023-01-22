@@ -5,7 +5,7 @@ import { ThemeContext } from '../../context/ThemeContext'
 const Footer = () => {
 
     const { darkMode } = useContext(ThemeContext)
-    
+
     return (
         <>
             <div className={darkMode ? 'bg-dark p-5 text-white border-top' : 'bg-primary-blue p-5 text-white'}>
@@ -23,7 +23,7 @@ const Footer = () => {
                             </div>
                             <div className="col-lg-4 ">
                                 <div className="ft-newslatter">
-                                    <h6 className='mb-4'>Gipersalgylar</h6>
+                                    <h6 className='mb-4'>Salgylar</h6>
                                     <p>Baş Sahypa</p>
                                     <p>Biz Barada</p>
                                     <p>Galereýa</p>
@@ -34,9 +34,9 @@ const Footer = () => {
                                 <div className="ft-contact">
                                     <h6>Habarlaşmak</h6>
                                     <ul className='p-0 mt-4'>
-                                        <li className='mb-3'>+993 65 31-69-31</li>
-                                        <li className='mb-3'>hotel.tm.@gmail.com</li>
-                                        <li className='mb-3'>Aşgabat ş, Magtymguly şaýoly, Türkmenistanyň TT we II instituty</li>
+                                        <li className='mb-3'> 499401, 499402, 499403</li>
+                                        <li className='mb-3'>it@sanly.tm</li>
+                                        <li className='mb-3'>Aşgabat ş., Oguzhan köç., 13 "A"</li>
                                     </ul>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="border-top text-center mt-3 pt-3">
-                    © 2023 Ähli hukuklar goralan
+                    © 2023 Ähli hukuklary goralan
                 </div>
             </div>
         </>
