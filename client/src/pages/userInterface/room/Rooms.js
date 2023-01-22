@@ -106,25 +106,25 @@ const Rooms = () => {
                                                         <img src="/img/cards/room/1.jpg" alt="Room" className='img-fluid rounded-3' />
                                                     </div>
                                                     <div className='col-xl-6'>
-                                                        <div className='h2'>№ {room.roomNum}</div>
+                                                        <div className='h2 mt-3'>№ {room.roomNum}</div>
                                                         <div className='my-3'>
                                                             <span className='h4 text-blue'>{room.price} <small>TMT</small></span>
                                                             <span style={{ color: '#afb4bf' }}> / Gün</span>
                                                         </div>
                                                         <div className='row'>
-                                                            <div className='col-xl-6 d-flex flex-column mb-4 mt-4 h6'>
+                                                            <div className='col-xl-6 col-lg-6 col-md-6 col-6 d-flex flex-column mb-4 mt-4 h6'>
                                                                 <span className='mb-2' style={{ color: '#afb4bf' }}>Meýdany:</span>
                                                                 <span>{room.size} m<sup>2</sup></span>
                                                             </div>
-                                                            <div className='col-xl-6 d-flex flex-column mb-4 mt-4 h6'>
+                                                            <div className='col-xl-6 col-lg-6 col-md-6 col-6 d-flex flex-column mb-4 mt-4 h6'>
                                                                 <span className='mb-2' style={{ color: '#afb4bf' }}>Adam sany:</span>
                                                                 <span>Iň köp {room.capacity} adam</span>
                                                             </div>
-                                                            <div className='col-xl-6 d-flex flex-column mb-4 h6'>
+                                                            <div className='col-xl-6 col-lg-6 col-md-6 col-6 d-flex flex-column mb-4 h6'>
                                                                 <span className='mb-2' style={{ color: '#afb4bf' }}>Görnüşi:</span>
                                                                 <span>"{room.roomType.name}"</span>
                                                             </div>
-                                                            <div className='col-xl-6 d-flex flex-column mb-4 h6'>
+                                                            <div className='col-xl-6 col-lg-6 col-md-6 col-6 d-flex flex-column mb-4 h6'>
                                                                 <span className='mb-2' style={{ color: '#afb4bf' }}>Hyzmatlary:</span>
                                                                 <span>Wifi, Telewizor ...</span>
                                                             </div>

@@ -94,19 +94,19 @@ const RoomRead = ({ authState }) => {
                                 </SplideTrack>
                             </Splide>
                             <div className='row border p-4' style={{ fontWeight: "500" }}>
-                                <div className='col-xl-3 d-flex flex-column align-items-center border-end'>
+                                <div className='col-xl-3 col-6 mt-3 d-flex flex-column align-items-center border-end'>
                                     <div style={{ color: "#afb4bf" }}>Tutýan meýdany :</div>
                                     <div>{room.size}m<sup>2</sup></div>
                                 </div>
-                                <div className='col-xl-3 d-flex flex-column align-items-center border-end'>
+                                <div className='col-xl-3 col-6 mt-3 d-flex flex-column align-items-center border-end'>
                                     <div style={{ color: "#afb4bf" }}>Adam sany :</div>
                                     <div>{room.capacity} adam </div>
                                 </div>
-                                <div className='col-xl-3 d-flex flex-column align-items-center border-end'>
+                                <div className='col-xl-3 col-6 mt-3 d-flex flex-column align-items-center border-end'>
                                     <div style={{ color: "#afb4bf" }}>Otag görnüşi :</div>
                                     <div>"{roomType.name}"</div>
                                 </div>
-                                <div className='col-xl-3 d-flex flex-column align-items-center'>
+                                <div className='col-xl-3 col-6 mt-3 d-flex flex-column align-items-center'>
                                     <div style={{ color: "#afb4bf" }}>Hyzmatlar :</div>
                                     <div>Wifi, telewizor...</div>
                                 </div>
@@ -128,27 +128,27 @@ const RoomRead = ({ authState }) => {
                                 <div className='col-xl-12 p-0 h4'>
                                     Otag Hyzmatlary
                                 </div>
-                                <div className='col-xl-4 p-0 d-flex align-items-center my-4'>
+                                <div className='col-xl-4 col-6 p-0 d-flex align-items-center my-4'>
                                     <img src="/img/icons/air.png" alt="Air" className='img-fluid me-3' />
                                     <div>Kondisioner</div>
                                 </div>
-                                <div className='col-xl-4 p-0 d-flex align-items-center my-4'>
+                                <div className='col-xl-4 col-6 p-0 d-flex align-items-center my-4'>
                                     <img src="/img/icons/drinks.png" alt="Air" className='img-fluid me-3' />
                                     <div>Mugt içgiler</div>
                                 </div>
-                                <div className='col-xl-4 p-0 d-flex align-items-center my-4'>
+                                <div className='col-xl-4 col-6 p-0 d-flex align-items-center my-4'>
                                     <img src="/img/icons/plate.png" alt="Air" className='img-fluid me-3' />
                                     <div>Restoran</div>
                                 </div>
-                                <div className='col-xl-4 p-0 d-flex align-items-center mt-4'>
+                                <div className='col-xl-4 col-6 p-0 d-flex align-items-center mt-4'>
                                     <img src="/img/icons/tv.png" alt="Air" className='img-fluid me-3' />
                                     <div>Telewizor</div>
                                 </div>
-                                <div className='col-xl-4 p-0 d-flex align-items-center mt-4'>
+                                <div className='col-xl-4 col-6 p-0 d-flex align-items-center mt-4'>
                                     <img src="/img/icons/wifi.png" alt="Air" className='img-fluid me-3' />
                                     <div>Güýçli Wifi</div>
                                 </div>
-                                <div className='col-xl-4 p-0 d-flex align-items-center mt-4'>
+                                <div className='col-xl-4 col-6 p-0 d-flex align-items-center mt-4'>
                                     <img src="/img/icons/contact.png" alt="Air" className='img-fluid me-3' />
                                     <div>Habarlaşmak 7/24</div>
                                 </div>
@@ -157,14 +157,14 @@ const RoomRead = ({ authState }) => {
                                 <div className='col-xl-12 p-0 h4'>
                                     Otag barada teswirler:
                                 </div>
-                                <div className='col-xl-12 p-0 mt-5'>
-                                    <div className='row align-items-center'>
-                                        <div className='col-xl-2 border-end'>
+                                <div className='col-xl-12 p-0 mt-5 text-xl-start text-lg-start text-md-start text-center'>
+                                    <div className='row align-items-center justify-content-center'>
+                                        <div className='col-xl-2 col-12 border-end'>
                                             <img src="/img/icons/user-1.jpg" alt="User" className='rounded-circle' style={{ width: "100px" }} />
                                         </div>
-                                        <div className='col-xl-10'>
+                                        <div className='col-xl-10 col-12 mt-2'> 
                                             <div className='row justify-content-between align-items-center'>
-                                                <div className='col-xl-3'>
+                                                <div className='col-xl-3 col-12'>
                                                     <div className='mb-3 small text-secondary'>31 Awg 2022</div>
                                                     <div className='mb-3 text-blue h6'>Kemal Hojaýew</div>
                                                 </div>
@@ -175,16 +175,16 @@ const RoomRead = ({ authState }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='col-xl-12 p-0 mt-5'>
-                                    <div className='row align-items-center'>
-                                        <div className='col-xl-2 border-end'>
-                                            <img src="/img/icons/user-3.jpg" alt="User" className='rounded-circle' style={{ width: "100px" }} />
+                                <div className='col-xl-12 p-0 mt-5 text-xl-start text-lg-start text-md-start text-center'>
+                                    <div className='row align-items-center justify-content-center'>
+                                        <div className='col-xl-2 col-12 border-end'>
+                                            <img src="/img/icons/user-1.jpg" alt="User" className='rounded-circle' style={{ width: "100px" }} />
                                         </div>
-                                        <div className='col-xl-10'>
+                                        <div className='col-xl-10 col-12 mt-2'> 
                                             <div className='row justify-content-between align-items-center'>
-                                                <div className='col-xl-4'>
-                                                    <div className='mb-3 small text-secondary'>13 Ýnw 2023</div>
-                                                    <div className='mb-3 text-blue h6'>Meret Hudaýberdiýew</div>
+                                                <div className='col-xl-3 col-12'>
+                                                    <div className='mb-3 small text-secondary'>31 Awg 2022</div>
+                                                    <div className='mb-3 text-blue h6'>Kemal Hojaýew</div>
                                                 </div>
                                             </div>
                                             <div className='text-secondary'>
@@ -196,15 +196,15 @@ const RoomRead = ({ authState }) => {
                             </div>
                         </div>
 
-                        <div className='col-xl-4'>
+                        <div className='col-xl-4 col-12'>
                             <div className='row'>
                                 <div className='col-xl-12'>
                                     <label className="form-label mb-3">Giriş we Çykyş wagtlary</label>
                                     <div className='row g-0'>
-                                        <div className='col-xl-6'>
+                                        <div className='col-xl-6 mb-3'>
                                             <input onChange={handleChange} name='checkIn' type="date" className="form-control rounded-0 py-2 px-3" placeholder='Check In' />
                                         </div>
-                                        <div className='col-xl-6'>
+                                        <div className='col-xl-6 mb-3'>
                                             <input onChange={handleChange} name='checkOut' type="date" className="form-control rounded-0 py-2 px-3" placeholder='Check Out' />
                                         </div>
                                     </div>
