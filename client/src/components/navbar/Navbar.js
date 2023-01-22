@@ -21,17 +21,17 @@ const Navbar = ({ authState }) => {
             <div className='py-2 text-white border-bottom' style={darkMode ? { backgroundColor: "#212529" } : { backgroundColor: "#0e2737" }}>
                 <div className='container'>
                     <div className='row'>
-                        <div className='col-xl-6'>
+                        <div className='col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12'>
                             <div className='row align-items-center'>
-                                <div className='col-xl-4'>
+                                <div className='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 small'>
                                     499401, 499402, 499403
                                 </div>
-                                <div className='col-xl-3'>
+                                <div className='col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 small '>
                                     it@sanly.tm
                                 </div>
                             </div>
                         </div>
-                        <div className='col-xl-6 text-end'>
+                        <div className='col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 text-end d-xl-block d-lg-block d-md-block d-sm-none d-none'>
                             <span className='px-2'>
                                 <img src="/img/icons/ins.svg" alt="Icon" style={{ width: "25px", height: "25px", objectFit: "cover" }} />
                             </span>
@@ -56,19 +56,19 @@ const Navbar = ({ authState }) => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto">
-                            <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
+                            <li className="nav-item mx-xl-2 mx-lg-2 mx-md-2 mx-sm-0 mx-0" style={{ fontSize: "17px" }}>
                                 <NavLink style={({ isActive }) => ({ color: isActive ? "active" : null })} to="/" className="nav-link fw-bold">Baş sahypa</NavLink>
                             </li>
-                            <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
+                            <li className="nav-item mx-xl-2 mx-lg-2 mx-md-2 mx-sm-0 mx-0" style={{ fontSize: "17px" }}>
                                 <NavLink to="/otaglar" className="nav-link fw-bold">Otaglar</NavLink>
                             </li>
-                            <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
+                            <li className="nav-item mx-xl-2 mx-lg-2 mx-md-2 mx-sm-0 mx-0" style={{ fontSize: "17px" }}>
                                 <NavLink to="/biz-barada" className="nav-link fw-bold">Biz barada</NavLink>
                             </li>
-                            <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
+                            <li className="nav-item mx-xl-2 mx-lg-2 mx-md-2 mx-sm-0 mx-0" style={{ fontSize: "17px" }}>
                                 <NavLink to="/habarlasmak" className="nav-link fw-bold">Habarlaşmak</NavLink>
                             </li>
-                            <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
+                            <li className="nav-item mx-xl-2 mx-lg-2 mx-md-2 mx-sm-0 mx-0" style={{ fontSize: "17px" }}>
                                 <button onClick={darkModeClick} className={darkMode ? "nav-link border-0 bg-dark" : "nav-link border-0 bg-light"}>
                                     {
                                         darkMode ?
