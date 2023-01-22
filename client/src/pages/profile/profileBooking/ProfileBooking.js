@@ -31,6 +31,10 @@ const ProfileBooking = () => {
         fetchBooking()
     }, [id])
 
+    let newDate = new Date()
+    let date = (newDate.getDate()) + "." + (newDate.getMonth() + 1) + "." + (newDate.getFullYear());
+    let day = newDate.getDate()
+
     return (
         <div className={darkMode ? "bg-dark" : "bg-white"}>
             <div className='banner-fixed d-flex align-items-center'>
@@ -58,15 +62,15 @@ const ProfileBooking = () => {
                             <div className='row justify-content-center mt-4 mb-5'>
                                 <div className="col-lg-12">
                                     <div className='row'>
-                                        {booking.sort((a, b) => a.timeM > b.timeM ? 1 : -1).map(room => (
+                                        {booking.sort((a, b) => a.timeM > b.timeM ? 1 : -1).map((room, index) => (
                                             room.check
                                                 ?
-                                                <div key={room.room.id} className='col-lg-4'>
+                                                <div key={index} className='col-lg-4'>
                                                     <div className={`card mb-5 border-0 shadow rounded-0 me-3 ${darkMode ? "bg-dark shadow-lg" : "bg-white shadow"}`}>
-                                                        <img src='/img/cards/room/4.jpg' className="img-fluid" alt={room.room.name} />
+                                                        <img src='/img/cards/room/4.jpg' className="img-fluid" alt={room.room.roomNum} />
                                                         <div className="card-body">
                                                             <div className='d-flex justify-content-between'>
-                                                                <h5 className="card-title">№ {room.room.name} otag</h5>
+                                                                <h5 className="card-title">№ {room.room.roomNum} otag</h5>
                                                             </div>
                                                             <p className="card-text text-blue mb-4">
                                                                 <span className='h4'>{room.room.price}<sup>TMT</sup></span>
@@ -106,9 +110,18 @@ const ProfileBooking = () => {
                                                                     <div>+993 {room.phoneNumber}</div>
                                                                 </div>
                                                             </div>
-                                                            <div className='d-grid'>
-                                                                <div className='btn btn-sm btn-primary disabled'>Bronlanan</div>
-                                                            </div>
+                                                            {
+
+                                                                new Date(room.checkOut).toLocaleDateString(undefined, { year: "numeric", month: "numeric", day: "numeric" }) <= date
+                                                                    ?
+                                                                    <div className='d-grid'>
+                                                                        <div className='btn btn-sm btn-danger disabled'>Bron Wagty Gutardy</div>
+                                                                    </div>
+                                                                    :
+                                                                    <div className='d-grid'>
+                                                                        <div className='btn btn-sm btn-success disabled'>Bronlanan ({new Date(room.checkOut).toLocaleDateString(undefined, { day: "numeric" }) - day} gün galdy)</div>
+                                                                    </div>
+                                                            }
                                                         </div>
                                                     </div>
                                                 </div>
