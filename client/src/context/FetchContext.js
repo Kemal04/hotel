@@ -1,24 +1,24 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
 
 export const FetchContext = createContext("");
 
 export function FetchContextProvider({ children }) {
 
-    const [contacts, setContacts] = useState([])
+    const [contacts, setContacts] = useState([]);
 
     useEffect(() => {
         const fetchAllContacts = async () => {
             try {
                 const res = await axios.get('http://localhost:3001/api/contact/')
-                setContacts(res.data.contact)
+                setContacts(res.data.contact);
             } catch (err) {
                 console.log(err)
             }
-        }
+        };
         fetchAllContacts()
-    }, [])
+
+    }, []);
 
     const [roomtypes, setRoomTypes] = useState([])
 

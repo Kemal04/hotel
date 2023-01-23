@@ -15,7 +15,6 @@ const ProfileNavbar = ({ authState }) => {
     const logout = () => {
         localStorage.removeItem("accessToken");
         navigate("/")
-        window.location.reload()
     };
 
     return (
@@ -33,6 +32,9 @@ const ProfileNavbar = ({ authState }) => {
                             </li>
                             <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
                                 <NavLink to={`/ulanyjy-profili/bronlarym/${authState.id}`} className="nav-link fw-bold">Bronlarym</NavLink>
+                            </li>
+                            <li className="nav-item mx-2" style={{ fontSize: "17px" }}>
+                                <NavLink to={`/ulanyjy-profili/onki-bronlarym/${authState.id}`} className="nav-link fw-bold">Onki Bronlarym</NavLink>
                             </li>
                             <li className='nav-item mx-3'>
                                 <div onClick={logout} className="nav-link fw-bold" style={{ cursor: "pointer" }}>Çykyş etmek</div>

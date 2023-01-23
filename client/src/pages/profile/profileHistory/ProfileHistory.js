@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { ThemeContext } from '../../../context/ThemeContext';
 
-const ProfileBooking = () => {
+const ProfileHistory = () => {
 
     const { darkMode } = useContext(ThemeContext)
 
@@ -67,8 +67,6 @@ const ProfileBooking = () => {
                                                 ?
                                                 new Date(room.checkOut).toLocaleDateString(undefined, { year: "numeric", month: "numeric", day: "numeric" }) <= date
                                                     ?
-                                                    null
-                                                    :
                                                     <div key={index} className='col-lg-4'>
                                                         <div className={`card mb-5 border-0 shadow rounded-0 me-3 ${darkMode ? "bg-dark shadow-lg" : "bg-white shadow"}`}>
                                                             <img src='/img/cards/room/4.jpg' className="img-fluid" alt={room.room.roomNum} />
@@ -76,7 +74,7 @@ const ProfileBooking = () => {
                                                                 <div className='d-flex justify-content-between'>
                                                                     <h5 className="card-title">№ {room.room.roomNum} otag</h5>
                                                                 </div>
-                                                                <p className="card-text text-blue mb-4">
+                                                                <p className="card-text text-danger mb-4">
                                                                     <span className='h4'>{room.room.price}<sup>TMT</sup></span>
                                                                     <span className='h6 small' style={{ fontWeight: "500", color: "#afb4bf" }}> / Günlük</span>
                                                                 </p>
@@ -116,12 +114,14 @@ const ProfileBooking = () => {
                                                                 </div>
 
                                                                 <div className='d-grid'>
-                                                                    <div className='btn btn-sm btn-success disabled'>Bronlanan ({new Date(room.checkOut).toLocaleDateString(undefined, { day: "numeric" }) - day} gün galdy)</div>
+                                                                    <div className='btn btn-sm btn-danger disabled'>Bronlanan wagty gecdi</div>
                                                                 </div>
 
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    :
+                                                    null
                                                 :
                                                 null
                                         ))}
@@ -136,4 +136,4 @@ const ProfileBooking = () => {
     )
 }
 
-export default ProfileBooking
+export default ProfileHistory
