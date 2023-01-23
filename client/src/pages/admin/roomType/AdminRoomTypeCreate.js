@@ -31,13 +31,13 @@ const AdminRoomTypeCreate = () => {
             }).then((res) => {
                 toast.success(res.data.success)
                 navigate("/admin/otag-gornusleri")
-                window.location.reload()
             }).catch((res) => {
                 toast.error(res.response.data.error)
                 navigate(`/${res.response.status}`);
             });
         }
     }
+    
     return (
         <>
             <div className="hold-transition sidebar-mini layout-fixed">

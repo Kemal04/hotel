@@ -88,7 +88,7 @@ const Home = () => {
                     <div className='row align-items-center'>
                         <div className='col-xl-6 col-lg-6'>
                             <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}> BIz barada </div>
-                            <div className='display-4 mb-5'> “Roberto" myhmanhanasyna hoş geldiňiz </div>
+                            <div className='display-4 mb-5'> Kuwwat" myhmanhanasyna hoş geldiňiz </div>
                             <div className='h5 lh-lg ls-1 text-secondary mb-3'>
                                 Dünýäde 340-dan gowrak myhmanhana bar, NH Hotel Group, barjak ýeriňize garamazdan ajaýyp ýaşamak üçin dürli myhmanhanalary hödürleýär.                            </div>
                             <div> Alyp Baryjy: <span style={{ color: "#1cc3b2" }}> Kemal Hojayew</span> </div>

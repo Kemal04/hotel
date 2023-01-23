@@ -39,7 +39,6 @@ const Login = () => {
                     localStorage.setItem("accessToken", res.data.token)
                     navigate("/")
                     toast.success(res.data.success)
-                    window.location.reload()
                     setAuthState({
                         email: res.data.email,
                         id: res.data.id,
