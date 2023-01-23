@@ -1,7 +1,8 @@
 const express = require('express');
 const { User } = require('../models/model');
 const router = express.Router();
-const {isAdmin} = require("../middlewares/isAdminMiddleware");
+const { validateToken } = require("../middlewares/authMiddleware");
+
 
 //all data GET 
 router.get("/", async (req, res) => {
@@ -12,22 +13,58 @@ router.get("/", async (req, res) => {
 });
 
 // single GET 
-router.get("/:userId", async (req,res) => {
+router.get("/:userId", async (req, res) => {
     const id = req.params.userId;
-    try{
+    try {
         const user = await User.findByPk(id);
-        if(user){
+        if (user) {
             return res.json({
-                user:user
+                user: user
             });
         }
     }
-    catch(err){
+    catch (err) {
         console.log(err)
     }
-
 });
 
+// USER edit GET and POST 
+router.get("/edit", validateToken, async (req, res) => {
+    const id = req.user.id;
+    try {
+        const user = await User.findOne({ where: { id: id } });
+        if (user) {
+            return res.json({
+                user: user
+            });
+        } else {
+            res.json({ error: "Ulanyjy tapylmady" });
+        }
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
 
+router.post("/edit", validateToken, async (req, res) => {
+    const id = req.user.id;
+    const surname = req.body.surname;
+    const phoneNum = req.body.phoneNum;
+    const address = req.body.address;
+    try {
+        const user = await User.findOne({ where: { id: id } });
+        if (user) {
+            user.surname = surname;
+            user.phoneNum = phoneNum;
+            user.address = address;
+            user.save();
+            return res.json({ success: "Maglumatlarynyz üstünlikli duzedildi" });
+        }
+        res.json({ error: "Ulanyjy tapylmady" });
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
 
 module.exports = router;
