@@ -14,18 +14,25 @@ router.post("/register", async (req, res) => {
         res.json({ error: "Ahli oyjukleri doldurun" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    try {
-        await User.create({
-            name: name,
-            email: email,
-            password: hashedPassword
-        });
-        res.json("Giriş kabul edildi");
+    const user = await User.findOne({ where: { email: email } });
+
+    if (!user) {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        try {
+            await User.create({
+                name: name,
+                email: email,
+                password: hashedPassword
+            });
+            res.json("Giriş kabul edildi");
+        }
+        catch (err) {
+            console.log(err);
+        }
+    } else{
+        res.json({error: "Bu ulanyjy on bar"})
     }
-    catch (err) {
-        console.log(err);
-    }
+
 });
 
 
@@ -45,7 +52,7 @@ router.post("/login", async (req, res) => {
                 { email: user.email, id: user.id, role: user.role },
                 "importantsecret"
             );
-            res.json({ token: accessToken, email: email, id: user.id});
+            res.json({ token: accessToken, email: email, id: user.id });
         } else {
             res.json({ error: "E-mailinizi yada acar sozunizi yalnys yazdynyz" })
         };
