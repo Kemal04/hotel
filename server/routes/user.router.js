@@ -29,10 +29,10 @@ router.get("/:userId", async (req, res) => {
 });
 
 // USER edit GET and POST 
-router.get("/edit", validateToken, async (req, res) => {
-    const id = req.user.id;
+router.get("/edit/:userId", validateToken, async (req, res) => {
+    const id = req.params.userId;
     try {
-        const user = await User.findOne({ where: { id: id } });
+        const user = await User.findByPk(id);
         if (user) {
             return res.json({
                 user: user
@@ -46,13 +46,13 @@ router.get("/edit", validateToken, async (req, res) => {
     }
 });
 
-router.post("/edit", validateToken, async (req, res) => {
-    const id = req.user.id;
+router.post("/edit/:userId", validateToken, async (req, res) => {
+    const id = req.params.userId;
     const surname = req.body.surname;
     const phoneNum = req.body.phoneNum;
     const address = req.body.address;
     try {
-        const user = await User.findOne({ where: { id: id } });
+        const user = await User.findByPk(id);
         if (user) {
             user.surname = surname;
             user.phoneNum = phoneNum;
