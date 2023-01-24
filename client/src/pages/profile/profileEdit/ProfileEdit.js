@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { ThemeContext } from '../../../context/ThemeContext';
 
-const Profile = () => {
+const ProfileEdit = () => {
 
     const { darkMode } = useContext(ThemeContext)
 
@@ -15,6 +16,60 @@ const Profile = () => {
             setUser(res.data.user);
         });
     }, [id]);
+
+    const navigate = useNavigate()
+
+    const [eUser, setEUser] = useState({
+        surname: "",
+        phoneNum: "",
+        address: "",
+    })
+
+    const handleChange = (e) => {
+        setEUser((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+
+    useEffect(() => {
+        axios.get(`http://localhost:3001/api/users/edit/${id}`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            },
+        })
+            .then((res) => {
+                setEUser(res.data.user)
+            }).catch((error) => {
+                toast.error(error.message)
+            })
+
+    }, [id])
+
+    const handleClick = async (e) => {
+        e.preventDefault()
+
+        if (!eUser.surname) {
+            toast.error("Familyanyzy yazyn")
+        }
+        else if (!eUser.phoneNum) {
+            toast.error("Telefon belginizi yazyn")
+        }
+        else if (!eUser.address) {
+            toast.error("Adresinizi yazyn")
+        }
+        else {
+            await axios.post(`http://localhost:3001/api/users/edit/${id}`, eUser, {
+                headers: {
+                    accessToken: localStorage.getItem("accessToken"),
+                },
+            })
+                .then((res) => {
+                    toast.success(res.data.success)
+                    navigate(`/ulanyjy-profili/${id}`)
+                    window.location.reload()
+                }).catch((error) => {
+                    toast.error(error.message)
+                });
+        }
+    }
 
     return (
         <div className={darkMode ? "bg-dark" : "bg-white"}>
@@ -44,13 +99,12 @@ const Profile = () => {
                                             </div>
                                         </div>
                                         <hr />
-                                        <div className="row justify-content-between">
+                                        <div className="row justify-content-between align-items-center">
                                             <div className="col-sm-4">
                                                 <h6 className="mb-0">Familýam</h6>
                                             </div>
                                             <div className={`col-sm-8 ${darkMode ? "text-white" : "text-secondary"}`}>
-
-                                                {user.surname}
+                                                <input value={eUser.surname} onChange={handleChange} type="text" name='surname' className='form-control' />
                                             </div>
                                         </div>
                                         <hr />
@@ -63,27 +117,27 @@ const Profile = () => {
                                             </div>
                                         </div>
                                         <hr />
-                                        <div className="row justify-content-between">
+                                        <div className="row justify-content-between align-items-center">
                                             <div className="col-sm-4">
                                                 <h6 className="mb-0">Telefon belgim</h6>
                                             </div>
-                                            <div className={`col-sm-8 ${darkMode ? "text-white" : "text-secondary"}`}>
-                                                +993 {user.phoneNum}
+                                            <div className={`col-sm-8 d-flex align-items-center ${darkMode ? "text-white" : "text-secondary"}`}>
+                                                +993 <input value={eUser.phoneNum} onChange={handleChange} type="number" name='phoneNum' className='form-control ms-2' />
                                             </div>
                                         </div>
                                         <hr />
-                                        <div className="row justify-content-between">
+                                        <div className="row justify-content-between align-items-center">
                                             <div className="col-sm-4">
                                                 <h6 className="mb-0">Adresim</h6>
                                             </div>
                                             <div className={`col-sm-8 ${darkMode ? "text-white" : "text-secondary"}`}>
-                                                {user.address}
+                                                <input value={eUser.address} onChange={handleChange} type="text" name='address' className='form-control' />
                                             </div>
                                         </div>
                                         <hr />
                                         <div className="row mt-5">
                                             <div className="col-sm-12 d-grid">
-                                                <Link to={`/ulanyjy-profili-uytget/${user.id}`} className="btn btn-primary">Maglumatlary düzeltmek</Link>
+                                                <button onClick={handleClick} className="btn btn-primary">Düzeltmek</button>
                                             </div>
                                         </div>
                                     </div>
@@ -97,4 +151,4 @@ const Profile = () => {
     )
 }
 
-export default Profile
+export default ProfileEdit
