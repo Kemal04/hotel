@@ -17,7 +17,7 @@ import { Admin, AdminContacts, AdminContactEdit, AdminRoomCreate, AdminRoomEdit,
 import { Forbiden, NotFounded } from './pages/error';
 
 //PROFILE
-import { Profile, ProfileBooking, ProfileHistory } from './pages/profile';
+import { Profile, ProfileBooking, ProfileEdit, ProfileHistory } from './pages/profile';
 
 //TOAST
 import { ToastContainer } from 'react-toastify'
@@ -114,6 +114,7 @@ const App = () => {
                                     authState.status && (
                                         <>
                                             <Route path='/ulanyjy-profili/:id' element={<Profile authState={authState} />}></Route >
+                                            <Route path='/ulanyjy-profili-uytget/:id' element={<ProfileEdit authState={authState} />}></Route >
                                             <Route path='/ulanyjy-profili/bronlarym/:id' element={<ProfileBooking />}></Route>
                                             <Route path='/ulanyjy-profili/onki-bronlarym/:id' element={<ProfileHistory />}></Route>
                                         </>
