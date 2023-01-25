@@ -196,7 +196,7 @@ const Home = () => {
                                                     </ul>
                                                 </div>
                                                 <div className='ms-5 mt-4'>
-                                                    <Link to="/" className='btn btn-primary ls-1' style={{ fontWeight: "600" }}>Maglumatlary gör</Link>
+                                                    <Link to={`/otag/${room.id}`} className='btn btn-primary ls-1' style={{ fontWeight: "600" }}>Maglumatlary gör</Link>
                                                 </div>
                                             </div>
                                         </div>
