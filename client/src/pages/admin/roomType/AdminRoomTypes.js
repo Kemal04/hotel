@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react'
+import React from 'react';
 import { useAPI } from '../../../context/FetchContext';
 import { toast } from 'react-toastify'
 import { Link, useNavigate } from 'react-router-dom';
