@@ -2,6 +2,11 @@ const express = require('express');
 const { Room, RoomType } = require('../models/model');
 const router = express.Router();
 const {isAdmin} = require("../middlewares/isAdminMiddleware");
+const fs = require('fs')
+const imageUpload = require("../helpers/image-upload")
+const multer = require("multer");
+const upload = multer({ dest: "./public/img" });
+
 
 //all data GET 
 router.get("/",  async (req, res) => {
@@ -34,6 +39,7 @@ router.post("/create", isAdmin, async (req, res) => {
     const size = req.body.size;
     const capacity = req.body.capacity;
     const price = req.body.price;
+    const img = req.file.filename;
     const roomTypeId = req.body.roomTypeId;
 
     try {
@@ -42,6 +48,7 @@ router.post("/create", isAdmin, async (req, res) => {
             size: size,
             capacity: capacity,
             price: price,
+            img:img,
             roomTypeId: roomTypeId
         });
         res.json({ success: "Otag üstünlikli goşuldy" })
@@ -72,6 +79,16 @@ router.post("/edit/:roomId", isAdmin, async (req, res) => {
     const size = req.body.size;
     const capacity = req.body.capacity;
     const price = req.body.price;
+
+    let img = req.body.img;
+    if (req.file) {
+        img = req.file.filename;
+
+        fs.unlink(".public/img/" + req.body.img, err => {
+            console.log(err);
+        })
+    }
+
     const roomTypeId = req.body.roomTypeId;
     try {
         const room = await Room.findByPk(id);
@@ -80,6 +97,7 @@ router.post("/edit/:roomId", isAdmin, async (req, res) => {
             room.size = size;
             room.capacity = capacity;
             room.price = price;
+            room.img = img;
             room.roomTypeId = roomTypeId;
             room.save();
             return res.json({ success: "Otag üstünlikli duzedildi" });
