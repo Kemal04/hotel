@@ -53,7 +53,7 @@ const App = () => {
                 });
             }
         });
-    }, [authState]);
+    }, []);
 
     return (
         <>

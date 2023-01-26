@@ -67,6 +67,10 @@ const Room = sequelize.define("room", {
         type: DataTypes.STRING,
         allowNull: false
     },
+    img: {
+        type:DataTypes.STRING,
+        allowNull:false
+    },
     liked: {
         type: DataTypes.STRING,
         allowNull: true

@@ -103,7 +103,7 @@ const Rooms = () => {
                                             <div className='card border-0 my-4' style={{ backgroundColor: "transparent", boxShadow: 'none' }}>
                                                 <div className='row align-items-center'>
                                                     <div className='col-xl-6'>
-                                                        <img src="/img/cards/room/1.jpg" alt="Room" className='img-fluid rounded-3' />
+                                                        <img src={room.img ? `http://localhost:3001/img/${room.img}` : '/img/cards/room/1.jpg'} alt="Room" className='img-fluid rounded-3' />
                                                     </div>
                                                     <div className='col-xl-6'>
                                                         <div className='h2 mt-3'>№ {room.roomNum}</div>

@@ -18,6 +18,11 @@ const AdminRoomCreate = () => {
         size: "",
     })
 
+    
+    const [img, setImg] = useState('')
+
+    // console.log(img);
+
     const handleChange = (e) => {
         setRoom((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
@@ -27,6 +32,14 @@ const AdminRoomCreate = () => {
     const handleClick = async (e) => {
         e.preventDefault()
 
+
+        const formData = new FormData()
+        formData.append('img', img)
+        formData.append('roomTypeId', room.roomTypeId)
+        formData.append('roomNum', room.roomNum)
+        formData.append('price', room.price)
+        formData.append('capacity', room.capacity)
+        formData.append('size', room.size)
 
         if (!room.roomTypeId) {
             toast.error("Otagyň görnüşini saýlaň")
@@ -43,9 +56,15 @@ const AdminRoomCreate = () => {
         else if (!room.size) {
             toast.error("Tutýan meýdanyny ýazyň")
         }
+        else if (!img) {
+            toast.error("Surat yok")
+        }
+
+
         else {
-            await axios.post("http://localhost:3001/api/rooms/create", room, {
+            await axios.post("http://localhost:3001/api/rooms/create", formData,  {
                 headers: {
+                    "Content-Type": "multipart/form-data",
                     accessToken: localStorage.getItem("accessToken"),
                 },
             })
@@ -75,7 +94,7 @@ const AdminRoomCreate = () => {
                                             <div className='d-flex justify-content-center aling-items-center h2 mb-5'>
                                                 Otag goşmak
                                             </div>
-                                            <form className='row'>
+                                            <form className='row' encType='multipart/form-data'>
 
                                                 <div className="col-lg-12 mb-3">
                                                     <select name='roomTypeId' className="form-select" onChange={handleChange}>
@@ -109,6 +128,13 @@ const AdminRoomCreate = () => {
                                                     <div className="input-group mb-3">
                                                         <input name='size' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
                                                         <span className="input-group-text rounded-0" id="basic-addon1">m <sup>2</sup></span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="col-lg-12 mb-3">
+                                                    <label className="form-label fw-bold">Otagyň Suraty</label>
+                                                    <div className="input-group mb-3">
+                                                        <input name='img' onChange={(e)=>setImg(e.target.files[0])} type="file" className="form-control rounded-0" autoComplete="off" />
                                                     </div>
                                                 </div>
 
