@@ -34,7 +34,7 @@ router.get("/:roomId", async (req, res) => {
 });
 
 // create POST 
-router.post("/create", isAdmin, async (req, res) => {
+router.post("/create", isAdmin, imageUpload.upload.single("img"), async (req, res) => {
     const roomNum = req.body.roomNum;
     const size = req.body.size;
     const capacity = req.body.capacity;
