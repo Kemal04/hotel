@@ -73,7 +73,7 @@ router.get("/edit/:roomId", isAdmin, async (req, res) => {
         console.log(err);
     }
 });
-router.post("/edit/:roomId", isAdmin, async (req, res) => {
+router.post("/edit/:roomId", isAdmin, imageUpload.upload.single("img"), async (req, res) => {
     const id = req.params.roomId;
     const roomNum = req.body.roomNum;
     const size = req.body.size;
