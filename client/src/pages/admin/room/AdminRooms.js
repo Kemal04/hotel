@@ -48,7 +48,7 @@ const AdminRooms = () => {
                                     {rooms.sort((a, b) => a.timeM > b.timeM ? 1 : -1).map(room => (
                                         <div key={room.id} className='col-lg-4'>
                                             <div className="card mb-5 border-0 shadow rounded-0 me-3">
-                                                <img src={room.img ? room.img : '/img/cards/room/1.jpg'} className="img-fluid" alt={room.roomNum} />
+                                                <img src={room.img ? `http://localhost:3001/img/${room.img}` : '/img/cards/room/1.jpg'} className="img-fluid" alt={room.roomNum} />
                                                 <div className="card-body">
                                                     <div className='d-flex justify-content-between'>
                                                         <h5 className="card-title">№ {room.roomNum} otag</h5>

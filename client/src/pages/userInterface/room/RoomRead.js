@@ -83,7 +83,7 @@ const RoomRead = ({ authState }) => {
                             <Splide options={option} hasTrack={false} className="mb-5">
                                 <SplideTrack className='row'>
                                     <SplideSlide className='col-xl-12'>
-                                        <img src="/img/cards/room/1.jpg" alt="" className='img-fluid w-100' style={{ height: "500px", objectFit: "cover" }} />
+                                        <img src={room.img ? `http://localhost:3001/img/${room.img}` : '/img/cards/room/1.jpg'} alt="" className='img-fluid w-100' style={{ height: "500px", objectFit: "cover" }} />
                                     </SplideSlide>
                                     <SplideSlide className='col-xl-12'>
                                         <img src="/img/cards/room/2.jpg" alt="" className='img-fluid w-100' style={{ height: "500px", objectFit: "cover" }} />
