@@ -16,7 +16,18 @@ const AdminRoomEdit = () => {
         price: "",
         capacity: "",
         size: "",
+        img: "",
     })
+
+
+    const [img, setImg] = useState('')
+
+    const uploadPicture = (e) => {
+        setImg({
+            picturePreview: URL.createObjectURL(e.target.files[0]),
+            pictureAsFile: e.target.files[0],
+        });
+    };
 
     const navigate = useNavigate()
     const location = useLocation();
@@ -34,15 +45,27 @@ const AdminRoomEdit = () => {
             },
         }).then((res) => {
             setRoom(res.data.room)
+            setImg(res.data.room.img)
         }).catch((res) => {
             toast.error(res.response.data.error)
             navigate(`/${res.response.status}`)
         })
 
-    }, [roomId])
+    }, [navigate, roomId])
 
     const handleClick = async (e) => {
         e.preventDefault()
+
+        const formData = new FormData()
+        formData.append('roomTypeId', room.roomTypeId)
+        formData.append('roomNum', room.roomNum)
+        formData.append('price', room.price)
+        formData.append('capacity', room.capacity)
+        formData.append('size', room.size)
+        formData.append('img', img.pictureAsFile)
+
+
+        console.log("img", img.pictureAsFile);
 
         if (!room.roomTypeId) {
             toast.error("Otagyň görnüşini saýlaň")
@@ -60,15 +83,16 @@ const AdminRoomEdit = () => {
             toast.error("Tutýan meýdanyny ýazyň")
         }
         else {
-            await axios.post(`http://localhost:3001/api/rooms/edit/${roomId}`, room, {
+            await axios.post(`http://localhost:3001/api/rooms/edit/${roomId}`, formData, {
                 headers: {
+                    "Content-Type": "multipart/form-data",
                     accessToken: localStorage.getItem("accessToken"),
                 },
             })
                 .then((res) => {
                     toast.success(res.data.success)
                     navigate("/admin/otaglar")
-                    window.location.reload()
+                    // window.location.reload()
                 }).catch((res) => {
                     toast.error(res.response.data.error)
                     navigate(`/${res.response.status}`)
@@ -125,6 +149,13 @@ const AdminRoomEdit = () => {
                                                     <div className="input-group mb-3">
                                                         <input name='size' value={room.size} onChange={handleChange} type="number" className="form-control rounded-0" aria-describedby="basic-addon1" autoComplete="off" />
                                                         <span className="input-group-text rounded-0" id="basic-addon1">ft</span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="col-lg-12 mb-3">
+                                                    <label className="form-label fw-bold">Otagyň Suraty</label>
+                                                    <div className="input-group mb-3">
+                                                        <input name='img' onChange={uploadPicture} type="file" className="form-control rounded-0" autoComplete="off" />
                                                     </div>
                                                 </div>
 

@@ -21,8 +21,6 @@ const AdminRoomCreate = () => {
     
     const [img, setImg] = useState('')
 
-    // console.log(img);
-
     const handleChange = (e) => {
         setRoom((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
@@ -31,7 +29,6 @@ const AdminRoomCreate = () => {
 
     const handleClick = async (e) => {
         e.preventDefault()
-
 
         const formData = new FormData()
         formData.append('img', img)
