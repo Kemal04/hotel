@@ -1,14 +1,46 @@
-import { faPencil, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import AdminNavbar from '../../../components/navbar/AdminNavbar'
 import AdminSidebar from '../../../components/sidebar/AdminSidebar'
-import { useAPI } from '../../../context/FetchContext'
 
 const AdminBooking = () => {
 
-    const { booking } = useAPI()
+    const [booking, setBooking] = useState([])
+
+    useEffect(() => {
+        const fetchAllBooking = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/bookings/')
+                setBooking(res.data.booking)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchAllBooking()
+    }, [])
+
+    const navigate = useNavigate()
+
+    const handleDelete = async (id) => {
+
+        await axios.delete('http://localhost:3001/api/bookings/delete/' + id, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            },
+        })
+            .then((res) => {
+                const del = booking.filter(booking => id !== booking.id)
+                setBooking(del)
+                toast.success(res.success)
+            }).catch((res) => {
+                toast.error(res.response.data.error)
+                navigate(`/${res.response.status}`)
+            });
+    }
 
     return (
         <>
@@ -36,11 +68,11 @@ const AdminBooking = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
+
                                                 {
-                                                    booking.map(booking => (
-                                                        <tr key={booking.id} className={booking.check ? "text-success" : "text-danger"}>
-                                                            <td>{booking.id}</td>
+                                                    booking.map((booking, index) => (
+                                                        <tr key={index} className={booking.check ? "text-success" : "text-danger"}>
+                                                            <td>{index}</td>
                                                             <td>№ {booking.room.roomNum} Otag</td>
                                                             <td>+993 {booking.phoneNumber}</td>
                                                             <td>
@@ -52,7 +84,10 @@ const AdminBooking = () => {
                                                                 {new Date(booking.checkOut).toLocaleDateString(undefined, { day: "numeric" }) - new Date(booking.checkIn).toLocaleDateString(undefined, { day: "numeric" })}
                                                                 &nbsp;&nbsp;günlük
                                                             </td>
-                                                            <td><Link className='btn btn-outline-warning mx-1' to={`/admin/bronlanan-otaglary-uytget/${booking.id}`}><FontAwesomeIcon icon={faPencil} /></Link></td>
+                                                            <td>
+                                                                <Link className='btn btn-outline-warning mx-1' to={`/admin/bronlanan-otaglary-uytget/${booking.id}`}><FontAwesomeIcon icon={faPencil} /></Link>
+                                                                <button className='btn btn-outline-danger mx-1' onClick={() => handleDelete(booking.id)}><FontAwesomeIcon icon={faTrash} /></button>
+                                                            </td>
                                                         </tr>
                                                     ))
                                                 }

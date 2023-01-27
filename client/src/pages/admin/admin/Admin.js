@@ -1,15 +1,70 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AdminNavbar from '../../../components/navbar/AdminNavbar'
 import AdminSidebar from '../../../components/sidebar/AdminSidebar'
 import "./admin.css"
-import { useAPI } from '../../../context/FetchContext'
 import { faArrowRight, faBed, faEnvelope, faHotel, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Admin = () => {
 
-    const { rooms, contacts, users, roomtypes } = useAPI()
+    const [roomtypes, setRoomTypes] = useState([])
+
+    useEffect(() => {
+        const fetchRoomTypes = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/roomtypes/')
+                setRoomTypes(res.data.roomtypes)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchRoomTypes()
+    }, [])
+
+    const [rooms, setRooms] = useState([])
+
+    useEffect(() => {
+        const fetchAllRooms = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/rooms/')
+                setRooms(res.data.rooms)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchAllRooms()
+    }, [])
+
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        const fetchAllUsers = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/users/')
+                setUsers(res.data.users)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchAllUsers()
+    }, [])
+    
+    const [contacts, setContacts] = useState([]);
+
+    useEffect(() => {
+        const fetchAllContacts = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/contact/')
+                setContacts(res.data.contact);
+            } catch (err) {
+                console.log(err)
+            }
+        };
+        fetchAllContacts()
+
+    }, []);
 
     return (
         <>

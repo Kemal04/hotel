@@ -1,21 +1,34 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import AdminNavbar from '../../../components/navbar/AdminNavbar'
 import Sidebar from '../../../components/sidebar/AdminSidebar'
-import { useAPI } from '../../../context/FetchContext'
 
 const AdminContact = () => {
 
-    const { contacts } = useAPI()
+    const [contacts, setContacts] = useState([]);
+
+    useEffect(() => {
+        const fetchAllContacts = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/contact/')
+                setContacts(res.data.contact);
+            } catch (err) {
+                console.log(err)
+            }
+        };
+        fetchAllContacts()
+
+    }, []);
 
     const handleDelete = async (id) => {
 
         await axios.delete('http://localhost:3001/api/contact/delete/' + id)
             .then((res) => {
                 toast.success(res.data.success)
-                window.location.reload()
+                const del = contacts.filter(contacts => id !== contacts.id)
+                setContacts(del)
             }).catch((error) => {
                 toast.error(error.message)
             });

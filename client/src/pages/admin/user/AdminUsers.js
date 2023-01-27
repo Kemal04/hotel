@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import AdminNavbar from '../../../components/navbar/AdminNavbar'
 import AdminSidebar from '../../../components/sidebar/AdminSidebar'
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useAPI } from '../../../context/FetchContext';
+import axios from 'axios';
 
 const AdminUsers = () => {
 
-    const { users } = useAPI()
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        const fetchAllUsers = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/users/')
+                setUsers(res.data.users)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchAllUsers()
+    }, [])
 
     return (
         <>

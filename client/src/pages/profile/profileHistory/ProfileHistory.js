@@ -33,7 +33,6 @@ const ProfileHistory = () => {
 
     let newDate = new Date()
     let date = (newDate.getDate()) + "." + (newDate.getMonth() + 1) + "." + (newDate.getFullYear());
-    let day = newDate.getDate()
 
     return (
         <div className={darkMode ? "bg-dark" : "bg-white"}>

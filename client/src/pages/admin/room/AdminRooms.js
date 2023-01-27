@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -6,11 +6,23 @@ import { faArrowRight, faHeart, faPencil, faPlus, faTrashAlt } from '@fortawesom
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AdminNavbar from '../../../components/navbar/AdminNavbar'
 import AdminSidebar from '../../../components/sidebar/AdminSidebar'
-import { useAPI } from '../../../context/FetchContext'
 
 const AdminRooms = () => {
 
-    const { rooms } = useAPI()
+    
+    const [rooms, setRooms] = useState([])
+
+    useEffect(() => {
+        const fetchAllRooms = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/rooms/')
+                setRooms(res.data.rooms)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchAllRooms()
+    }, [])
 
     const navigate = useNavigate()
 
@@ -21,9 +33,10 @@ const AdminRooms = () => {
                 accessToken: localStorage.getItem("accessToken"),
             },
         })
-            .then((res) => {
-                window.location.reload()
+        .then((res) => {
                 toast.success(res.success)
+                const del = rooms.filter(rooms => id !== rooms.id)
+                setRooms(del)
             }).catch((res) => {
                 toast.error(res.response.data.error)
                 navigate(`/${res.response.status}`)

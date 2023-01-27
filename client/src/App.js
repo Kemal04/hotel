@@ -25,7 +25,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 //CONTEXT
 import ThemeContextProvider from "./context/ThemeContext"
-import { FetchContextProvider } from './context/FetchContext';
+import { AuthContext } from './context/AuthContext';
 
 const App = () => {
 
@@ -57,19 +57,19 @@ const App = () => {
 
     return (
         <>
-            <FetchContextProvider>
+            <AuthContext.Provider value={{ authState, setAuthState }}>
                 <ThemeContextProvider>
                     <Router>
                         <ToastContainer />
                         <Routes>
 
-                            <Route path="/" element={<WithNavbar authState={authState} />}>
+                            <Route path="/" element={<WithNavbar />}>
                                 <Route path='/' element={<Home />}></Route>
                                 <Route path='/biz-barada' element={<About />}></Route>
                                 <Route path='/habarlasmak' element={<Contact />}></Route>
 
                                 <Route path='/otaglar' element={<Rooms />}></Route>
-                                <Route path='/otag/:id' element={<RoomRead authState={authState} />}></Route>
+                                <Route path='/otag/:id' element={<RoomRead />}></Route>
 
                                 {
                                     !authState.status && (
@@ -82,7 +82,7 @@ const App = () => {
                                 }
                             </Route>
 
-                            <Route path="/" element={<AdminWithNavbar authState={authState} />}>
+                            <Route path="/" element={<AdminWithNavbar />}>
                                 {
                                     authState.role === "Admin" && (
                                         <>
@@ -99,7 +99,7 @@ const App = () => {
                                             <Route path='/admin/otag-uytget/:id' element={<AdminRoomEdit />}></Route>
 
                                             <Route path='/admin/otag-gornusleri' element={<AdminRoomTypes />}></Route>
-                                            <Route path='/admin/otag-gornusini-gosmak' element={<AdminRoomTypeCreate authState={authState} />}></Route>
+                                            <Route path='/admin/otag-gornusini-gosmak' element={<AdminRoomTypeCreate />}></Route>
                                             <Route path='/admin/otag-gornusini-uytget/:id' element={<AdminRoomTypeEdit />}></Route>
 
                                             <Route path='/admin/bronlanan-otaglar' element={<AdminBooking />}></Route>
@@ -109,12 +109,12 @@ const App = () => {
                                 }
                             </Route>
 
-                            <Route path="/" element={<ProfilWithNavbar authState={authState} />}>
+                            <Route path="/" element={<ProfilWithNavbar />}>
                                 {
                                     authState.status && (
                                         <>
-                                            <Route path='/ulanyjy-profili/:id' element={<Profile authState={authState} />}></Route >
-                                            <Route path='/ulanyjy-profili-uytget/:id' element={<ProfileEdit authState={authState} />}></Route >
+                                            <Route path='/ulanyjy-profili/:id' element={<Profile />}></Route >
+                                            <Route path='/ulanyjy-profili-uytget/:id' element={<ProfileEdit />}></Route >
                                             <Route path='/ulanyjy-profili/bronlarym/:id' element={<ProfileBooking />}></Route>
                                             <Route path='/ulanyjy-profili/onki-bronlarym/:id' element={<ProfileHistory />}></Route>
                                         </>
@@ -129,16 +129,16 @@ const App = () => {
                         </Routes>
                     </Router>
                 </ThemeContextProvider>
-            </FetchContextProvider>
+            </AuthContext.Provider>
         </>
     )
 }
 
 
-const WithNavbar = ({ authState }) => {
+const WithNavbar = () => {
     return (
         <>
-            <Navbar authState={authState} />
+            <Navbar />
 
             <Outlet />
 
@@ -153,10 +153,10 @@ const AdminWithNavbar = () => {
     );
 }
 
-const ProfilWithNavbar = ({ authState }) => {
+const ProfilWithNavbar = () => {
     return (
         <>
-            <ProfileNavbar authState={authState} />
+            <ProfileNavbar />
             <Outlet />
         </>
     );

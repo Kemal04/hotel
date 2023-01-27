@@ -64,7 +64,6 @@ const ProfileEdit = () => {
                 .then((res) => {
                     toast.success(res.data.success)
                     navigate(`/ulanyjy-profili/${id}`)
-                    window.location.reload()
                 }).catch((error) => {
                     toast.error(error.message)
                 });
@@ -104,7 +103,7 @@ const ProfileEdit = () => {
                                                 <h6 className="mb-0">Familýam</h6>
                                             </div>
                                             <div className={`col-sm-8 ${darkMode ? "text-white" : "text-secondary"}`}>
-                                                <input value={eUser.surname} onChange={handleChange} type="text" name='surname' className='form-control' />
+                                                <input value={eUser.surname ? eUser.surname : ""} onChange={handleChange} type="text" name='surname' className='form-control' />
                                             </div>
                                         </div>
                                         <hr />
@@ -122,7 +121,7 @@ const ProfileEdit = () => {
                                                 <h6 className="mb-0">Telefon belgim</h6>
                                             </div>
                                             <div className={`col-sm-8 d-flex align-items-center ${darkMode ? "text-white" : "text-secondary"}`}>
-                                                +993 <input value={eUser.phoneNum} onChange={handleChange} type="number" name='phoneNum' className='form-control ms-2' />
+                                                +993 <input value={eUser.phoneNum ? eUser.phoneNum : ""} onChange={handleChange} type="number" name='phoneNum' className='form-control ms-2' />
                                             </div>
                                         </div>
                                         <hr />
@@ -131,7 +130,7 @@ const ProfileEdit = () => {
                                                 <h6 className="mb-0">Adresim</h6>
                                             </div>
                                             <div className={`col-sm-8 ${darkMode ? "text-white" : "text-secondary"}`}>
-                                                <input value={eUser.address} onChange={handleChange} type="text" name='address' className='form-control' />
+                                                <input value={eUser.address ? eUser.address : ""} onChange={handleChange} type="text" name='address' className='form-control' />
                                             </div>
                                         </div>
                                         <hr />

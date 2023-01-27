@@ -1,16 +1,27 @@
 import axios from 'axios';
-import React from 'react';
-import { useAPI } from '../../../context/FetchContext';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify'
 import { Link, useNavigate } from 'react-router-dom';
 import AdminNavbar from '../../../components/navbar/AdminNavbar';
 import AdminSidebar from '../../../components/sidebar/AdminSidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPencil, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const AdminRoomTypes = () => {
 
-    const { roomtypes } = useAPI()
+    const [roomtypes, setRoomTypes] = useState([])
+
+    useEffect(() => {
+        const fetchRoomTypes = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/roomtypes/')
+                setRoomTypes(res.data.roomtypes)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchRoomTypes()
+    }, [])
 
     const navigate = useNavigate()
 
@@ -22,7 +33,8 @@ const AdminRoomTypes = () => {
             },
         })
             .then((res) => {
-                window.location.reload()
+                const del = roomtypes.filter(roomtypes => id !== roomtypes.id)
+                setRoomTypes(del)
                 toast.success(res.success)
             }).catch((res) => {
                 toast.error(res.response.data.error)
@@ -61,8 +73,8 @@ const AdminRoomTypes = () => {
                                                             <td>{roomtype.id}</td>
                                                             <td>{roomtype.name}</td>
                                                             <td>
-                                                                <Link className='me-3 btn btn-sm btn-warning' to={`/admin/otag-gornusini-uytget/${roomtype.id}`}>Düzetmek</Link>
-                                                                <button className='btn btn-sm btn-danger' onClick={() => handleDelete(roomtype.id)}>Pozmak</button>
+                                                                <Link className='me-3 btn btn-sm btn-outline-warning mx-1' to={`/admin/otag-gornusini-uytget/${roomtype.id}`}><FontAwesomeIcon icon={faPencil} /></Link>
+                                                                <button className='btn btn-sm btn-outline-danger mx-1' onClick={() => handleDelete(roomtype.id)}><FontAwesomeIcon icon={faTrash} /></button>
                                                             </td>
                                                         </tr>
                                                     ))

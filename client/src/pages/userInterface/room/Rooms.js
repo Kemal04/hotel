@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ThemeContext } from '../../../context/ThemeContext'
 import BannerImg from "../../../components/banner/BannerImg"
-import { useAPI } from '../../../context/FetchContext'
 import Filter from '../../../components/filter/Filter'
 import axios from 'axios'
 
@@ -10,7 +9,33 @@ const Rooms = () => {
 
     const { darkMode } = useContext(ThemeContext)
 
-    const { rooms, roomtypes } = useAPI()
+    const [roomtypes, setRoomTypes] = useState([])
+
+    useEffect(() => {
+        const fetchRoomTypes = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/roomtypes/')
+                setRoomTypes(res.data.roomtypes)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchRoomTypes()
+    }, [])
+
+    const [rooms, setRooms] = useState([])
+
+    useEffect(() => {
+        const fetchAllRooms = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/rooms/')
+                setRooms(res.data.rooms)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchAllRooms()
+    }, [])
 
     // function onSelectionChange(e) {
     //     const sortDirection = e.target.value;
@@ -98,8 +123,8 @@ const Rooms = () => {
                             <div className='row'>
                                 {
 
-                                    item.map((room) => (
-                                        <div className='col-xl-12' key={room.id}>
+                                    item.map((room, index) => (
+                                        <div className='col-xl-12' key={index}>
                                             <div className='card border-0 my-4' style={{ backgroundColor: "transparent", boxShadow: 'none' }}>
                                                 <div className='row align-items-center'>
                                                     <div className='col-xl-6'>
