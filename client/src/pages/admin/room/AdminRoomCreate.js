@@ -1,14 +1,25 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import AdminNavbar from '../../../components/navbar/AdminNavbar'
 import AdminSidebar from '../../../components/sidebar/AdminSidebar'
-import { useAPI } from '../../../context/FetchContext'
 
 const AdminRoomCreate = () => {
 
-    const { roomtypes } = useAPI()
+    const [roomtypes, setRoomTypes] = useState([])
+
+    useEffect(() => {
+        const fetchRoomTypes = async () => {
+            try {
+                const res = await axios.get('http://localhost:3001/api/roomtypes/')
+                setRoomTypes(res.data.roomtypes)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchRoomTypes()
+    }, [])
 
     const [room, setRoom] = useState({
         roomTypeId: "",
@@ -56,8 +67,6 @@ const AdminRoomCreate = () => {
         else if (!img) {
             toast.error("Surat yok")
         }
-
-
         else {
             await axios.post("http://localhost:3001/api/rooms/create", formData,  {
                 headers: {
@@ -68,7 +77,6 @@ const AdminRoomCreate = () => {
                 .then((res) => {
                     toast.success(res.data.success)
                     navigate("/admin/otaglar")
-                    window.location.reload()
                 }).catch((res) => {
                     toast.error(res.response.data.error)
                     navigate(`/${res.response.status}`);

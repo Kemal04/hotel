@@ -19,6 +19,8 @@ const Login = () => {
     const loginUser = async (e) => {
         e.preventDefault();
 
+        const data = { email: email, password: password }
+
         if (!email) {
             toast.error("E-mail adresiňizi ýazyň!")
         }
@@ -29,22 +31,19 @@ const Login = () => {
             toast.error("Açar sözüňiz 8-den uly bolmaly")
         }
         else {
-            await axios.post("http://localhost:3001/api/auth/login", {
-                email: email,
-                password: password,
-            }).then((res) => {
+            await axios.post("http://localhost:3001/api/auth/login", data).then((res) => {
                 if (res.data.error) {
                     toast.error(res.data.error)
                 } else {
                     localStorage.setItem("accessToken", res.data.token)
-                    navigate("/")
-                    toast.success(res.data.success)
                     setAuthState({
                         email: res.data.email,
                         id: res.data.id,
                         status: true,
                         role: res.data.role,
                     });
+                    toast.success(res.data.success)
+                    navigate("/")
                 }
 
             })

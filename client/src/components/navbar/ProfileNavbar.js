@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext'
 import { ThemeContext } from '../../context/ThemeContext'
 
-const ProfileNavbar = ({ authState }) => {
+const ProfileNavbar = () => {
 
+    const { authState, setAuthState } = useContext(AuthContext)
     const { darkMode, toggleDarkMode } = useContext(ThemeContext)
 
     const darkModeClick = () => {
@@ -14,6 +16,7 @@ const ProfileNavbar = ({ authState }) => {
 
     const logout = () => {
         localStorage.removeItem("accessToken");
+        setAuthState({ email: "", id: 0, status: false, role: "User" })
         navigate("/")
     };
 

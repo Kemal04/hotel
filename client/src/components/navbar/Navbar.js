@@ -2,8 +2,11 @@ import React, { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import './navbar.css'
 import { ThemeContext } from '../../context/ThemeContext';
+import { AuthContext } from '../../context/AuthContext';
 
-const Navbar = ({ authState }) => {
+const Navbar = () => {
+
+    const { authState, setAuthState } = useContext(AuthContext)
 
     const { darkMode, toggleDarkMode } = useContext(ThemeContext)
 
@@ -13,7 +16,7 @@ const Navbar = ({ authState }) => {
 
     const logout = () => {
         localStorage.removeItem("accessToken");
-        window.location.reload()
+        setAuthState({ email: "", id: 0, status: false, role: "User" })
     };
 
     return (

@@ -51,7 +51,6 @@ const AdminContactEdit = () => {
                 .then((res) => {
                     toast.success(res.data.success)
                     navigate("/admin/teswirler")
-                    window.location.reload()
                 }).catch((error) => {
                     toast.error(error.message)
                 });

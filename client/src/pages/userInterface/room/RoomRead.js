@@ -6,8 +6,11 @@ import { toast } from 'react-toastify'
 import axios from 'axios'
 import { ThemeContext } from '../../../context/ThemeContext';
 import BannerImg from '../../../components/banner/BannerImg';
+import { AuthContext } from '../../../context/AuthContext';
 
-const RoomRead = ({ authState }) => {
+const RoomRead = () => {
+
+    const { authState } = useContext(AuthContext)
 
     const { darkMode } = useContext(ThemeContext)
 
@@ -60,6 +63,9 @@ const RoomRead = ({ authState }) => {
         }
         else if (!booking.phoneNumber) {
             toast.error("Telefon belgiňizi ýazyň")
+        }
+        else if (booking.phoneNumber.length < 8) {
+            toast.error("Telefon belgisi 8 sandan ybarat bolmaly")
         }
         else {
             await axios.post("http://localhost:3001/api/bookings/create", booking)
@@ -162,7 +168,7 @@ const RoomRead = ({ authState }) => {
                                         <div className='col-xl-2 col-12 border-end'>
                                             <img src="/img/icons/user-1.jpg" alt="User" className='rounded-circle' style={{ width: "100px" }} />
                                         </div>
-                                        <div className='col-xl-10 col-12 mt-2'> 
+                                        <div className='col-xl-10 col-12 mt-2'>
                                             <div className='row justify-content-between align-items-center'>
                                                 <div className='col-xl-3 col-12'>
                                                     <div className='mb-3 small text-secondary'>31 Awg 2022</div>
@@ -180,7 +186,7 @@ const RoomRead = ({ authState }) => {
                                         <div className='col-xl-2 col-12 border-end'>
                                             <img src="/img/icons/user-1.jpg" alt="User" className='rounded-circle' style={{ width: "100px" }} />
                                         </div>
-                                        <div className='col-xl-10 col-12 mt-2'> 
+                                        <div className='col-xl-10 col-12 mt-2'>
                                             <div className='row justify-content-between align-items-center'>
                                                 <div className='col-xl-3 col-12'>
                                                     <div className='mb-3 small text-secondary'>31 Awg 2022</div>
@@ -197,49 +203,52 @@ const RoomRead = ({ authState }) => {
                         </div>
 
                         <div className='col-xl-4 col-12'>
-                            <div className='row'>
-                                <div className='col-xl-12'>
-                                    <label className="form-label mb-3">Giriş we Çykyş wagtlary</label>
-                                    <div className='row g-0'>
-                                        <div className='col-xl-6 mb-3'>
-                                            <input onChange={handleChange} name='checkIn' type="date" className="form-control rounded-0 py-2 px-3" placeholder='Check In' />
-                                        </div>
-                                        <div className='col-xl-6 mb-3'>
-                                            <input onChange={handleChange} name='checkOut' type="date" className="form-control rounded-0 py-2 px-3" placeholder='Check Out' />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='col-xl-12 mt-4'>
-                                    <label className="form-label">Telefon belginiz</label>
-                                    <div className="input-group">
-                                        <div className="input-group-prepend">
-                                            <span className="input-group-text rounded-0">+993</span>
-                                        </div>
-                                        <input onChange={handleChange} type="number" min="60000000" max="65999999" className="form-control" autoComplete='off' name="phoneNumber" required />
-                                    </div>
-                                </div>
-                                <div className='col-xl-12 border-top mt-5 pt-3'>
-                                    <div className='d-flex justify-content-between align-items-center'>
-                                        <div className='h4'>Bahasy</div>
-                                        <div className='h3 text-blue'>{room.price} <small>TMT</small></div>
-                                    </div>
-                                </div>
-                                <div className='col-xl-12 d-grid mt-5'>
-                                    {
-                                        !authState.status
-                                            ?
-                                            <div className='d-grid'>
-                                                <Link to="/login" className="btn btn-lg btn-primary btn-block  fw-bold">
-                                                    Bronlamak
-                                                </Link>
+                            <div className='card p-5 rounded-0'>
+                                <div className='h4 mb-5 text-center'>Bronlamak</div>
+                                <div className='row'>
+                                    <div className='col-xl-12'>
+                                        <label className="form-label mb-3">Giriş we Çykyş wagtlary</label>
+                                        <div className='row g-0'>
+                                            <div className='col-xl-6 mb-3'>
+                                                <input onChange={handleChange} name='checkIn' type="date" className="form-control rounded-0 py-2 px-3" placeholder='Check In' />
                                             </div>
-                                            :
-                                            <div className='d-grid'>
-                                                <button onClick={bookingRoom} type="submit" className="btn btn-lg btn-primary btn-block fw-bold" id="buy-now">
-                                                    Bronlamak
-                                                </button>
+                                            <div className='col-xl-6 mb-3'>
+                                                <input onChange={handleChange} name='checkOut' type="date" className="form-control rounded-0 py-2 px-3" placeholder='Check Out' />
                                             </div>
-                                    }
+                                        </div>
+                                    </div>
+                                    <div className='col-xl-12 mt-4'>
+                                        <label className="form-label">Telefon belginiz</label>
+                                        <div className="input-group">
+                                            <div className="input-group-prepend">
+                                                <span className="input-group-text rounded-0">+993</span>
+                                            </div>
+                                            <input onChange={handleChange} type="number" min="60000000" max="65999999" className="form-control" autoComplete='off' name="phoneNumber" required />
+                                        </div>
+                                    </div>
+                                    <div className='col-xl-12 border-top mt-5 pt-3'>
+                                        <div className='d-flex justify-content-between align-items-center'>
+                                            <div className='h4'>Bahasy</div>
+                                            <div className='h3 text-blue'>{room.price} <small>TMT</small></div>
+                                        </div>
+                                    </div>
+                                    <div className='col-xl-12 d-grid mt-5'>
+                                        {
+                                            !authState.status
+                                                ?
+                                                <div className='d-grid'>
+                                                    <Link to="/giris-etmek" className="btn btn-lg btn-primary btn-block  fw-bold">
+                                                        Bronlamak
+                                                    </Link>
+                                                </div>
+                                                :
+                                                <div className='d-grid'>
+                                                    <button onClick={bookingRoom} type="submit" className="btn btn-lg btn-primary btn-block fw-bold" id="buy-now">
+                                                        Bronlamak
+                                                    </button>
+                                                </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
