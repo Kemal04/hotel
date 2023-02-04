@@ -2,12 +2,15 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ThemeContext } from '../../../context/ThemeContext'
 import { toast } from 'react-toastify';
-import axios from 'axios';
 import BannerImg from "../../../components/banner/BannerImg"
+import { useDispatch } from "react-redux";
+import { creatContact } from '../../../redux/slices/contact'
 
 const Contact = () => {
 
     const { darkMode } = useContext(ThemeContext)
+
+    const dispatch = useDispatch();
 
     const [contact, setContact] = useState({
         name: "",
@@ -41,14 +44,8 @@ const Contact = () => {
             toast.error("Teswiriňizi 50 harpdan ybarat bolmaly")
         }
         else {
-            await axios.post("http://localhost:3001/api/contact/create", contact)
-                .then((res) => {
-                    toast.success(res.data.success)
-                    console.log(res.data)
-                    navigate("/")
-                }).catch((error) => {
-                    toast.error(error.message)
-                });
+            dispatch(creatContact(contact))
+            navigate("/")
         }
     }
 

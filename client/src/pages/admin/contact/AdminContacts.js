@@ -1,38 +1,24 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import React, { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import AdminNavbar from '../../../components/navbar/AdminNavbar'
 import Sidebar from '../../../components/sidebar/AdminSidebar'
+import { useDispatch, useSelector } from "react-redux";
+import { deleteContact, getAllContacts } from '../../../redux/slices/contact'
 
 const AdminContact = () => {
 
-    const [contacts, setContacts] = useState([]);
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
+
+    const { contacts } = useSelector(state => state.contacts)
 
     useEffect(() => {
-        const fetchAllContacts = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/contact/')
-                setContacts(res.data.contact);
-            } catch (err) {
-                console.log(err)
-            }
-        };
-        fetchAllContacts()
-
-    }, []);
+        dispatch(getAllContacts())
+    }, [dispatch])
 
     const handleDelete = async (id) => {
-
-        await axios.delete('http://localhost:3001/api/contact/delete/' + id)
-            .then((res) => {
-                toast.success(res.data.success)
-                const del = contacts.filter(contacts => id !== contacts.id)
-                setContacts(del)
-            }).catch((error) => {
-                toast.error(error.message)
-            });
-
+        dispatch(deleteContact(id))
+        navigate("/admin/teswirler")
     }
 
     return (
@@ -60,11 +46,10 @@ const AdminContact = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-
                                                 {
-                                                    contacts.map(contact => (
-                                                        <tr key={contact.id}>
-                                                            <td>{contact.id}</td>
+                                                    contacts.slice().sort((a, b) => (a.id < b.id) ? 1 : -1).map((contact, index) => (
+                                                        <tr key={index}>
+                                                            <td>{index}</td>
                                                             <td>{contact.name}</td>
                                                             <td>{contact.subject}</td>
                                                             <td>{contact.comment.substring(0, 40)}...</td>

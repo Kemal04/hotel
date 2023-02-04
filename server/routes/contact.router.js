@@ -4,9 +4,9 @@ const router = express.Router();
 
 //all data GET 
 router.get("/", async (req, res) => {
-    const contact = await Contact.findAll();
+    const contacts = await Contact.findAll();
     res.json({
-        contact: contact
+        contacts: contacts
     })
 });
 

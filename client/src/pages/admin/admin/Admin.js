@@ -6,8 +6,13 @@ import { faArrowRight, faBed, faEnvelope, faHotel, faUserAlt } from '@fortawesom
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllContacts } from '../../../redux/slices/contact'
+import { getAllUsers } from '../../../redux/slices/users'
 
 const Admin = () => {
+
+    const dispatch = useDispatch();
 
     const [roomtypes, setRoomTypes] = useState([])
 
@@ -37,34 +42,18 @@ const Admin = () => {
         fetchAllRooms()
     }, [])
 
-    const [users, setUsers] = useState([])
+    const { users } = useSelector(state => state.users)
 
     useEffect(() => {
-        const fetchAllUsers = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/users/')
-                setUsers(res.data.users)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchAllUsers()
-    }, [])
-    
-    const [contacts, setContacts] = useState([]);
+        dispatch(getAllUsers())
+    }, [dispatch])
+
+
+    const { contacts } = useSelector(state => state.contacts)
 
     useEffect(() => {
-        const fetchAllContacts = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/contact/')
-                setContacts(res.data.contact);
-            } catch (err) {
-                console.log(err)
-            }
-        };
-        fetchAllContacts()
-
-    }, []);
+        dispatch(getAllContacts())
+    }, [dispatch])
 
     return (
         <>

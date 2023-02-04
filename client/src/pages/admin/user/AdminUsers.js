@@ -1,26 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import AdminNavbar from '../../../components/navbar/AdminNavbar'
 import AdminSidebar from '../../../components/sidebar/AdminSidebar'
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllUsers } from '../../../redux/slices/users';
 
 const AdminUsers = () => {
 
-    const [users, setUsers] = useState([])
+    const dispatch = useDispatch();
+
+    const { users } = useSelector(state => state.users)
 
     useEffect(() => {
-        const fetchAllUsers = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/users/')
-                setUsers(res.data.users)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchAllUsers()
-    }, [])
+        dispatch(getAllUsers())
+    }, [dispatch])
 
     return (
         <>
@@ -50,9 +45,9 @@ const AdminUsers = () => {
                                             <tbody>
 
                                                 {
-                                                    users.map(user => (
-                                                        <tr key={user.id} className={user.role === "Admin" ? "fw-bold bg-light" : null}>
-                                                            <td>{user.id}</td>
+                                                    users.slice().sort((a, b) => (a.id < b.id) ? 1 : -1).map((user, index) => (
+                                                        <tr key={index} className={user.role === "Admin" ? "fw-bold bg-light" : null}>
+                                                            <td>{index}</td>
                                                             <td>{user.name}</td>
                                                             <td>{user.email}</td>
                                                             <td>{user.role}</td>
