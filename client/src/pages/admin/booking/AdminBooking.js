@@ -63,14 +63,14 @@ const AdminBooking = () => {
                                                     <th scope="col">Otag belgisi</th>
                                                     <th scope="col">Telefon belgisi</th>
                                                     <th scope="col">Giriş we Çykyş wagtlary</th>
-                                                    <th scope="col">Bron guni</th>
+                                                    {/* <th scope="col">Bron guni</th> */}
                                                     <th scope="col">Tassyklamak</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                                 {
-                                                    booking.map((booking, index) => (
+                                                    booking.slice().sort((a, b) => (a.id < b.id) ? 1 : -1).map((booking, index) => (
                                                         <tr key={index} className={booking.check ? "text-success" : "text-danger"}>
                                                             <td>{index}</td>
                                                             <td>№ {booking.room.roomNum} Otag</td>
@@ -80,10 +80,10 @@ const AdminBooking = () => {
                                                                 <span className='mx-2'>|</span>
                                                                 {new Date(booking.checkOut).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
                                                             </td>
-                                                            <td>
+                                                            {/* <td>
                                                                 {new Date(booking.checkOut).toLocaleDateString(undefined, { day: "numeric" }) - new Date(booking.checkIn).toLocaleDateString(undefined, { day: "numeric" })}
                                                                 &nbsp;&nbsp;günlük
-                                                            </td>
+                                                            </td> */}
                                                             <td>
                                                                 <Link className='btn btn-outline-warning mx-1' to={`/admin/bronlanan-otaglary-uytget/${booking.id}`}><FontAwesomeIcon icon={faPencil} /></Link>
                                                                 <button className='btn btn-outline-danger mx-1' onClick={() => handleDelete(booking.id)}><FontAwesomeIcon icon={faTrash} /></button>

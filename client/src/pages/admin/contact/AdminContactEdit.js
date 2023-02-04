@@ -7,17 +7,16 @@ import AdminSidebar from '../../../components/sidebar/AdminSidebar'
 
 const AdminContactEdit = () => {
 
+    const navigate = useNavigate()
+    const location = useLocation();
+    const contactId = location.pathname.split("/")[3];
+
     const [contact, setContact] = useState({
         name: "",
         email: "",
         subject: "",
         comment: "",
     })
-
-    const navigate = useNavigate()
-    const location = useLocation();
-
-    const contactId = location.pathname.split("/")[3];
 
     const handleChange = (e) => {
         setContact((prev) => ({ ...prev, [e.target.name]: e.target.value }))

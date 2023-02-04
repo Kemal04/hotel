@@ -5,7 +5,8 @@ import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import { ThemeContext } from '../../../context/ThemeContext';
 import BannerSlider from "../../../components/banner/BannerSlider"
 import axios from 'axios';
-import { AuthContext } from '../../../context/AuthContext';
+import { useDispatch, useSelector } from "react-redux";
+import { getAllContacts } from '../../../redux/slices/contact'
 
 const Home = () => {
 
@@ -25,20 +26,14 @@ const Home = () => {
         fetchAllRooms()
     }, [])
 
-    const [contacts, setContacts] = useState([]);
+
+    const dispatch = useDispatch();
+
+    const { contacts } = useSelector(state => state.contacts)
 
     useEffect(() => {
-        const fetchAllContacts = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/contact/')
-                setContacts(res.data.contact);
-            } catch (err) {
-                console.log(err)
-            }
-        };
-        fetchAllContacts()
-
-    }, []);
+        dispatch(getAllContacts())
+    }, [dispatch])
 
     const options = {
         type: 'loop',

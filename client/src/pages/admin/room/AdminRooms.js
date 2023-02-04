@@ -9,7 +9,7 @@ import AdminSidebar from '../../../components/sidebar/AdminSidebar'
 
 const AdminRooms = () => {
 
-    
+
     const [rooms, setRooms] = useState([])
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const AdminRooms = () => {
                 accessToken: localStorage.getItem("accessToken"),
             },
         })
-        .then((res) => {
+            .then((res) => {
                 toast.success(res.success)
                 const del = rooms.filter(rooms => id !== rooms.id)
                 setRooms(del)
@@ -58,8 +58,8 @@ const AdminRooms = () => {
                                     <Link to="/admin/otag-gosmak"><FontAwesomeIcon className='text-dark' icon={faPlus} /></Link>
                                 </div>
                                 <div className='row'>
-                                    {rooms.sort((a, b) => a.timeM > b.timeM ? 1 : -1).map(room => (
-                                        <div key={room.id} className='col-lg-4'>
+                                    {rooms.slice().sort((a, b) => (a.id < b.id) ? 1 : -1).map((room, index) => (
+                                        <div key={index} className='col-lg-4'>
                                             <div className="card mb-5 border-0 shadow rounded-0 me-3">
                                                 <img src={room.img ? `http://localhost:3001/img/${room.img}` : '/img/cards/room/1.jpg'} className="img-fluid" alt={room.roomNum} />
                                                 <div className="card-body">
