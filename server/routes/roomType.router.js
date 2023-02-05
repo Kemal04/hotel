@@ -1,44 +1,44 @@
 const express = require('express');
 const { RoomType } = require('../models/model');
 const router = express.Router();
-const {isAdmin} = require("../middlewares/isAdminMiddleware");
+const { isAdmin } = require("../middlewares/isAdminMiddleware");
 
 
 //all data GET 
 router.get("/", async (req, res) => {
-    const roomtypes = await RoomType.findAll();
+    const roomTypes = await RoomType.findAll();
     res.json({
-        roomtypes: roomtypes
+        roomTypes: roomTypes
     })
 });
 
 // single GET 
-router.get("/:roomtypeId", async (req,res) => {
+router.get("/:roomtypeId", async (req, res) => {
     const id = req.params.roomtypeId;
-    try{
-        const roomtype = await RoomType.findByPk(id);
-        if(roomtype){
+    try {
+        const roomType = await RoomType.findByPk(id);
+        if (roomType) {
             return res.json({
-                roomtype:roomtype
+                roomType: roomType
             });
         }
     }
-    catch(err){
+    catch (err) {
         console.log(err)
     }
 
 });
 
 // create POST 
-router.post("/create", isAdmin, async (req,res) => {
+router.post("/create", isAdmin, async (req, res) => {
     const name = req.body.name;
-    try{
+    try {
         await RoomType.create({
-            name:name
+            name: name
         });
-        res.json({success : "Otag gornusi üstünlikli goşuldy"})
+        res.json({ success: "Otag gornusi üstünlikli goşuldy" })
     }
-    catch(err){
+    catch (err) {
         console.log(err);
     }
 })
@@ -47,10 +47,10 @@ router.post("/create", isAdmin, async (req,res) => {
 router.get("/edit/:roomtypeId", isAdmin, async (req, res) => {
     const id = req.params.roomtypeId;
     try {
-        const roomtype = await RoomType.findByPk(id);
-        if (roomtype) {
+        const roomType = await RoomType.findByPk(id);
+        if (roomType) {
             return res.json({
-                roomtype: roomtype
+                roomType: roomType
             });
         }
     }
@@ -62,14 +62,14 @@ router.post("/edit/:roomtypeId", isAdmin, async (req, res) => {
     const id = req.params.roomtypeId;
     const name = req.body.name;
     try {
-        const roomtype = await RoomType.findByPk(id);
-        if(roomtype){
-            roomtype.name = name;
-            roomtype.save();
-            return  res.json({success: "Otag gornusi üstünlikli duzedildi" });
+        const roomType = await RoomType.findByPk(id);
+        if (roomType) {
+            roomType.name = name;
+            roomType.save();
+            return res.json({ success: "Otag gornusi üstünlikli duzedildi" });
         }
-        res.json({error: "Otag gornusi tapylmady"});
-        
+        res.json({ error: "Otag gornusi tapylmady" });
+
     }
     catch (err) {
         console.log(err);
@@ -80,13 +80,13 @@ router.post("/edit/:roomtypeId", isAdmin, async (req, res) => {
 router.delete("/delete/:roomtypeId", isAdmin, async (req, res) => {
     const id = req.params.roomtypeId;
     await RoomType.destroy({
-      where: {
-        id: id,
-      },
+        where: {
+            id: id,
+        },
     });
-  
+
     res.json("Otag gornusi üstünlikli yok edildi");
-  });
+});
 
 
 module.exports = router;

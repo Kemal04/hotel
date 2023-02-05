@@ -1,41 +1,30 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '@splidejs/react-splide/css';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import { ThemeContext } from '../../../context/ThemeContext';
 import BannerSlider from "../../../components/banner/BannerSlider"
-import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllContacts } from '../../../redux/slices/contact'
+import { getAllRooms } from '../../../redux/slices/rooms'
 
 const Home = () => {
 
     const { darkMode } = useContext(ThemeContext)
 
-    const [rooms, setRooms] = useState([])
-
-    useEffect(() => {
-        const fetchAllRooms = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/rooms/')
-                setRooms(res.data.rooms)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchAllRooms()
-    }, [])
-
-
     const dispatch = useDispatch();
 
-    const { contacts } = useSelector(state => state.contacts)
+    const { rooms } = useSelector(state => state.rooms)
+    useEffect(() => {
+        dispatch(getAllRooms())
+    }, [dispatch])
 
+    const { contacts } = useSelector(state => state.contacts)
     useEffect(() => {
         dispatch(getAllContacts())
     }, [dispatch])
 
-    const options = {
+    const roomoptions = {
         type: 'loop',
         perPage: 1,
         perMove: 1,
@@ -51,7 +40,6 @@ const Home = () => {
         autoplay: true,
         arrows: false,
     };
-
 
     return (
         <>
@@ -183,7 +171,7 @@ const Home = () => {
 
                 {/* Rooms Section  */}
                 <div className='container-fluid p-0 my-5'>
-                    <Splide options={options} hasTrack={false}>
+                    <Splide options={roomoptions} hasTrack={false}>
                         <SplideTrack className='row g-0'>
                             {
                                 rooms.map((room) => (
@@ -241,7 +229,7 @@ const Home = () => {
                             <div className='h6 ls-2 mb-3' style={{ color: "#1cc3b2" }}> Habarlaşmak </div>
                             <div className='display-5 mb-4'>Bize Gelen Teswirler</div>
                             <Splide options={contactOptions} hasTrack={false} className="my-5">
-                                <SplideTrack className='row g-0'>
+                                <SplideTrack className='row'>
                                     {
                                         contacts.map((contact) => (
                                             <SplideSlide className='col-xl-12' key={contact.id}>

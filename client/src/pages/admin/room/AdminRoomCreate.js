@@ -1,26 +1,22 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import AdminNavbar from '../../../components/navbar/AdminNavbar'
-import AdminSidebar from '../../../components/sidebar/AdminSidebar'
+import { creatRoom } from '../../../redux/slices/rooms'
+import { getAllRoomTypes } from '../../../redux/slices/roomTypes'
 
 const AdminRoomCreate = () => {
 
-    const [roomtypes, setRoomTypes] = useState([])
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const { roomTypes } = useSelector(state => state.roomTypes)
 
     useEffect(() => {
-        const fetchRoomTypes = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/roomtypes/')
-                setRoomTypes(res.data.roomtypes)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchRoomTypes()
-    }, [])
+        dispatch(getAllRoomTypes())
+    }, [dispatch])
 
+    const [img, setImg] = useState('')
     const [room, setRoom] = useState({
         roomTypeId: "",
         roomNum: "",
@@ -29,14 +25,9 @@ const AdminRoomCreate = () => {
         size: "",
     })
 
-    
-    const [img, setImg] = useState('')
-
     const handleChange = (e) => {
         setRoom((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
-
-    const navigate = useNavigate()
 
     const handleClick = async (e) => {
         e.preventDefault()
@@ -68,90 +59,69 @@ const AdminRoomCreate = () => {
             toast.error("Surat yok")
         }
         else {
-            await axios.post("http://localhost:3001/api/rooms/create", formData,  {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    accessToken: localStorage.getItem("accessToken"),
-                },
-            })
-                .then((res) => {
-                    toast.success(res.data.success)
-                    navigate("/admin/otaglar")
-                }).catch((res) => {
-                    toast.error(res.response.data.error)
-                    navigate(`/${res.response.status}`);
-                });
+            dispatch(creatRoom(formData))
+            navigate("/admin/otaglar")
         }
     }
 
     return (
         <>
-            <div className="hold-transition sidebar-mini layout-fixed">
-                <div className="wrapper">
-                    <AdminNavbar />
-                    <AdminSidebar />
-                    <div className="content-wrapper" style={{ paddingTop: "70px" }}>
-                        <div className='content'>
-                            <div className='container'>
-                                <div className='row justify-content-center'>
-                                    <div className='col-lg-8'>
-                                        <div className='my-5 py-5'>
-                                            <div className='d-flex justify-content-center aling-items-center h2 mb-5'>
-                                                Otag goşmak
-                                            </div>
-                                            <form className='row' encType='multipart/form-data'>
+            <div className='container'>
+                <div className='row justify-content-center'>
+                    <div className='col-lg-8'>
+                        <div className='my-5 py-5'>
+                            <div className='d-flex justify-content-center aling-items-center h2 mb-5'>
+                                Otag goşmak
+                            </div>
+                            <form className='row' encType='multipart/form-data'>
 
-                                                <div className="col-lg-12 mb-3">
-                                                    <select name='roomTypeId' className="form-select" onChange={handleChange}>
-                                                        <option defaultValue>Otag görnüşini sayla</option>
-                                                        {roomtypes.map(roomtype => (
-                                                            <option key={roomtype.id} value={roomtype.id}>{roomtype.name}</option>
-                                                        ))}
-                                                    </select>
-                                                </div>
+                                <div className="col-lg-12 mb-3">
+                                    <select name='roomTypeId' className="form-select" onChange={handleChange}>
+                                        <option defaultValue>Otag görnüşini sayla</option>
+                                        {roomTypes.map(roomtype => (
+                                            <option key={roomtype.id} value={roomtype.id}>{roomtype.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
 
-                                                <div className="col-lg-6 mb-3">
-                                                    <label className="form-label fw-bold">Otagyň belgisi</label>
-                                                    <input name='roomNum' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
-                                                </div>
+                                <div className="col-lg-6 mb-3">
+                                    <label className="form-label fw-bold">Otagyň belgisi</label>
+                                    <input name='roomNum' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
+                                </div>
 
-                                                <div className="col-lg-6 mb-3">
-                                                    <label className="form-label fw-bold">Otagyň bahasy</label>
-                                                    <div className="input-group mb-3">
-                                                        <input name='price' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
-                                                        <span className="input-group-text rounded-0" id="basic-addon1">TMT</span>
-                                                    </div>
-                                                </div>
-
-                                                <div className="col-lg-6 mb-3">
-                                                    <label className="form-label fw-bold">Otagyň adam sany</label>
-                                                    <input name='capacity' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
-                                                </div>
-
-                                                <div className="col-lg-6 mb-3">
-                                                    <label className="form-label fw-bold">Otagyň tutýan meýdany</label>
-                                                    <div className="input-group mb-3">
-                                                        <input name='size' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
-                                                        <span className="input-group-text rounded-0" id="basic-addon1">m <sup>2</sup></span>
-                                                    </div>
-                                                </div>
-
-                                                <div className="col-lg-12 mb-3">
-                                                    <label className="form-label fw-bold">Otagyň Suraty</label>
-                                                    <div className="input-group mb-3">
-                                                        <input name='img' onChange={(e)=>setImg(e.target.files[0])} type="file" className="form-control rounded-0" autoComplete="off" />
-                                                    </div>
-                                                </div>
-
-                                                <div className='d-grid mt-3'>
-                                                    <button onClick={handleClick} type="submit" className="btn btn-primary">Goşmak</button>
-                                                </div>
-
-                                            </form>
-                                        </div>
+                                <div className="col-lg-6 mb-3">
+                                    <label className="form-label fw-bold">Otagyň bahasy</label>
+                                    <div className="input-group mb-3">
+                                        <input name='price' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
+                                        <span className="input-group-text rounded-0" id="basic-addon1">TMT</span>
                                     </div>
                                 </div>
-                            </div>
+
+                                <div className="col-lg-6 mb-3">
+                                    <label className="form-label fw-bold">Otagyň adam sany</label>
+                                    <input name='capacity' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
+                                </div>
+
+                                <div className="col-lg-6 mb-3">
+                                    <label className="form-label fw-bold">Otagyň tutýan meýdany</label>
+                                    <div className="input-group mb-3">
+                                        <input name='size' onChange={handleChange} type="number" className="form-control rounded-0" autoComplete="off" />
+                                        <span className="input-group-text rounded-0" id="basic-addon1">m <sup>2</sup></span>
+                                    </div>
+                                </div>
+
+                                <div className="col-lg-12 mb-3">
+                                    <label className="form-label fw-bold">Otagyň Suraty</label>
+                                    <div className="input-group mb-3">
+                                        <input name='img' onChange={(e) => setImg(e.target.files[0])} type="file" className="form-control rounded-0" autoComplete="off" />
+                                    </div>
+                                </div>
+
+                                <div className='d-grid mt-3'>
+                                    <button onClick={handleClick} type="submit" className="btn btn-primary">Goşmak</button>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
                 </div>

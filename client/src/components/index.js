@@ -1,4 +1,6 @@
 export { default as Navbar } from "./navbar/Navbar"
+export { default as AdminNavbar } from "./navbar/AdminNavbar"
+export { default as AdminSidebar } from "./sidebar/AdminSidebar"
 export { default as ProfileNavbar } from "./navbar/ProfileNavbar"
 export { default as Footer } from "./footer/Footer"
 export { default as BannerSlider } from "./banner/BannerSlider"
