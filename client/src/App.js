@@ -5,7 +5,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'
 
 //COMPONENTS
-import { Navbar, Footer, ProfileNavbar } from "./components"
+import { Navbar, Footer, ProfileNavbar, AdminNavbar, AdminSidebar } from "./components"
 
 //USERINTERFACE
 import { About, Contact, Home, Rooms, RoomRead, Register, Login } from "./pages/userInterface"
@@ -26,6 +26,9 @@ import 'react-toastify/dist/ReactToastify.css';
 //CONTEXT
 import ThemeContextProvider from "./context/ThemeContext"
 import { AuthContext } from './context/AuthContext';
+
+//CSS
+import "./admin.css"
 
 const App = () => {
 
@@ -150,7 +153,17 @@ const WithNavbar = () => {
 
 const AdminWithNavbar = () => {
     return (
-        <Outlet />
+        <div className="hold-transition sidebar-mini layout-fixed">
+            <div className="wrapper">
+                <AdminNavbar />
+                <AdminSidebar />
+                <div className="content-wrapper" style={{ paddingTop: "70px" }}>
+                    <div className='content'>
+                        <Outlet />
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 

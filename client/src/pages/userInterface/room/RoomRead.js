@@ -7,13 +7,11 @@ import axios from 'axios'
 import { ThemeContext } from '../../../context/ThemeContext';
 import BannerImg from '../../../components/banner/BannerImg';
 import { AuthContext } from '../../../context/AuthContext';
+import { useDispatch } from 'react-redux';
+import { creatBooking } from '../../../redux/slices/bookings'
 
 const RoomRead = () => {
-
-    const { authState } = useContext(AuthContext)
-
-    const { darkMode } = useContext(ThemeContext)
-
+    
     const option = {
         type: 'loop',
         perPage: 1,
@@ -22,16 +20,17 @@ const RoomRead = () => {
         autoplay: true,
     };
 
+    const { authState } = useContext(AuthContext)
+    const { darkMode } = useContext(ThemeContext)
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const location = useLocation();
     const roomId = location.pathname.split("/")[2];
 
-    const navigate = useNavigate()
-
     const [room, setRoom] = useState("")
     const [roomType, setRoomType] = useState("")
-
     const [booking, setBooking] = useState({
-        userId: authState.id,
         roomId: roomId,
         checkIn: "",
         checkOut: "",
@@ -68,13 +67,8 @@ const RoomRead = () => {
             toast.error("Telefon belgisi 8 sandan ybarat bolmaly")
         }
         else {
-            await axios.post("http://localhost:3001/api/bookings/create", booking)
-                .then((res) => {
-                    toast.success(res.data.success)
-                    navigate("/")
-                }).catch((error) => {
-                    toast.error(error.message)
-                });
+            dispatch(creatBooking(booking))
+            navigate("/")
         }
     }
 

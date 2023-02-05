@@ -26,7 +26,7 @@ export const deleteContact = createAsyncThunk(
     "contact/delete",
     async (id) => {
         const { data } = await axios.delete(`http://localhost:3001/api/contact/delete/${id}`)
-        return data.success;
+        toast.success(data.success)
     }
 );
 

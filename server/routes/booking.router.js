@@ -5,9 +5,9 @@ const { validateToken } = require("../middlewares/AuthMiddleware");
 const { isAdmin } = require('../middlewares/isAdminMiddleware');
 
 router.get("/", async (req, res) => {
-    const booking = await Booking.findAll({ include: Room });
+    const bookings = await Booking.findAll({ include: Room });
     res.json({
-        booking: booking
+        bookings: bookings
     });
 });
 
@@ -20,12 +20,12 @@ router.get("/user", async (req, res) => {
     });
 });
 
-router.post("/create", async (req, res) => {
+router.post("/create", validateToken, async (req, res) => {
     const checkIn = req.body.checkIn
     const checkOut = req.body.checkOut;
     const phoneNumber = req.body.phoneNumber;
     const roomId = req.body.roomId;
-    const userId = req.body.userId;
+    const userId = req.user.id;
 
     try {
         await Booking.create({
@@ -75,5 +75,17 @@ router.post("/edit/:bookingId", isAdmin, async (req, res) => {
     }
 })
 
+// delete POST 
+router.delete("/delete/:bookingId", isAdmin, async (req, res) => {
+    const bookingId = req.params.bookingId;
+
+    await Booking.destroy({
+        where: {
+            id: bookingId,
+        },
+    });
+
+    res.json("Bron üstünlikli yok edildi");
+});
 
 module.exports = router;

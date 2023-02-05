@@ -4,38 +4,25 @@ import { ThemeContext } from '../../../context/ThemeContext'
 import BannerImg from "../../../components/banner/BannerImg"
 import Filter from '../../../components/filter/Filter'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllRoomTypes } from '../../../redux/slices/roomTypes'
+import { getAllRooms } from '../../../redux/slices/rooms'
 
 const Rooms = () => {
 
     const { darkMode } = useContext(ThemeContext)
 
-    const [roomtypes, setRoomTypes] = useState([])
+    const dispatch = useDispatch()
 
+    const { roomTypes } = useSelector(state => state.roomTypes)
     useEffect(() => {
-        const fetchRoomTypes = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/roomtypes/')
-                setRoomTypes(res.data.roomtypes)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchRoomTypes()
-    }, [])
+        dispatch(getAllRoomTypes())
+    }, [dispatch])
 
-    const [rooms, setRooms] = useState([])
-
+    const { rooms } = useSelector(state => state.rooms)
     useEffect(() => {
-        const fetchAllRooms = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/api/rooms/')
-                setRooms(res.data.rooms)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchAllRooms()
-    }, [])
+        dispatch(getAllRooms())
+    }, [dispatch])
 
     // function onSelectionChange(e) {
     //     const sortDirection = e.target.value;
@@ -82,7 +69,7 @@ const Rooms = () => {
         fetchAllRooms()
     }, [])
 
-    const roomType = [...new Set(roomtypes.map((Val) => Val.name))];
+    const roomType = [...new Set(roomTypes.map((Val) => Val.name))];
 
     const roomCapacity = [...new Set(rooms.map((Val) => Val.capacity))];
 
@@ -92,7 +79,6 @@ const Rooms = () => {
         });
         setItem(newItem);
     };
-
 
     const filterCapacity = (value) => {
         const newItem = rooms.filter((newVal) => {
