@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { faBed, faBook, faCommentAlt, faSort, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const AdminSidebar = () => {
     return (
@@ -25,30 +27,35 @@ const AdminSidebar = () => {
                     </div>
 
                     <nav className="mt-2">
-                        <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <ul className="nav nav-pills nav-sidebar flex-column nav-treeview" data-widget="treeview" role="menu" data-accordion="false">
                             <li className="nav-item">
                                 <NavLink to="/admin/ulanyjylar" className="nav-link">
-                                    <p> Ulanyjylar </p>
+                                    <FontAwesomeIcon icon={faUser} className="nav-icon me-2" />
+                                    <p>Ulanyjylar</p>
                                 </NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink to="/admin/teswirler" className="nav-link">
-                                    <p> Teswirler </p>
+                                    <FontAwesomeIcon icon={faCommentAlt} className="nav-icon me-2" />
+                                    <p>Teswirler</p>
                                 </NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink to="/admin/otag-gornusleri" className="nav-link">
-                                    <p> Otag görnüşleri </p>
+                                    <FontAwesomeIcon icon={faBed} className="nav-icon me-2" />
+                                    <p>Otag görnüşleri</p>
                                 </NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink to="/admin/otaglar" className="nav-link">
-                                    <p> Otaglar </p>
+                                    <FontAwesomeIcon icon={faBed} className="nav-icon me-2" />
+                                    <p>Otaglar</p>
                                 </NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink to="/admin/bronlanan-otaglar" className="nav-link">
-                                    <p> Bronlanan otaglar </p>
+                                    <FontAwesomeIcon icon={faBook} className="nav-icon me-2" />
+                                    <p>Bronlanan otaglar</p>
                                 </NavLink>
                             </li>
                         </ul>

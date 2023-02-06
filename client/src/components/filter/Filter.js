@@ -2,6 +2,7 @@ import React from 'react'
 import "../../pages/userInterface/room/room.css"
 
 const Filter = ({ filterItem, setItem, roomType, rooms, filterCapacity, roomCapacity }) => {
+
     return (
         <>
             <div className='row'>
@@ -25,11 +26,11 @@ const Filter = ({ filterItem, setItem, roomType, rooms, filterCapacity, roomCapa
                 <div className='col-xl-12 mb-3'>
                     <div className='label mb-3 fw-bold small'>Adam sany</div>
                     <div className="d-flex justify-content-center flex-column">
-                        {roomCapacity.map((name, id) => {
+                        {roomCapacity.map((name, index) => {
                             return (
                                 <>
-                                    <label className="small mb-2 fw-normal d-flex align-items-center position-relative ps-4 check" style={{ cursor: "pointer", userSelect: "none" }} htmlFor={id} key={id}>{name} Adam
-                                        <input type="radio" id={id} className="opacity-0" name="radio" onChange={() => filterCapacity(name)}/>
+                                    <label className="small mb-2 fw-normal d-flex align-items-center position-relative ps-4 check" style={{ cursor: "pointer", userSelect: "none" }} key={index}>{name} Adam
+                                        <input type="radio" className="opacity-0" name="radio" onChange={() => filterCapacity(name)} />
                                         <span className="position-absolute top-0 start-0 bg-light checkmark" style={{ height: "20px", width: "20px" }}></span>
                                     </label>
                                 </>

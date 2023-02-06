@@ -24,8 +24,10 @@ const AdminRoomEdit = () => {
         img: "",
     })
 
-
+    
+    
     const [img, setImg] = useState('')
+    console.log(img);
 
     const uploadPicture = (e) => {
         setImg({
@@ -67,10 +69,7 @@ const AdminRoomEdit = () => {
         formData.append('price', room.price)
         formData.append('capacity', room.capacity)
         formData.append('size', room.size)
-        formData.append('img', img.pictureAsFile)
-
-
-        console.log("img", img.pictureAsFile);
+        formData.append('img', img.pictureAsFile === undefined ? img : img.pictureAsFile)
 
         if (!room.roomTypeId) {
             toast.error("Otagyň görnüşini saýlaň")
